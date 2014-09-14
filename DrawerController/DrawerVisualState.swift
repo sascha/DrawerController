@@ -75,7 +75,7 @@ public struct DrawerVisualState {
                 sideDrawerViewController = drawerController.rightDrawerViewController
                 anchorPoint = CGPoint(x: 0.0, y: 0.5)
                 maxDrawerWidth = max(drawerController.maximumRightDrawerWidth, drawerController.visibleRightDrawerWidth)
-                xOffset = -(maxDrawerWidth / 2) - maxDrawerWidth * percentVisible
+                xOffset = (maxDrawerWidth / 2) - maxDrawerWidth * percentVisible
                 angle = CGFloat(M_PI_2) - percentVisible * CGFloat(M_PI_2)
             }
             
@@ -144,7 +144,7 @@ public struct DrawerVisualState {
                 let distance: CGFloat = max(drawerController.maximumRightDrawerWidth, drawerController.visibleRightDrawerWidth)
                 
                 if (percentVisible <= 1.0) {
-                    transform = CATransform3DMakeTranslation((distance) / parallaxFactor + (distance * percentVisible / parallaxFactor), 0.0, 0.0)
+                    transform = CATransform3DMakeTranslation((distance) / parallaxFactor - (distance * percentVisible / parallaxFactor), 0.0, 0.0)
                 } else {
                     transform = CATransform3DMakeScale(percentVisible, 1.0, 1.0)
                     transform = CATransform3DTranslate(transform, -drawerController.maximumRightDrawerWidth * (percentVisible - 1.0) / 2, 0.0, 0.0)

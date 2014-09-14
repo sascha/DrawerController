@@ -120,7 +120,7 @@ private let DrawerDefaultFullAnimationDelay: NSTimeInterval = 0.10
 private let DrawerDefaultBounceDistance: CGFloat = 50.0
 
 private let DrawerMinimumAnimationDuration: CGFloat = 0.15
-private let DrawerDefaultDampingFactor: CGFloat = 0.8
+private let DrawerDefaultDampingFactor: CGFloat = 1.0
 private let DrawerDefaultShadowRadius: CGFloat = 10.0
 private let DrawerDefaultShadowOpacity: Float = 0.8
 
@@ -778,6 +778,7 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
     private func updateSizeOfCenterContainerView() {
         // TODO: evtl. animieren?
         var centerFrame = self.childControllerContainerView.bounds
+        var oldFrame = centerFrame
         
         if self.shouldAlwaysShowLeftDrawerInRegularHorizontalSizeClass && self.traitCollection.horizontalSizeClass == .Regular {
             centerFrame.size.width -= self.maximumLeftDrawerWidth
@@ -788,7 +789,9 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
             centerFrame.size.width -= self.maximumRightDrawerWidth
         }
         
-        self.centerContainerView.frame = centerFrame
+        if oldFrame != centerFrame {
+            self.centerContainerView.frame = centerFrame
+        }
     }
     
     private func animationDurationForAnimationDistance(distance: CGFloat) -> NSTimeInterval {
@@ -903,7 +906,7 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
             self._leftDrawerViewController = viewController
             autoResizingMask = .FlexibleRightMargin | .FlexibleHeight
         } else if drawerSide == .Right {
-            self._rightDrawerViewController == viewController
+            self._rightDrawerViewController = viewController
             autoResizingMask = .FlexibleLeftMargin | .FlexibleHeight
         }
         

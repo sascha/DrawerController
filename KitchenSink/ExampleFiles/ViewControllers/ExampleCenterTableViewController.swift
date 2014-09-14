@@ -88,7 +88,7 @@ class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSo
     
     func setupRightMenuButton() {
         let rightDrawerButton = DrawerBarButtonItem(target: self, action: "rightDrawerButtonPress:")
-        self.navigationItem.setLeftBarButtonItem(rightDrawerButton, animated: true)
+        self.navigationItem.setRightBarButtonItem(rightDrawerButton, animated: true)
     }
     
     override func contentSizeDidChange(size: String) {
