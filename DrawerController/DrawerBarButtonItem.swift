@@ -7,33 +7,11 @@
 //
 
 import UIKit
+import Foundation
 
 public class DrawerBarButtonItem: UIBarButtonItem {
-    class var drawerButtonImage: UIImage {
-    struct Static {
-        static let image: UIImage = {
-            UIGraphicsBeginImageContextWithOptions(CGSizeMake(26, 26), false, 0)
-            
-            let fillColor = UIColor.whiteColor()
-            let frame = CGRectMake(0, 0, 26, 26)
-            
-            fillColor.setFill()
-            
-            let bottomBarPath = UIBezierPath(rect: CGRectMake(CGRectGetMinX(frame) + floor((CGRectGetWidth(frame) - 16) * 0.50000 + 0.5), CGRectGetMinY(frame) + floor((CGRectGetHeight(frame) - 1) * 0.72000 + 0.5), 16, 1))
-            bottomBarPath.fill()
-            
-            let middleBarPath = UIBezierPath(rect: CGRectMake(CGRectGetMinX(frame) + floor((CGRectGetWidth(frame) - 16) * 0.50000 + 0.5), CGRectGetMinY(frame) + floor((CGRectGetHeight(frame) - 1) * 0.48000 + 0.5), 16, 1))
-            middleBarPath.fill()
-            
-            let topBarPath = UIBezierPath(rect: CGRectMake(CGRectGetMinX(frame) + floor((CGRectGetWidth(frame) - 16) * 0.50000 + 0.5), CGRectGetMinY(frame) + floor((CGRectGetHeight(frame) - 1) * 0.24000 + 0.5), 16, 1))
-            topBarPath.fill()
-            
-            return UIGraphicsGetImageFromCurrentImageContext()
-        }()
-        }
-        
-        return Static.image
-    }
+    
+    public var menuButton: AnimatedMenuButton?
     
     // MARK: - Initializers
     
@@ -42,11 +20,22 @@ public class DrawerBarButtonItem: UIBarButtonItem {
     }
     
     public init(target: AnyObject?, action: Selector) {
-        super.init(image: DrawerBarButtonItem.drawerButtonImage, style: .Plain, target: target, action: action)
+        self.menuButton = AnimatedMenuButton(frame: CGRectMake(0, 0, 30, 30))
+        self.menuButton?.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
+        
+        super.init(customView: self.menuButton!)
     }
     
     public required convenience init(coder aDecoder: NSCoder) {
         let barButtonItem = UIBarButtonItem(coder: aDecoder)
         self.init(target: barButtonItem.target, action: barButtonItem.action)
+    }
+    
+    // MARK: - Animations
+    
+    public func animateWithPercentVisible(percentVisible: CGFloat, drawerSide: DrawerSide) {
+        if let btn = self.customView as? AnimatedMenuButton {
+            btn.animateWithPercentVisible(percentVisible, drawerSide: drawerSide)
+        }
     }
 }

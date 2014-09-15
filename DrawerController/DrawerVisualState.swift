@@ -156,4 +156,26 @@ public struct DrawerVisualState {
             
         return visualStateBlock
     }
+    
+    public static var animatedHamburgerButtonVisualStateBlock: DrawerControllerDrawerVisualStateBlock {
+        let visualStateBlock: DrawerControllerDrawerVisualStateBlock = { (drawerController, drawerSide, percentVisible) -> Void in
+            
+            var hamburgerItem: DrawerBarButtonItem?
+            if let navController = drawerController.centerViewController? as? UINavigationController {
+                if (drawerSide == .Left) {
+                    if let item = navController.topViewController.navigationItem.leftBarButtonItem as? DrawerBarButtonItem {
+                        hamburgerItem = item
+                    }
+                } else if (drawerSide == .Right) {
+                    if let item = navController.topViewController.navigationItem.rightBarButtonItem as? DrawerBarButtonItem {
+                        hamburgerItem = item
+                    }
+                }
+            }
+
+            hamburgerItem?.animateWithPercentVisible(percentVisible, drawerSide: drawerSide)
+        }
+            
+        return visualStateBlock
+    }
 }

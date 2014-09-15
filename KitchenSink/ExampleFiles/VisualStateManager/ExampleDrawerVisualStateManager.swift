@@ -14,6 +14,7 @@ enum DrawerAnimationType: Int {
     case SlideAndScale
     case SwingingDoor
     case Parallax
+    case AnimatedBarButton
 }
 
 class ExampleDrawerVisualStateManager: NSObject {
@@ -48,6 +49,8 @@ class ExampleDrawerVisualStateManager: NSObject {
             visualStateBlock = DrawerVisualState.parallaxVisualStateBlock(2.0)
         case .SwingingDoor:
             visualStateBlock = DrawerVisualState.swingingDoorVisualStateBlock
+        case .AnimatedBarButton:
+            visualStateBlock = DrawerVisualState.animatedHamburgerButtonVisualStateBlock
         default:
             visualStateBlock = { drawerController, drawerSide, percentVisible in
                 var sideDrawerViewController: UIViewController?

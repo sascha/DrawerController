@@ -23,6 +23,7 @@
 		2BE66C7A19C50C0B005EDC19 /* SideDrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE66C7919C50C0B005EDC19 /* SideDrawerTableViewCell.swift */; };
 		2BE66C7C19C50C2C005EDC19 /* SideDrawerSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE66C7B19C50C2C005EDC19 /* SideDrawerSectionHeaderView.swift */; };
 		2BE66C7E19C50D87005EDC19 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BE66C7D19C50D87005EDC19 /* LaunchScreen.xib */; };
+		F5B300F119C7910B00F04614 /* AnimatedMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B300F019C7910B00F04614 /* AnimatedMenuButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		2BE66C7919C50C0B005EDC19 /* SideDrawerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideDrawerTableViewCell.swift; sourceTree = "<group>"; };
 		2BE66C7B19C50C2C005EDC19 /* SideDrawerSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideDrawerSectionHeaderView.swift; sourceTree = "<group>"; };
 		2BE66C7D19C50D87005EDC19 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		F5B300F019C7910B00F04614 /* AnimatedMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedMenuButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		2BCB04BF19C4F3BD002CBDB6 /* DrawerController */ = {
 			isa = PBXGroup;
 			children = (
+				F5B300F019C7910B00F04614 /* AnimatedMenuButton.swift */,
 				2BCB04C919C4F58F002CBDB6 /* DrawerBarButtonItem.swift */,
 				2BCB04CA19C4F58F002CBDB6 /* DrawerController.swift */,
 				2BCB04CB19C4F58F002CBDB6 /* DrawerVisualState.swift */,
@@ -218,6 +221,7 @@
 				2BE66C7C19C50C2C005EDC19 /* SideDrawerSectionHeaderView.swift in Sources */,
 				2BCB04C819C4F4DE002CBDB6 /* ExampleDrawerVisualStateManager.swift in Sources */,
 				2BC043CD19C505FA00CA68B6 /* CenterTableViewCell.swift in Sources */,
+				F5B300F119C7910B00F04614 /* AnimatedMenuButton.swift in Sources */,
 				2BCB04D419C4FB39002CBDB6 /* ExampleCenterTableViewController.swift in Sources */,
 				2BCB04D219C4FA50002CBDB6 /* NavigationController.swift in Sources */,
 				2BCB04D019C4F814002CBDB6 /* ExampleViewController.swift in Sources */,

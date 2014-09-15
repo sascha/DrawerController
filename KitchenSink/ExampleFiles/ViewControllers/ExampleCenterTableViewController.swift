@@ -104,7 +104,7 @@ class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSo
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case CenterViewControllerSection.LeftDrawerAnimation.toRaw(), CenterViewControllerSection.RightDrawerAnimation.toRaw():
-            return 5
+            return 6
         case CenterViewControllerSection.LeftViewState.toRaw(), CenterViewControllerSection.RightViewState.toRaw():
             return 1
         default:
@@ -154,6 +154,8 @@ class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSo
                 cell.textLabel?.text = "Swinging Door"
             case DrawerAnimationType.Parallax.toRaw():
                 cell.textLabel?.text = "Parallax"
+            case DrawerAnimationType.AnimatedBarButton.toRaw():
+                cell.textLabel?.text = "Animated Menu Button"
             default:
                 break
             }
