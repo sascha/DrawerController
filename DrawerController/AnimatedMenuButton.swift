@@ -47,7 +47,7 @@ public class AnimatedMenuButton : UIButton {
     
     override init(frame: CGRect) {
         super.init(frame:frame)
-        
+                
         self.top.path = shortStroke;
         self.middle.path = shortStroke;
         self.bottom.path = shortStroke;

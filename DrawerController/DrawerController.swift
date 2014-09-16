@@ -24,15 +24,15 @@ extension UIViewController {
     var evo_drawerController: DrawerController? {
         var parentViewController = self.parentViewController
             
-        while parentViewController != nil {
-            if parentViewController!.isKindOfClass(DrawerController) {
-                return parentViewController as? DrawerController
-            }
+            while parentViewController != nil {
+                if parentViewController!.isKindOfClass(DrawerController) {
+                    return parentViewController as? DrawerController
+                }
                 
-            parentViewController = parentViewController!.parentViewController
-        }
+                parentViewController = parentViewController!.parentViewController
+            }
             
-        return nil
+            return nil
     }
     
     var evo_visibleDrawerFrame: CGRect {
@@ -49,9 +49,9 @@ extension UIViewController {
                 rect.origin.x = CGRectGetWidth(drawerController.view.bounds) - rect.size.width
                 return rect
             }
-        }
+            }
             
-        return CGRectNull
+            return CGRectNull
     }
 }
 
@@ -108,12 +108,12 @@ public struct CloseDrawerGestureMode : RawOptionSetType, BooleanType {
     public static func convertFromNilLiteral() -> CloseDrawerGestureMode { return self(0) }
     
     static var None: CloseDrawerGestureMode { return self(0b0000000) }
-    static var PanningNavigationBar: CloseDrawerGestureMode { return self(0b0001000) }
-    static var PanningCenterView: CloseDrawerGestureMode { return self(0b0010000) }
-    static var BezelPanningCenterView: CloseDrawerGestureMode { return self(0b0100000) }
-    static var TapNavigationBar: CloseDrawerGestureMode { return self(0b1000000) }
-    static var TapCenterView: CloseDrawerGestureMode { return self(0b1000000) }
-    static var PanningDrawerView: CloseDrawerGestureMode { return self(0b1000000) }
+    static var PanningNavigationBar: CloseDrawerGestureMode { return self(0b0000001) }
+    static var PanningCenterView: CloseDrawerGestureMode { return self(0b0000010) }
+    static var BezelPanningCenterView: CloseDrawerGestureMode { return self(0b0000100) }
+    static var TapNavigationBar: CloseDrawerGestureMode { return self(0b0001000) }
+    static var TapCenterView: CloseDrawerGestureMode { return self(0b0010000) }
+    static var PanningDrawerView: CloseDrawerGestureMode { return self(0b0100000) }
     static var Custom: CloseDrawerGestureMode { return self(0b1000000) }
     static var All: CloseDrawerGestureMode { return self(0b1111111) }
 }
@@ -1386,22 +1386,22 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
                 visibleSide = .Right
             }
             
-            if let sideDrawerViewController = self.sideDrawerViewControllerForSide(visibleSide) {
-                self.updateDrawerVisualStateForDrawerSide(visibleSide, percentVisible: percentVisible)
-                sideDrawerViewController.beginAppearanceTransition(false, animated: animated)
-                
-                UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: self.drawerDampingFactor, initialSpringVelocity: velocity / distance, options: options, animations: { () -> Void in
-                    self.setNeedsStatusBarAppearanceUpdate()
-                    self.centerContainerView.frame = newFrame
-                    self.updateDrawerVisualStateForDrawerSide(visibleSide, percentVisible: 0.0)
-                    }, completion: { (finished) -> Void in
-                        sideDrawerViewController.endAppearanceTransition()
-                        self.openSide = .None
-                        self.resetDrawerVisualStateForDrawerSide(visibleSide)
-                        self.animatingDrawer = false
-                        completion?(finished)
-                })
-            }
+            let sideDrawerViewController = self.sideDrawerViewControllerForSide(visibleSide)
+            
+            self.updateDrawerVisualStateForDrawerSide(visibleSide, percentVisible: percentVisible)
+            sideDrawerViewController?.beginAppearanceTransition(false, animated: animated)
+            
+            UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: self.drawerDampingFactor, initialSpringVelocity: velocity / distance, options: options, animations: { () -> Void in
+                self.setNeedsStatusBarAppearanceUpdate()
+                self.centerContainerView.frame = newFrame
+                self.updateDrawerVisualStateForDrawerSide(visibleSide, percentVisible: 0.0)
+                }, completion: { (finished) -> Void in
+                    sideDrawerViewController?.endAppearanceTransition()
+                    self.openSide = .None
+                    self.resetDrawerVisualStateForDrawerSide(visibleSide)
+                    self.animatingDrawer = false
+                    completion?(finished)
+            })
         }
     }
     
@@ -1574,11 +1574,11 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
             }
             
             if self.isPointContainedWithinLeftBezelRect(point) && self.leftDrawerViewController != nil {
-                possibleOpenGestureModes |= .PanningCenterView
+                possibleOpenGestureModes |= .BezelPanningCenterView
             }
             
             if self.isPointContainedWithinRightBezelRect(point) && self.rightDrawerViewController != nil {
-                possibleOpenGestureModes |= .PanningCenterView
+                possibleOpenGestureModes |= .BezelPanningCenterView
             }
         }
         

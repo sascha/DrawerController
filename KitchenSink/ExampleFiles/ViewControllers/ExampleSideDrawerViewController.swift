@@ -343,7 +343,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
             default:
                 break
             }
-            
+                        
             tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
         case DrawerSection.CenterHiddenInteraction.toRaw():
             self.evo_drawerController?.centerHiddenInteractionMode = DrawerOpenCenterInteractionMode.fromRaw(indexPath.row)!
