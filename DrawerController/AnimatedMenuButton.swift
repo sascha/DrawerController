@@ -24,9 +24,9 @@ import UIKit
 
 public class AnimatedMenuButton : UIButton {
     
-    var top: CAShapeLayer! = CAShapeLayer()
-    var middle: CAShapeLayer! = CAShapeLayer()
-    var bottom: CAShapeLayer! = CAShapeLayer()
+    let top: CAShapeLayer = CAShapeLayer()
+    let middle: CAShapeLayer = CAShapeLayer()
+    let bottom: CAShapeLayer = CAShapeLayer()
     
     // MARK: - Constants
     
@@ -72,32 +72,32 @@ public class AnimatedMenuButton : UIButton {
             self.layer.addSublayer(layer)
         }
         
-        self.top.anchorPoint = CGPointMake(1, 0.5)
-        self.top.position = CGPointMake(30 - 1, 5)
-        self.middle.position = CGPointMake(15, 15)
+        self.top.anchorPoint = CGPoint(x: 1, y: 0.5)
+        self.top.position = CGPoint(x: 30 - 1, y: 5)
+        self.middle.position = CGPoint(x: 15, y: 15)
         
-        self.bottom.anchorPoint = CGPointMake(1, 0.5)
-        self.bottom.position = CGPointMake(30-1, 25)
+        self.bottom.anchorPoint = CGPoint(x: 1, y: 0.5)
+        self.bottom.position = CGPoint(x: 30 - 1, y: 25)
     }
     
     // MARK: - Animations
     
     public func animateWithPercentVisible(percentVisible:CGFloat, drawerSide: DrawerSide) {
         
-        if (drawerSide == DrawerSide.Left) {
-            self.top.anchorPoint = CGPointMake(1, 0.5)
-            self.top.position = CGPointMake(30 - 1, 5)
-            self.middle.position = CGPointMake(15, 15)
+        if drawerSide == DrawerSide.Left {
+            self.top.anchorPoint = CGPoint(x: 1, y: 0.5)
+            self.top.position = CGPoint(x: 30 - 1, y: 5)
+            self.middle.position = CGPoint(x: 15, y: 15)
             
-            self.bottom.anchorPoint = CGPointMake(1, 0.5)
-            self.bottom.position = CGPointMake(30-1, 25)
-        } else if (drawerSide == DrawerSide.Right) {
-            self.top.anchorPoint = CGPointMake(0, 0.5)
-            self.top.position = CGPointMake(1, 5)
-            self.middle.position = CGPointMake(15, 15)
+            self.bottom.anchorPoint = CGPoint(x: 1, y: 0.5)
+            self.bottom.position = CGPoint(x: 30 - 1, y: 25)
+        } else if drawerSide == DrawerSide.Right {
+            self.top.anchorPoint = CGPoint(x: 0, y: 0.5)
+            self.top.position = CGPoint(x: 1, y: 5)
+            self.middle.position = CGPoint(x: 15, y: 15)
             
-            self.bottom.anchorPoint = CGPointMake(0, 0.5)
-            self.bottom.position = CGPointMake(1, 25)
+            self.bottom.anchorPoint = CGPoint(x: 0, y: 0.5)
+            self.bottom.position = CGPoint(x: 1, y: 25)
         }
         
         let middleTransform = CABasicAnimation(keyPath: "opacity")

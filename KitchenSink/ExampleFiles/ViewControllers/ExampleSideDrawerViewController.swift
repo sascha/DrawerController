@@ -55,7 +55,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, self.tableView.numberOfSections() - 1)), withRowAnimation: .None)
+        self.tableView.reloadSections(NSIndexSet(indexesInRange: NSRange(location: 0, length: self.tableView.numberOfSections() - 1)), withRowAnimation: .None)
     }
     
     override func contentSizeDidChange(size: String) {
