@@ -7,6 +7,16 @@ Some minor changes in this version include the removal of all < iOS 7.0 related 
 This is currently a work in progress and has not been thoroughly tested. Use at your own risk.
 
 ---
+## Credit
+
+Originally designed and developed by the fine folks at [Mutual Mobile](http://mutualmobile.com).
+
+Swift version by
+
+* [Sascha Schwabbauer](http://twitter.com/_saschas)
+* [Malte Baumann](http://twitter.com/codingdivision)
+
+---
 ##License
 
 `DrawerController` is available under the MIT license. See the LICENSE file for more info.
