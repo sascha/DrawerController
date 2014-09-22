@@ -15,7 +15,6 @@
 		2BCB04CD19C4F58F002CBDB6 /* DrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCB04CA19C4F58F002CBDB6 /* DrawerController.swift */; };
 		2BCB04CE19C4F58F002CBDB6 /* DrawerVisualState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCB04CB19C4F58F002CBDB6 /* DrawerVisualState.swift */; };
 		2BCB04D019C4F814002CBDB6 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCB04CF19C4F814002CBDB6 /* ExampleViewController.swift */; };
-		2BCB04D219C4FA50002CBDB6 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCB04D119C4FA50002CBDB6 /* NavigationController.swift */; };
 		2BCB04D419C4FB39002CBDB6 /* ExampleCenterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCB04D319C4FB39002CBDB6 /* ExampleCenterTableViewController.swift */; };
 		2BE66C7419C50BA0005EDC19 /* ExampleSideDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE66C7319C50BA0005EDC19 /* ExampleSideDrawerViewController.swift */; };
 		2BE66C7619C50BD6005EDC19 /* ExampleLeftSideDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE66C7519C50BD6005EDC19 /* ExampleLeftSideDrawerViewController.swift */; };
@@ -37,7 +36,6 @@
 		2BCB04CA19C4F58F002CBDB6 /* DrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerController.swift; sourceTree = "<group>"; };
 		2BCB04CB19C4F58F002CBDB6 /* DrawerVisualState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerVisualState.swift; sourceTree = "<group>"; };
 		2BCB04CF19C4F814002CBDB6 /* ExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
-		2BCB04D119C4FA50002CBDB6 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		2BCB04D319C4FB39002CBDB6 /* ExampleCenterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleCenterTableViewController.swift; sourceTree = "<group>"; };
 		2BE66C7319C50BA0005EDC19 /* ExampleSideDrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleSideDrawerViewController.swift; sourceTree = "<group>"; };
 		2BE66C7519C50BD6005EDC19 /* ExampleLeftSideDrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleLeftSideDrawerViewController.swift; sourceTree = "<group>"; };
@@ -125,7 +123,6 @@
 				2BE66C7319C50BA0005EDC19 /* ExampleSideDrawerViewController.swift */,
 				2BE66C7519C50BD6005EDC19 /* ExampleLeftSideDrawerViewController.swift */,
 				2BE66C7719C50BE8005EDC19 /* ExampleRightSideDrawerViewController.swift */,
-				2BCB04D119C4FA50002CBDB6 /* NavigationController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -223,7 +220,6 @@
 				2BC043CD19C505FA00CA68B6 /* CenterTableViewCell.swift in Sources */,
 				F5B300F119C7910B00F04614 /* AnimatedMenuButton.swift in Sources */,
 				2BCB04D419C4FB39002CBDB6 /* ExampleCenterTableViewController.swift in Sources */,
-				2BCB04D219C4FA50002CBDB6 /* NavigationController.swift in Sources */,
 				2BCB04D019C4F814002CBDB6 /* ExampleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

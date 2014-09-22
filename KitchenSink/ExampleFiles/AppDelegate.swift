@@ -31,13 +31,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let centerViewController = ExampleCenterTableViewController()
         let rightSideDrawerViewController = ExampleRightSideDrawerViewController()
         
-        let navigationController = NavigationController(rootViewController: centerViewController)
+        let navigationController = UINavigationController(rootViewController: centerViewController)
         navigationController.restorationIdentifier = "ExampleCenterNavigationControllerRestorationKey"
         
-        let rightSideNavController = NavigationController(rootViewController: rightSideDrawerViewController)
+        let rightSideNavController = UINavigationController(rootViewController: rightSideDrawerViewController)
         rightSideNavController.restorationIdentifier = "ExampleRightNavigationControllerRestorationKey"
         
-        let leftSideNavController = NavigationController(rootViewController: leftSideDrawerViewController)
+        let leftSideNavController = UINavigationController(rootViewController: leftSideDrawerViewController)
         leftSideNavController.restorationIdentifier = "ExampleLeftNavigationControllerRestorationKey"
         
         self.drawerController = DrawerController(centerViewController: navigationController, leftDrawerViewController: leftSideNavController, rightDrawerViewController: rightSideNavController)

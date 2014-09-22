@@ -300,7 +300,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
         switch indexPath.section {
         case DrawerSection.ViewSelection.toRaw():
             let center = ExampleCenterTableViewController()
-            let nav = NavigationController(rootViewController: center)
+            let nav = UINavigationController(rootViewController: center)
             
             if indexPath.row % 2 == 0 {
                 self.evo_drawerController?.setCenterViewController(nav, withCloseAnimation: true, completion: nil)

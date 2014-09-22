@@ -255,12 +255,12 @@ class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSo
             } else {
                 if drawerSide == .Left {
                     let vc = ExampleLeftSideDrawerViewController()
-                    let navC = NavigationController(rootViewController: vc)
+                    let navC = UINavigationController(rootViewController: vc)
                     self.evo_drawerController?.leftDrawerViewController = navC
                     self.setupLeftMenuButton()
                 } else if drawerSide == .Right {
                     let vc = ExampleRightSideDrawerViewController()
-                    let navC = NavigationController(rootViewController: vc)
+                    let navC = UINavigationController(rootViewController: vc)
                     self.evo_drawerController?.rightDrawerViewController = navC
                     self.setupRightMenuButton()
                 }
