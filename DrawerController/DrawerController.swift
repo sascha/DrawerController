@@ -201,7 +201,6 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
     private var _rightDrawerViewController: UIViewController?
     private var _maximumLeftDrawerWidth = DrawerDefaultWidth
     private var _maximumRightDrawerWidth = DrawerDefaultWidth
-    private var _showsStatusBarBackgroundView: Bool = false
     
     /**
     The center view controller.
@@ -288,35 +287,6 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     /**
-    The flag determining if a custom background view should appear beneath the status bar, forcing the child content to be drawn lower than the status bar.
-    
-    By default, this is set to NO.
-    */
-    public var showsStatusBarBackgroundView: Bool {
-        get {
-            return self._showsStatusBarBackgroundView
-        }
-        
-        set {
-            if newValue != self._showsStatusBarBackgroundView {
-                self._showsStatusBarBackgroundView = newValue
-                var frame = self.childControllerContainerView.frame
-                
-                if self._showsStatusBarBackgroundView {
-                    frame.origin.y = 20
-                    frame.size.height = CGRectGetHeight(self.view.bounds) - 20
-                } else {
-                    frame.origin.y = 0
-                    frame.size.height = CGRectGetHeight(self.view.bounds)
-                }
-                
-                self.childControllerContainerView.frame = frame
-                self.dummyStatusBarView.hidden = !newValue
-            }
-        }
-    }
-    
-    /**
     The visible width of the `leftDrawerViewController`.
     
     Note this value can be greater than `maximumLeftDrawerWidth` during the full close animation when setting a new center view controller;
@@ -378,16 +348,6 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
         return childControllerContainerView
         }()
     
-    private lazy var dummyStatusBarView: UIView = {
-        let dummyStatusBarView = UIView(frame: CGRect(x: 0, y: 0, width: CGRectGetWidth(self.view.bounds), height: 20))
-        dummyStatusBarView.autoresizingMask = .FlexibleWidth
-        dummyStatusBarView.backgroundColor = self.statusBarViewBackgroundColor
-        dummyStatusBarView.hidden = !self._showsStatusBarBackgroundView
-        self.view.addSubview(dummyStatusBarView)
-        
-        return dummyStatusBarView
-        }()
-    
     private lazy var centerContainerView: DrawerCenterContainerView = {
         let centerFrame = self.childControllerContainerView.bounds
         
@@ -444,17 +404,6 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
     :param: gestureShouldRecognizeTouchBlock A block object to be called to determine if the given `touch` should be recognized by the given gesture.
     */
     public var gestureShouldRecognizeTouchBlock: DrawerGestureShouldRecognizeTouchBlock?
-    
-    /**
-    The color of the status bar background view if `showsStatusBarBackgroundView` is set to YES.
-    
-    By default, this is set `[UIColor blackColor]`.
-    */
-    public var statusBarViewBackgroundColor: UIColor = UIColor.blackColor() {
-        didSet {
-            self.dummyStatusBarView.backgroundColor = self.statusBarViewBackgroundColor
-        }
-    }
     
     /**
     How a user is allowed to open a drawer using gestures.
@@ -657,12 +606,10 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     private func resetDrawerVisualStateForDrawerSide(drawerSide: DrawerSide) {
-        let sideDrawerViewController = self.sideDrawerViewControllerForSide(drawerSide)
-        
-        if sideDrawerViewController != nil {
-            sideDrawerViewController!.view.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-            sideDrawerViewController!.view.layer.transform = CATransform3DIdentity
-            sideDrawerViewController!.view.alpha = 1.0
+        if let sideDrawerViewController = self.sideDrawerViewControllerForSide(drawerSide) {
+            sideDrawerViewController.view.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            sideDrawerViewController.view.layer.transform = CATransform3DIdentity
+            sideDrawerViewController.view.alpha = 1.0
         }
     }
     
