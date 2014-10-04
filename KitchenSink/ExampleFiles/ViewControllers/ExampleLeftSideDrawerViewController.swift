@@ -57,7 +57,7 @@ class ExampleLeftSideDrawerViewController: ExampleSideDrawerViewController {
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == DrawerSection.DrawerWidth.toRaw() {
+        if section == DrawerSection.DrawerWidth.rawValue {
             return "Left Drawer Width"
         } else {
             return super.tableView(tableView, titleForHeaderInSection: section)
@@ -67,7 +67,7 @@ class ExampleLeftSideDrawerViewController: ExampleSideDrawerViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         
-        if indexPath.section == DrawerSection.DrawerWidth.toRaw() {
+        if indexPath.section == DrawerSection.DrawerWidth.rawValue {
             let width = self.drawerWidths[indexPath.row]
             let drawerWidth = self.evo_drawerController?.maximumLeftDrawerWidth
             
@@ -78,29 +78,18 @@ class ExampleLeftSideDrawerViewController: ExampleSideDrawerViewController {
             }
             
             cell.textLabel?.text = "Width \(self.drawerWidths[indexPath.row])"
-        } else if indexPath.section == DrawerSection.AlwaysShowDrawerInRegularHorizontalSizeClass.toRaw() {
-            cell.textLabel?.text = "Always Show Left Drawer"
-            
-            if self.evo_drawerController != nil && self.evo_drawerController!.shouldAlwaysShowLeftDrawerInRegularHorizontalSizeClass {
-                cell.accessoryType = .Checkmark
-            } else {
-                cell.accessoryType = .None
-            }
         }
         
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == DrawerSection.DrawerWidth.toRaw() {
+        if indexPath.section == DrawerSection.DrawerWidth.rawValue {
             self.evo_drawerController?.setMaximumLeftDrawerWidth(self.drawerWidths[indexPath.row], animated: true, completion: { (finished) -> Void in
                 tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .None)
                 tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
             })
-        } else if indexPath.section == DrawerSection.AlwaysShowDrawerInRegularHorizontalSizeClass.toRaw() {
-            self.evo_drawerController?.shouldAlwaysShowLeftDrawerInRegularHorizontalSizeClass = !self.evo_drawerController!.shouldAlwaysShowLeftDrawerInRegularHorizontalSizeClass
-            tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .None)
         } else {
             super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
         }
