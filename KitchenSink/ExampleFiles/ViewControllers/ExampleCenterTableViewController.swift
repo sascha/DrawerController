@@ -149,47 +149,47 @@ class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSo
             
             if animationTypeForSection.rawValue == indexPath.row {
                 cell.accessoryType = .Checkmark
-                cell.textLabel?.textColor = selectedColor
+                cell.textLabel.textColor = selectedColor
             } else {
                 cell.accessoryType = .None
-                cell.textLabel?.textColor = unselectedColor
+                cell.textLabel.textColor = unselectedColor
             }
             
             switch indexPath.row {
             case DrawerAnimationType.None.rawValue:
-                cell.textLabel?.text = "None"
+                cell.textLabel.text = "None"
             case DrawerAnimationType.Slide.rawValue:
-                cell.textLabel?.text = "Slide"
+                cell.textLabel.text = "Slide"
             case DrawerAnimationType.SlideAndScale.rawValue:
-                cell.textLabel?.text = "Slide and Scale"
+                cell.textLabel.text = "Slide and Scale"
             case DrawerAnimationType.SwingingDoor.rawValue:
-                cell.textLabel?.text = "Swinging Door"
+                cell.textLabel.text = "Swinging Door"
             case DrawerAnimationType.Parallax.rawValue:
-                cell.textLabel?.text = "Parallax"
+                cell.textLabel.text = "Parallax"
             case DrawerAnimationType.AnimatedBarButton.rawValue:
-                cell.textLabel?.text = "Animated Menu Button"
+                cell.textLabel.text = "Animated Menu Button"
             default:
                 break
             }
         case CenterViewControllerSection.LeftViewState.rawValue:
-            cell.textLabel?.text = "Enabled"
+            cell.textLabel.text = "Enabled"
             
             if self.evo_drawerController?.leftDrawerViewController != nil {
                 cell.accessoryType = .Checkmark
-                cell.textLabel?.textColor = selectedColor
+                cell.textLabel.textColor = selectedColor
             } else {
                 cell.accessoryType = .None
-                cell.textLabel?.textColor = unselectedColor
+                cell.textLabel.textColor = unselectedColor
             }
         case CenterViewControllerSection.RightViewState.rawValue:
-            cell.textLabel?.text = "Enabled"
+            cell.textLabel.text = "Enabled"
             
             if self.evo_drawerController?.rightDrawerViewController != nil {
                 cell.accessoryType = .Checkmark
-                cell.textLabel?.textColor = selectedColor
+                cell.textLabel.textColor = selectedColor
             } else {
                 cell.accessoryType = .None
-                cell.textLabel?.textColor = unselectedColor
+                cell.textLabel.textColor = unselectedColor
             }
         default:
             break
