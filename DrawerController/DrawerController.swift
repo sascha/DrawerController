@@ -81,41 +81,43 @@ public enum DrawerSide: Int {
 
 public struct OpenDrawerGestureMode : RawOptionSetType, BooleanType {
     private var value: UInt = 0
-    init(_ value: UInt) { self.value = value }
+    public init(nilLiteral: ()) { self.value = 0 }
+    public init(rawValue: UInt) { self.value = rawValue }
     public var boolValue: Bool { return value != 0 }
-    public static func fromMask(raw: UInt) -> OpenDrawerGestureMode { return self(raw) }
-    public static func fromRaw(raw: UInt) -> OpenDrawerGestureMode? { return self(raw) }
-    public func toRaw() -> UInt { return value }
-    public static var allZeros: OpenDrawerGestureMode { return self(0) }
-    public static func convertFromNilLiteral() -> OpenDrawerGestureMode { return self(0) }
+    public static func fromMask(raw: UInt) -> OpenDrawerGestureMode { return self(rawValue: raw) }
+    public static func fromRaw(raw: UInt) -> OpenDrawerGestureMode? { return self(rawValue: raw) }
+    public var rawValue: UInt { return self.value }
+    public static var allZeros: OpenDrawerGestureMode { return self(rawValue: 0) }
+    public static func convertFromNilLiteral() -> OpenDrawerGestureMode { return self(rawValue: 0) }
     
-    static var None: OpenDrawerGestureMode { return self(0b0000) }
-    static var PanningNavigationBar: OpenDrawerGestureMode { return self(0b0001) }
-    static var PanningCenterView: OpenDrawerGestureMode { return self(0b0010) }
-    static var BezelPanningCenterView: OpenDrawerGestureMode { return self(0b0100) }
-    static var Custom: OpenDrawerGestureMode { return self(0b1000) }
-    static var All: OpenDrawerGestureMode { return self(0b1111) }
+    static var None: OpenDrawerGestureMode { return self(rawValue: 0b0000) }
+    static var PanningNavigationBar: OpenDrawerGestureMode { return self(rawValue: 0b0001) }
+    static var PanningCenterView: OpenDrawerGestureMode { return self(rawValue: 0b0010) }
+    static var BezelPanningCenterView: OpenDrawerGestureMode { return self(rawValue: 0b0100) }
+    static var Custom: OpenDrawerGestureMode { return self(rawValue: 0b1000) }
+    static var All: OpenDrawerGestureMode { return self(rawValue: 0b1111) }
 }
 
 public struct CloseDrawerGestureMode : RawOptionSetType, BooleanType {
     private var value: UInt = 0
-    init(_ value: UInt) { self.value = value }
+    public init(nilLiteral: ()) { self.value = 0 }
+    public init(rawValue: UInt) { self.value = rawValue }
     public var boolValue: Bool { return value != 0 }
-    public static func fromMask(raw: UInt) -> CloseDrawerGestureMode { return self(raw) }
-    public static func fromRaw(raw: UInt) -> CloseDrawerGestureMode? { return self(raw) }
-    public func toRaw() -> UInt { return value }
-    public static var allZeros: CloseDrawerGestureMode { return self(0) }
-    public static func convertFromNilLiteral() -> CloseDrawerGestureMode { return self(0) }
+    public static func fromMask(raw: UInt) -> CloseDrawerGestureMode { return self(rawValue: raw) }
+    public static func fromRaw(raw: UInt) -> CloseDrawerGestureMode? { return self(rawValue: raw) }
+    public var rawValue: UInt { return self.value }
+    public static var allZeros: CloseDrawerGestureMode { return self(rawValue: 0) }
+    public static func convertFromNilLiteral() -> CloseDrawerGestureMode { return self(rawValue: 0) }
     
-    static var None: CloseDrawerGestureMode { return self(0b0000000) }
-    static var PanningNavigationBar: CloseDrawerGestureMode { return self(0b0000001) }
-    static var PanningCenterView: CloseDrawerGestureMode { return self(0b0000010) }
-    static var BezelPanningCenterView: CloseDrawerGestureMode { return self(0b0000100) }
-    static var TapNavigationBar: CloseDrawerGestureMode { return self(0b0001000) }
-    static var TapCenterView: CloseDrawerGestureMode { return self(0b0010000) }
-    static var PanningDrawerView: CloseDrawerGestureMode { return self(0b0100000) }
-    static var Custom: CloseDrawerGestureMode { return self(0b1000000) }
-    static var All: CloseDrawerGestureMode { return self(0b1111111) }
+    static var None: CloseDrawerGestureMode { return self(rawValue: 0b0000000) }
+    static var PanningNavigationBar: CloseDrawerGestureMode { return self(rawValue: 0b0000001) }
+    static var PanningCenterView: CloseDrawerGestureMode { return self(rawValue: 0b0000010) }
+    static var BezelPanningCenterView: CloseDrawerGestureMode { return self(rawValue: 0b0000100) }
+    static var TapNavigationBar: CloseDrawerGestureMode { return self(rawValue: 0b0001000) }
+    static var TapCenterView: CloseDrawerGestureMode { return self(rawValue: 0b0010000) }
+    static var PanningDrawerView: CloseDrawerGestureMode { return self(rawValue: 0b0100000) }
+    static var Custom: CloseDrawerGestureMode { return self(rawValue: 0b1000000) }
+    static var All: CloseDrawerGestureMode { return self(rawValue: 0b1111111) }
 }
 
 public enum DrawerOpenCenterInteractionMode: Int {
@@ -430,18 +432,6 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    public var shouldAlwaysShowLeftDrawerInRegularHorizontalSizeClass: Bool = false {
-        didSet {
-            self.updateSizeOfCenterContainerView()
-        }
-    }
-    
-    public var shouldAlwaysShowRightDrawerInRegularHorizontalSizeClass: Bool = false {
-        didSet {
-            self.updateSizeOfCenterContainerView()
-        }
-    }
-    
     // MARK: - Initializers
     
     public required init(coder aDecoder: NSCoder) {
@@ -510,7 +500,7 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
             coder.encodeObject(centerViewController, forKey: DrawerCenterKey)
         }
         
-        coder.encodeInteger(self.openSide.toRaw(), forKey: DrawerOpenSideKey)
+        coder.encodeInteger(self.openSide.rawValue, forKey: DrawerOpenSideKey)
     }
     
     public override func decodeRestorableStateWithCoder(coder: NSCoder) {
@@ -528,7 +518,7 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
             self.centerViewController = centerViewController as? UIViewController
         }
         
-        if let openSide = DrawerSide.fromRaw(coder.decodeIntegerForKey(DrawerOpenSideKey)) {
+        if let openSide = DrawerSide(rawValue: coder.decodeIntegerForKey(DrawerOpenSideKey)) {
             self.openSide = openSide
         }
     }
@@ -734,25 +724,6 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    private func updateSizeOfCenterContainerView() {
-        // TODO: evtl. animieren?
-        var centerFrame = self.childControllerContainerView.bounds
-        var oldFrame = centerFrame
-        
-        if self.shouldAlwaysShowLeftDrawerInRegularHorizontalSizeClass && self.traitCollection.horizontalSizeClass == .Regular {
-            centerFrame.size.width -= self.maximumLeftDrawerWidth
-            centerFrame.origin.x += self.maximumLeftDrawerWidth
-        }
-        
-        if self.shouldAlwaysShowRightDrawerInRegularHorizontalSizeClass && self.traitCollection.horizontalSizeClass == .Regular {
-            centerFrame.size.width -= self.maximumRightDrawerWidth
-        }
-        
-        if oldFrame != centerFrame {
-            self.centerContainerView.frame = centerFrame
-        }
-    }
-    
     private func animationDurationForAnimationDistance(distance: CGFloat) -> NSTimeInterval {
         return NSTimeInterval(max(distance / self.animationVelocity, DrawerMinimumAnimationDuration))
     }
@@ -879,12 +850,7 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
             } else {
                 self.childControllerContainerView.addSubview(viewController!.view)
                 self.childControllerContainerView.sendSubviewToBack(viewController!.view)
-                
-                if (drawerSide == .Left && self.shouldAlwaysShowLeftDrawerInRegularHorizontalSizeClass && self.traitCollection.horizontalSizeClass == .Regular) || (drawerSide == .Right && self.shouldAlwaysShowRightDrawerInRegularHorizontalSizeClass && self.traitCollection.horizontalSizeClass == .Regular) {
-                    viewController!.view.hidden = false
-                } else {
-                    viewController!.view.hidden = true
-                }
+                viewController!.view.hidden = true
             }
             
             viewController!.didMoveToParentViewController(self)
@@ -1412,53 +1378,17 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
         return false
     }
     
-    // MARK: - UIContentContainer
-    
-    public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        // TODO
-        println("viewWillTransitionToSize: \(size)")
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-    }
-    
-    public override func willTransitionToTraitCollection(newCollection: UITraitCollection, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        // TODO
-        println("willTransitionToTraitCollection: \(newCollection)")
-        super.willTransitionToTraitCollection(newCollection, withTransitionCoordinator: coordinator)
-    }
-    
-    public override func preferredContentSizeDidChangeForChildContentContainer(container: UIContentContainer) {
-        // TODO
-        println("preferredContentSizeDidChange: \(container)")
-        super.preferredContentSizeDidChangeForChildContentContainer(container)
-    }
-    
-    public override func systemLayoutFittingSizeDidChangeForChildContentContainer(container: UIContentContainer) {
-        // TODO
-        println("systemLayoutFittingSizeDidChange: \(container)")
-        super.systemLayoutFittingSizeDidChangeForChildContentContainer(container)
-    }
-    
-    // MARK: - UITraitEnvironment
-    
-    public override func traitCollectionDidChange(previousTraitCollection: UITraitCollection) {
-        // TODO
-        //        println("traitCollectionDidChange previous: \(previousTraitCollection), new: \(self.traitCollection)")
-        super.traitCollectionDidChange(previousTraitCollection)
-    }
-    
-    // TODO: Size Classes: Man soll wählen können, ob die linke oder rechte Seite in der "Regular Width" Size Class stehen bleibt (iPad Portrait/Landscape und iPhone 6 Plus Landscape), siehe https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIContentContainer_Ref/index.html
-    
     // MARK: - UIGestureRecognizerDelegate
     
     public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
         if self.openSide == .None {
             let possibleOpenGestureModes = self.possibleOpenGestureModesForGestureRecognizer(gestureRecognizer, withTouch: touch)
             
-            return (self.openDrawerGestureModeMask & possibleOpenGestureModes).toRaw() > 0
+            return (self.openDrawerGestureModeMask & possibleOpenGestureModes).rawValue > 0
         } else {
             let possibleCloseGestureModes = self.possibleCloseGestureModesForGestureRecognizer(gestureRecognizer, withTouch: touch)
             
-            return (self.closeDrawerGestureModeMask & possibleCloseGestureModes).toRaw() > 0
+            return (self.closeDrawerGestureModeMask & possibleCloseGestureModes).rawValue > 0
         }
     }
     
@@ -1498,7 +1428,7 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
             }
         }
         
-        if (self.closeDrawerGestureModeMask & CloseDrawerGestureMode.Custom).toRaw() > 0 && self.gestureShouldRecognizeTouchBlock != nil {
+        if (self.closeDrawerGestureModeMask & CloseDrawerGestureMode.Custom).rawValue > 0 && self.gestureShouldRecognizeTouchBlock != nil {
             if self.gestureShouldRecognizeTouchBlock!(self, gestureRecognizer, touch) {
                 possibleCloseGestureModes |= .Custom
             }
@@ -1529,7 +1459,7 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
             }
         }
         
-        if (self.openDrawerGestureModeMask & OpenDrawerGestureMode.Custom).toRaw() > 0 && self.gestureShouldRecognizeTouchBlock != nil {
+        if (self.openDrawerGestureModeMask & OpenDrawerGestureMode.Custom).rawValue > 0 && self.gestureShouldRecognizeTouchBlock != nil {
             if self.gestureShouldRecognizeTouchBlock!(self, gestureRecognizer, touch) {
                 possibleOpenGestureModes |= .Custom
             }

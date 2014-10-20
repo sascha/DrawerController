@@ -115,9 +115,9 @@ class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSo
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case CenterViewControllerSection.LeftDrawerAnimation.toRaw(), CenterViewControllerSection.RightDrawerAnimation.toRaw():
+        case CenterViewControllerSection.LeftDrawerAnimation.rawValue, CenterViewControllerSection.RightDrawerAnimation.rawValue:
             return 6
-        case CenterViewControllerSection.LeftViewState.toRaw(), CenterViewControllerSection.RightViewState.toRaw():
+        case CenterViewControllerSection.LeftViewState.rawValue, CenterViewControllerSection.RightViewState.rawValue:
             return 1
         default:
             return 0
@@ -138,58 +138,58 @@ class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSo
         let unselectedColor = UIColor(red: 79 / 255, green: 93 / 255, blue: 102 / 255, alpha: 1.0)
         
         switch indexPath.section {
-        case CenterViewControllerSection.LeftDrawerAnimation.toRaw(), CenterViewControllerSection.RightDrawerAnimation.toRaw():
+        case CenterViewControllerSection.LeftDrawerAnimation.rawValue, CenterViewControllerSection.RightDrawerAnimation.rawValue:
             var animationTypeForSection: DrawerAnimationType
             
-            if indexPath.section == CenterViewControllerSection.LeftDrawerAnimation.toRaw() {
+            if indexPath.section == CenterViewControllerSection.LeftDrawerAnimation.rawValue {
                 animationTypeForSection = ExampleDrawerVisualStateManager.sharedManager.leftDrawerAnimationType
             } else {
                 animationTypeForSection = ExampleDrawerVisualStateManager.sharedManager.rightDrawerAnimationType
             }
             
-            if animationTypeForSection.toRaw() == indexPath.row {
+            if animationTypeForSection.rawValue == indexPath.row {
                 cell.accessoryType = .Checkmark
-                cell.textLabel?.textColor = selectedColor
+                cell.textLabel.textColor = selectedColor
             } else {
                 cell.accessoryType = .None
-                cell.textLabel?.textColor = unselectedColor
+                cell.textLabel.textColor = unselectedColor
             }
             
             switch indexPath.row {
-            case DrawerAnimationType.None.toRaw():
-                cell.textLabel?.text = "None"
-            case DrawerAnimationType.Slide.toRaw():
-                cell.textLabel?.text = "Slide"
-            case DrawerAnimationType.SlideAndScale.toRaw():
-                cell.textLabel?.text = "Slide and Scale"
-            case DrawerAnimationType.SwingingDoor.toRaw():
-                cell.textLabel?.text = "Swinging Door"
-            case DrawerAnimationType.Parallax.toRaw():
-                cell.textLabel?.text = "Parallax"
-            case DrawerAnimationType.AnimatedBarButton.toRaw():
-                cell.textLabel?.text = "Animated Menu Button"
+            case DrawerAnimationType.None.rawValue:
+                cell.textLabel.text = "None"
+            case DrawerAnimationType.Slide.rawValue:
+                cell.textLabel.text = "Slide"
+            case DrawerAnimationType.SlideAndScale.rawValue:
+                cell.textLabel.text = "Slide and Scale"
+            case DrawerAnimationType.SwingingDoor.rawValue:
+                cell.textLabel.text = "Swinging Door"
+            case DrawerAnimationType.Parallax.rawValue:
+                cell.textLabel.text = "Parallax"
+            case DrawerAnimationType.AnimatedBarButton.rawValue:
+                cell.textLabel.text = "Animated Menu Button"
             default:
                 break
             }
-        case CenterViewControllerSection.LeftViewState.toRaw():
-            cell.textLabel?.text = "Enabled"
+        case CenterViewControllerSection.LeftViewState.rawValue:
+            cell.textLabel.text = "Enabled"
             
             if self.evo_drawerController?.leftDrawerViewController != nil {
                 cell.accessoryType = .Checkmark
-                cell.textLabel?.textColor = selectedColor
+                cell.textLabel.textColor = selectedColor
             } else {
                 cell.accessoryType = .None
-                cell.textLabel?.textColor = unselectedColor
+                cell.textLabel.textColor = unselectedColor
             }
-        case CenterViewControllerSection.RightViewState.toRaw():
-            cell.textLabel?.text = "Enabled"
+        case CenterViewControllerSection.RightViewState.rawValue:
+            cell.textLabel.text = "Enabled"
             
             if self.evo_drawerController?.rightDrawerViewController != nil {
                 cell.accessoryType = .Checkmark
-                cell.textLabel?.textColor = selectedColor
+                cell.textLabel.textColor = selectedColor
             } else {
                 cell.accessoryType = .None
-                cell.textLabel?.textColor = unselectedColor
+                cell.textLabel.textColor = unselectedColor
             }
         default:
             break
@@ -200,13 +200,13 @@ class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSo
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case CenterViewControllerSection.LeftDrawerAnimation.toRaw():
+        case CenterViewControllerSection.LeftDrawerAnimation.rawValue:
             return "Left Drawer Animation";
-        case CenterViewControllerSection.RightDrawerAnimation.toRaw():
+        case CenterViewControllerSection.RightDrawerAnimation.rawValue:
             return "Right Drawer Animation";
-        case CenterViewControllerSection.LeftViewState.toRaw():
+        case CenterViewControllerSection.LeftViewState.rawValue:
             return "Left Drawer";
-        case CenterViewControllerSection.RightViewState.toRaw():
+        case CenterViewControllerSection.RightViewState.rawValue:
             return "Right Drawer";
         default:
             return nil
@@ -216,24 +216,24 @@ class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSo
     // MARK: - UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.section {
-        case CenterViewControllerSection.LeftDrawerAnimation.toRaw(), CenterViewControllerSection.RightDrawerAnimation.toRaw():
-            if indexPath.section == CenterViewControllerSection.LeftDrawerAnimation.toRaw() {
-                ExampleDrawerVisualStateManager.sharedManager.leftDrawerAnimationType = DrawerAnimationType.fromRaw(indexPath.row)!
+        case CenterViewControllerSection.LeftDrawerAnimation.rawValue, CenterViewControllerSection.RightDrawerAnimation.rawValue:
+            if indexPath.section == CenterViewControllerSection.LeftDrawerAnimation.rawValue {
+                ExampleDrawerVisualStateManager.sharedManager.leftDrawerAnimationType = DrawerAnimationType(rawValue: indexPath.row)!
             } else {
-                ExampleDrawerVisualStateManager.sharedManager.rightDrawerAnimationType = DrawerAnimationType.fromRaw(indexPath.row)!
+                ExampleDrawerVisualStateManager.sharedManager.rightDrawerAnimationType = DrawerAnimationType(rawValue: indexPath.row)!
             }
             
             tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .None)
             tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        case CenterViewControllerSection.LeftViewState.toRaw(), CenterViewControllerSection.RightViewState.toRaw():
+        case CenterViewControllerSection.LeftViewState.rawValue, CenterViewControllerSection.RightViewState.rawValue:
             var sideDrawerViewController: UIViewController?
             var drawerSide = DrawerSide.None
             
-            if indexPath.section == CenterViewControllerSection.LeftViewState.toRaw() {
+            if indexPath.section == CenterViewControllerSection.LeftViewState.rawValue {
                 sideDrawerViewController = self.evo_drawerController?.leftDrawerViewController
                 drawerSide = .Left
-            } else if indexPath.section == CenterViewControllerSection.RightViewState.toRaw() {
+            } else if indexPath.section == CenterViewControllerSection.RightViewState.rawValue {
                 sideDrawerViewController = self.evo_drawerController?.rightDrawerViewController
                 drawerSide = .Right
             }
