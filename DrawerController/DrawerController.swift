@@ -1378,6 +1378,45 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
         return false
     }
     
+    // MARK: - Rotation
+    
+    public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        
+        //If a rotation begins, we are going to cancel the current gesture and reset transform and anchor points so everything works correctly
+        var gestureInProgress = false
+        
+        for gesture in self.view.gestureRecognizers as [UIGestureRecognizer] {
+            if gesture.state == .Changed {
+                gesture.enabled = false
+                gesture.enabled = true
+                gestureInProgress = true
+            }
+            
+            if gestureInProgress {
+                self.resetDrawerVisualStateForDrawerSide(self.openSide)
+            }
+        }
+        
+        coordinator.animateAlongsideTransition({ (context) -> Void in
+            //We need to support the shadow path rotation animation
+            //Inspired from here: http://blog.radi.ws/post/8348898129/calayers-shadowpath-and-uiview-autoresizing
+            if self.showsShadows {
+                let oldShadowPath = self.centerContainerView.layer.shadowPath
+                
+                self.updateShadowForCenterView()
+                
+                if oldShadowPath != nil {
+                    let transition = CABasicAnimation(keyPath: "shadowPath")
+                    transition.fromValue = oldShadowPath
+                    transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                    transition.duration = context.transitionDuration()
+                    self.centerContainerView.layer.addAnimation(transition, forKey: "transition")
+                }
+            }
+        }, completion:nil)
+    }
+    
     // MARK: - UIGestureRecognizerDelegate
     
     public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
