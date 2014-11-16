@@ -101,9 +101,9 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
         switch indexPath.section {
         case DrawerSection.ViewSelection.rawValue:
             if indexPath.row == 0 {
-                cell.textLabel.text = "Quick View Change"
+                cell.textLabel?.text = "Quick View Change"
             } else {
-                cell.textLabel.text = "Full View Change"
+                cell.textLabel?.text = "Full View Change"
             }
             
             cell.accessoryType = .DisclosureIndicator
@@ -111,7 +111,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
             // Implement in Subclass
             break
         case DrawerSection.ShadowToggle.rawValue:
-            cell.textLabel.text = "Show Shadow"
+            cell.textLabel?.text = "Show Shadow"
             
             if self.evo_drawerController != nil && self.evo_drawerController!.showsShadows {
                 cell.accessoryType = .Checkmark
@@ -121,7 +121,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
         case DrawerSection.OpenDrawerGestures.rawValue:
             switch indexPath.row {
             case 0:
-                cell.textLabel.text = "Pan Nav Bar"
+                cell.textLabel?.text = "Pan Nav Bar"
                 
                 if self.evo_drawerController != nil && (self.evo_drawerController!.openDrawerGestureModeMask & .PanningNavigationBar).rawValue > 0 {
                     cell.accessoryType = .Checkmark
@@ -129,7 +129,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
                     cell.accessoryType = .None
                 }
             case 1:
-                cell.textLabel.text = "Pan Center View"
+                cell.textLabel?.text = "Pan Center View"
                 
                 if self.evo_drawerController != nil && (self.evo_drawerController!.openDrawerGestureModeMask & .PanningCenterView).rawValue > 0 {
                     cell.accessoryType = .Checkmark
@@ -137,7 +137,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
                     cell.accessoryType = .None
                 }
             case 2:
-                cell.textLabel.text = "Bezel Pan Center View"
+                cell.textLabel?.text = "Bezel Pan Center View"
                 
                 if self.evo_drawerController != nil && (self.evo_drawerController!.openDrawerGestureModeMask & .BezelPanningCenterView).rawValue > 0 {
                     cell.accessoryType = .Checkmark
@@ -150,7 +150,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
         case DrawerSection.CloseDrawerGestures.rawValue:
             switch indexPath.row {
             case 0:
-                cell.textLabel.text = "Pan Nav Bar"
+                cell.textLabel?.text = "Pan Nav Bar"
                 
                 if self.evo_drawerController != nil && (self.evo_drawerController!.closeDrawerGestureModeMask & .PanningNavigationBar).rawValue > 0 {
                     cell.accessoryType = .Checkmark
@@ -158,7 +158,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
                     cell.accessoryType = .None
                 }
             case 1:
-                cell.textLabel.text = "Pan Center View"
+                cell.textLabel?.text = "Pan Center View"
                 
                 if self.evo_drawerController != nil && (self.evo_drawerController!.closeDrawerGestureModeMask & .PanningCenterView).rawValue > 0 {
                     cell.accessoryType = .Checkmark
@@ -166,7 +166,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
                     cell.accessoryType = .None
                 }
             case 2:
-                cell.textLabel.text = "Bezel Pan Center View"
+                cell.textLabel?.text = "Bezel Pan Center View"
                 
                 if self.evo_drawerController != nil && (self.evo_drawerController!.closeDrawerGestureModeMask & .BezelPanningCenterView).rawValue > 0 {
                     cell.accessoryType = .Checkmark
@@ -174,7 +174,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
                     cell.accessoryType = .None
                 }
             case 3:
-                cell.textLabel.text = "Tap Nav Bar"
+                cell.textLabel?.text = "Tap Nav Bar"
                 
                 if self.evo_drawerController != nil && (self.evo_drawerController!.closeDrawerGestureModeMask & .TapNavigationBar).rawValue > 0 {
                     cell.accessoryType = .Checkmark
@@ -182,7 +182,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
                     cell.accessoryType = .None
                 }
             case 4:
-                cell.textLabel.text = "Tap Center View"
+                cell.textLabel?.text = "Tap Center View"
                 
                 if self.evo_drawerController != nil && (self.evo_drawerController!.closeDrawerGestureModeMask & .TapCenterView).rawValue > 0 {
                     cell.accessoryType = .Checkmark
@@ -190,7 +190,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
                     cell.accessoryType = .None
                 }
             case 5:
-                cell.textLabel.text = "Pan Drawer View"
+                cell.textLabel?.text = "Pan Drawer View"
                 
                 if self.evo_drawerController != nil && (self.evo_drawerController!.closeDrawerGestureModeMask & .PanningDrawerView).rawValue > 0 {
                     cell.accessoryType = .Checkmark
@@ -205,7 +205,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
             
             switch indexPath.row {
             case 0:
-                cell.textLabel.text = "None"
+                cell.textLabel?.text = "None"
                 
                 if self.evo_drawerController != nil && self.evo_drawerController!.centerHiddenInteractionMode == .None {
                     cell.accessoryType = .Checkmark
@@ -213,7 +213,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
                     cell.accessoryType = .None
                 }
             case 1:
-                cell.textLabel.text = "Full"
+                cell.textLabel?.text = "Full"
                 
                 if self.evo_drawerController != nil && self.evo_drawerController!.centerHiddenInteractionMode == .Full {
                     cell.accessoryType = .Checkmark
@@ -221,7 +221,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
                     cell.accessoryType = .None
                 }
             case 2:
-                cell.textLabel.text = "Nav Bar Only"
+                cell.textLabel?.text = "Nav Bar Only"
                 
                 if self.evo_drawerController != nil && self.evo_drawerController!.centerHiddenInteractionMode == .NavigationBarOnly {
                     cell.accessoryType = .Checkmark
@@ -232,7 +232,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
                 break
             }
         case DrawerSection.StretchDrawer.rawValue:
-            cell.textLabel.text = "Stretch Drawer"
+            cell.textLabel?.text = "Stretch Drawer"
             
             if self.evo_drawerController != nil && self.evo_drawerController!.shouldStretchDrawer {
                 cell.accessoryType = .Checkmark

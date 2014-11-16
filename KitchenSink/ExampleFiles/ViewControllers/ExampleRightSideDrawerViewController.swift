@@ -77,7 +77,7 @@ class ExampleRightSideDrawerViewController: ExampleSideDrawerViewController {
                 cell.accessoryType = .None
             }
             
-            cell.textLabel.text = "Width \(self.drawerWidths[indexPath.row])"
+            cell.textLabel?.text = "Width \(self.drawerWidths[indexPath.row])"
         }
         
         return cell
