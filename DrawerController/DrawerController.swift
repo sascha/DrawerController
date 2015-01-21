@@ -37,21 +37,25 @@ extension UIViewController {
     
     var evo_visibleDrawerFrame: CGRect {
         if let drawerController = self.evo_drawerController {
-            if self == drawerController.leftDrawerViewController || self.navigationController == drawerController.leftDrawerViewController {
-                var rect = drawerController.view.bounds
-                rect.size.width = drawerController.maximumLeftDrawerWidth
-                return rect
+            if drawerController.leftDrawerViewController != nil {
+                if self == drawerController.leftDrawerViewController || self.navigationController == drawerController.leftDrawerViewController {
+                    var rect = drawerController.view.bounds
+                    rect.size.width = drawerController.maximumLeftDrawerWidth
+                    return rect
+                }
             }
             
-            if self == drawerController.rightDrawerViewController || self.navigationController == drawerController.rightDrawerViewController {
-                var rect = drawerController.view.bounds
-                rect.size.width = drawerController.maximumRightDrawerWidth
-                rect.origin.x = CGRectGetWidth(drawerController.view.bounds) - rect.size.width
-                return rect
+            if drawerController.rightDrawerViewController != nil {
+                if self == drawerController.rightDrawerViewController || self.navigationController == drawerController.rightDrawerViewController {
+                    var rect = drawerController.view.bounds
+                    rect.size.width = drawerController.maximumRightDrawerWidth
+                    rect.origin.x = CGRectGetWidth(drawerController.view.bounds) - rect.size.width
+                    return rect
+                }
             }
-            }
-            
-            return CGRectNull
+        }
+        
+        return CGRectNull
     }
 }
 
