@@ -23,16 +23,16 @@ import UIKit
 extension UIViewController {
     var evo_drawerController: DrawerController? {
         var parentViewController = self.parentViewController
-            
-            while parentViewController != nil {
-                if parentViewController!.isKindOfClass(DrawerController) {
-                    return parentViewController as? DrawerController
-                }
-                
-                parentViewController = parentViewController!.parentViewController
+        
+        while parentViewController != nil {
+            if parentViewController!.isKindOfClass(DrawerController) {
+                return parentViewController as? DrawerController
             }
             
-            return nil
+            parentViewController = parentViewController!.parentViewController
+        }
+        
+        return nil
     }
     
     var evo_visibleDrawerFrame: CGRect {
@@ -174,7 +174,7 @@ private class DrawerCenterContainerView: UIView {
             if navBar != nil {
                 let navBarFrame = navBar!.convertRect(navBar!.bounds, toView: self)
                 if (self.centerInteractionMode == .NavigationBarOnly && CGRectContainsPoint(navBarFrame, point) == false) || (self.centerInteractionMode == .None) {
-                    hitView = nil;
+                    hitView = nil
                 }
             }
         }
@@ -1256,6 +1256,7 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
                         }
                         
                         self.openSide = drawerSide
+                        self.centerContainerView.openSide = drawerSide
                         
                         self.resetDrawerVisualStateForDrawerSide(drawerSide)
                         self.animatingDrawer = false
@@ -1315,6 +1316,7 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
                 }, completion: { (finished) -> Void in
                     sideDrawerViewController?.endAppearanceTransition()
                     self.openSide = .None
+                    self.centerContainerView.openSide = .None
                     self.resetDrawerVisualStateForDrawerSide(visibleSide)
                     self.animatingDrawer = false
                     completion?(finished)
