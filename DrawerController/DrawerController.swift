@@ -372,7 +372,17 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
     
     Note this value will change as soon as a pan gesture opens a drawer, or when a open/close animation is finished.
     */
-    public private(set) var openSide: DrawerSide = .None
+    public private(set) var openSide: DrawerSide = .None {
+        didSet {
+            self.centerContainerView.openSide = self.openSide
+            if self.openSide == .None {
+                self.leftDrawerViewController?.view.hidden = true
+                self.rightDrawerViewController?.view.hidden = true
+            }
+            
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
+    }
     
     private var startingPanRect: CGRect = CGRectNull
     
@@ -1256,7 +1266,6 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
                         }
                         
                         self.openSide = drawerSide
-                        self.centerContainerView.openSide = drawerSide
                         
                         self.resetDrawerVisualStateForDrawerSide(drawerSide)
                         self.animatingDrawer = false
@@ -1316,7 +1325,6 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
                 }, completion: { (finished) -> Void in
                     sideDrawerViewController?.endAppearanceTransition()
                     self.openSide = .None
-                    self.centerContainerView.openSide = .None
                     self.resetDrawerVisualStateForDrawerSide(visibleSide)
                     self.animatingDrawer = false
                     completion?(finished)
