@@ -6,6 +6,16 @@ Some minor changes in this version include the removal of all < iOS 7.0 related 
 
 This is currently a work in progress and has not been thoroughly tested. Use at your own risk.
 
+### Installation with CocoaPods
+[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C and Swift, which automates and simplifies the process of using 3rd-party libraries like DrawerController in your projects. At this time Swift is only supported in the latest [pre-release](http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/).
+
+#### Podfile
+
+```ruby
+platform :ios, '8.0'
+pod 'DrawerController', '~> 1.0'
+```
+
 ---
 ## Credit
 
