@@ -9,6 +9,7 @@ Pod::Spec.new do |s|
   s.social_media_url = 'http://twitter.com/_saschas'
   s.source = { :git => 'https://github.com/sascha/DrawerController.git', :tag => '1.0.0' }
 
+  s.requires_arc = true
   s.ios.deployment_target = '8.0'
 
   s.subspec 'Core' do |ss|
