@@ -54,6 +54,10 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // See https://github.com/sascha/DrawerController/issues/12
+        self.navigationController?.view.setNeedsLayout()
+        
         self.tableView.reloadSections(NSIndexSet(indexesInRange: NSRange(location: 0, length: self.tableView.numberOfSections() - 1)), withRowAnimation: .None)
     }
     
