@@ -108,7 +108,7 @@ public class AnimatedMenuButton : UIButton {
         topTransform.duration = animationDuration
         topTransform.fillMode = kCAFillModeBackwards
         
-        let bottomTransform = topTransform.copy() as CABasicAnimation
+        let bottomTransform = topTransform.copy() as! CABasicAnimation
         
         middleTransform.toValue = 1 - percentVisible
         

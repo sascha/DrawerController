@@ -29,7 +29,7 @@ class ExampleViewController: UIViewController {
     
     private func contentSizeDidChangeNotification(notification: NSNotification) {
         if let userInfo: NSDictionary = notification.userInfo {
-            self.contentSizeDidChange(userInfo[UIContentSizeCategoryNewValueKey] as String)
+            self.contentSizeDidChange(userInfo[UIContentSizeCategoryNewValueKey] as! String)
         }
     }
     

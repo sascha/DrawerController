@@ -185,7 +185,7 @@ private class DrawerCenterContainerView: UIView {
     private func navigationBarContainedWithinSubviewsOfView(view: UIView) -> UINavigationBar? {
         var navBar: UINavigationBar?
         
-        for subview in view.subviews as [UIView] {
+        for subview in view.subviews as! [UIView] {
             if view.isKindOfClass(UINavigationBar) {
                 navBar = view as? UINavigationBar
                 break
@@ -466,7 +466,7 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
     :returns: The newly-initialized drawer container view controller.
     */
     public init(centerViewController: UIViewController, leftDrawerViewController: UIViewController?, rightDrawerViewController: UIViewController?) {
-        super.init()
+        super.init(nibName: nil, bundle: nil)
         
         self.centerViewController = centerViewController
         self.leftDrawerViewController = leftDrawerViewController
@@ -1400,7 +1400,7 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
         //If a rotation begins, we are going to cancel the current gesture and reset transform and anchor points so everything works correctly
         var gestureInProgress = false
         
-        for gesture in self.view.gestureRecognizers as [UIGestureRecognizer] {
+        for gesture in self.view.gestureRecognizers as! [UIGestureRecognizer] {
             if gesture.state == .Changed {
                 gesture.enabled = false
                 gesture.enabled = true
@@ -1526,7 +1526,7 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
         
         if let centerViewController = self.centerViewController {
             if centerViewController.isKindOfClass(UINavigationController) {
-                let navBar = (self.centerViewController as UINavigationController).navigationBar
+                let navBar = (self.centerViewController as! UINavigationController).navigationBar
                 navigationBarRect = navBar.convertRect(navBar.bounds, toView: self.childControllerContainerView)
                 navigationBarRect = CGRectIntersection(navigationBarRect, self.childControllerContainerView.bounds)
             }

@@ -173,7 +173,7 @@ public struct DrawerVisualState {
         let visualStateBlock: DrawerControllerDrawerVisualStateBlock = { (drawerController, drawerSide, percentVisible) -> Void in
             
             var hamburgerItem: DrawerBarButtonItem?
-            if let navController = drawerController.centerViewController? as? UINavigationController {
+            if let navController = drawerController.centerViewController as? UINavigationController {
                 if (drawerSide == .Left) {
                     if let item = navController.topViewController.navigationItem.leftBarButtonItem as? DrawerBarButtonItem {
                         hamburgerItem = item

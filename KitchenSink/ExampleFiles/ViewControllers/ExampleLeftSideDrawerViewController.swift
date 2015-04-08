@@ -20,14 +20,14 @@
 
 import UIKit
 
-class ExampleLeftSideDrawerViewController: ExampleSideDrawerViewController {
-    override init() {
-        super.init()
-        self.restorationIdentifier = "ExampleLeftSideDrawerController"
-    }
-    
+class ExampleLeftSideDrawerViewController: ExampleSideDrawerViewController {    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.restorationIdentifier = "ExampleLeftSideDrawerController"
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         self.restorationIdentifier = "ExampleLeftSideDrawerController"
     }
     
