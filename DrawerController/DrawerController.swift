@@ -94,12 +94,12 @@ public struct OpenDrawerGestureMode : RawOptionSetType, BooleanType {
     public static var allZeros: OpenDrawerGestureMode { return self(rawValue: 0) }
     public static func convertFromNilLiteral() -> OpenDrawerGestureMode { return self(rawValue: 0) }
     
-    static var None: OpenDrawerGestureMode { return self(rawValue: 0b0000) }
-    static var PanningNavigationBar: OpenDrawerGestureMode { return self(rawValue: 0b0001) }
-    static var PanningCenterView: OpenDrawerGestureMode { return self(rawValue: 0b0010) }
-    static var BezelPanningCenterView: OpenDrawerGestureMode { return self(rawValue: 0b0100) }
-    static var Custom: OpenDrawerGestureMode { return self(rawValue: 0b1000) }
-    static var All: OpenDrawerGestureMode { return self(rawValue: 0b1111) }
+    public static var None: OpenDrawerGestureMode { return self(rawValue: 0b0000) }
+    public static var PanningNavigationBar: OpenDrawerGestureMode { return self(rawValue: 0b0001) }
+    public static var PanningCenterView: OpenDrawerGestureMode { return self(rawValue: 0b0010) }
+    public static var BezelPanningCenterView: OpenDrawerGestureMode { return self(rawValue: 0b0100) }
+    public static var Custom: OpenDrawerGestureMode { return self(rawValue: 0b1000) }
+    public static var All: OpenDrawerGestureMode { return self(rawValue: 0b1111) }
 }
 
 public struct CloseDrawerGestureMode : RawOptionSetType, BooleanType {
