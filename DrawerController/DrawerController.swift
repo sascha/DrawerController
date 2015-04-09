@@ -20,7 +20,7 @@
 
 import UIKit
 
-extension UIViewController {
+public extension UIViewController {
     var evo_drawerController: DrawerController? {
         var parentViewController = self.parentViewController
         
