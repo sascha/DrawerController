@@ -13,6 +13,8 @@ This is currently a work in progress and has not been thoroughly tested. Use at 
 
 ```ruby
 platform :ios, '8.0'
+use_frameworks!
+
 pod 'DrawerController', '~> 1.0'
 ```
 
