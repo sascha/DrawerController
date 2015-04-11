@@ -113,15 +113,15 @@ public struct CloseDrawerGestureMode : RawOptionSetType, BooleanType {
     public static var allZeros: CloseDrawerGestureMode { return self(rawValue: 0) }
     public static func convertFromNilLiteral() -> CloseDrawerGestureMode { return self(rawValue: 0) }
     
-    static var None: CloseDrawerGestureMode { return self(rawValue: 0b0000000) }
-    static var PanningNavigationBar: CloseDrawerGestureMode { return self(rawValue: 0b0000001) }
-    static var PanningCenterView: CloseDrawerGestureMode { return self(rawValue: 0b0000010) }
-    static var BezelPanningCenterView: CloseDrawerGestureMode { return self(rawValue: 0b0000100) }
-    static var TapNavigationBar: CloseDrawerGestureMode { return self(rawValue: 0b0001000) }
-    static var TapCenterView: CloseDrawerGestureMode { return self(rawValue: 0b0010000) }
-    static var PanningDrawerView: CloseDrawerGestureMode { return self(rawValue: 0b0100000) }
-    static var Custom: CloseDrawerGestureMode { return self(rawValue: 0b1000000) }
-    static var All: CloseDrawerGestureMode { return self(rawValue: 0b1111111) }
+    public static var None: CloseDrawerGestureMode { return self(rawValue: 0b0000000) }
+    public static var PanningNavigationBar: CloseDrawerGestureMode { return self(rawValue: 0b0000001) }
+    public static var PanningCenterView: CloseDrawerGestureMode { return self(rawValue: 0b0000010) }
+    public static var BezelPanningCenterView: CloseDrawerGestureMode { return self(rawValue: 0b0000100) }
+    public static var TapNavigationBar: CloseDrawerGestureMode { return self(rawValue: 0b0001000) }
+    public static var TapCenterView: CloseDrawerGestureMode { return self(rawValue: 0b0010000) }
+    public static var PanningDrawerView: CloseDrawerGestureMode { return self(rawValue: 0b0100000) }
+    public static var Custom: CloseDrawerGestureMode { return self(rawValue: 0b1000000) }
+    public static var All: CloseDrawerGestureMode { return self(rawValue: 0b1111111) }
 }
 
 public enum DrawerOpenCenterInteractionMode: Int {
