@@ -1,4 +1,5 @@
 # Drawer Controller
+[![Version Status](http://img.shields.io/cocoapods/v/DrawerController.png)](http://cocoadocs.org/docsets/DrawerController/1.0.3/) [![license MIT](http://img.shields.io/badge/license-MIT-orange.png)][mitLink] [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 `DrawerController` is a swift version of the popular `MMDrawerController` by [Mutual Mobile](https://github.com/mutualmobile/MMDrawerController).
 
@@ -6,17 +7,23 @@ Some minor changes in this version include the removal of all < iOS 7.0 related 
 
 This is currently a work in progress and has not been thoroughly tested. Use at your own risk.
 
-### Installation with CocoaPods
-[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C and Swift, which automates and simplifies the process of using 3rd-party libraries like DrawerController in your projects. At this time Swift is only supported in the latest [pre-release](http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/).
+## Installation
 
-#### Podfile
 
-```ruby
+##### [CocoaPods](http://cocoapods.org)
+
+````ruby
 platform :ios, '8.0'
 use_frameworks!
 
 pod 'DrawerController', '~> 1.0'
-```
+````
+
+#### [Carthage](https://github.com/Carthage/Carthage)
+
+````bash
+github "sascha/DrawerController"
+````
 
 ---
 ## Credit
