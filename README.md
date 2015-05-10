@@ -1,5 +1,5 @@
 # Drawer Controller
-[![Version Status](http://img.shields.io/cocoapods/v/DrawerController.png)](http://cocoadocs.org/docsets/DrawerController/1.0.3/) [![license MIT](http://img.shields.io/badge/license-MIT-orange.png)][mitLink] [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Version Status](http://img.shields.io/cocoapods/v/DrawerController.png)](http://cocoadocs.org/docsets/DrawerController/1.0.3/) [![license MIT](http://img.shields.io/badge/license-MIT-orange.png)](http://opensource.org/licenses/MIT) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 `DrawerController` is a swift version of the popular `MMDrawerController` by [Mutual Mobile](https://github.com/mutualmobile/MMDrawerController).
 
@@ -10,7 +10,7 @@ This is currently a work in progress and has not been thoroughly tested. Use at 
 ## Installation
 
 
-##### [CocoaPods](http://cocoapods.org)
+#### [CocoaPods](http://cocoapods.org)
 
 ````ruby
 platform :ios, '8.0'
@@ -36,6 +36,6 @@ Swift version by
 * [Malte Baumann](http://twitter.com/codingdivision)
 
 ---
-##License
+## License
 
 `DrawerController` is available under the MIT license. See the LICENSE file for more info.
