@@ -19,6 +19,7 @@
 // THE SOFTWARE.
 
 import UIKit
+import DrawerController
 
 enum DrawerAnimationType: Int {
     case None
