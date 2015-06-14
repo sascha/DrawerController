@@ -49,7 +49,7 @@ class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSo
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.view.addSubview(self.tableView)
-        self.tableView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        self.tableView.autoresizingMask = [ .FlexibleWidth, .FlexibleHeight ]
         
         let doubleTap = UITapGestureRecognizer(target: self, action: "doubleTap:")
         doubleTap.numberOfTapsRequired = 2
@@ -75,22 +75,22 @@ class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSo
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        println("Center will appear")
+        print("Center will appear")
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        println("Center did appear")
+        print("Center did appear")
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        println("Center will disappear")
+        print("Center will disappear")
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        println("Center did disappear")
+        print("Center did disappear")
     }
     
     func setupLeftMenuButton() {
@@ -127,7 +127,7 @@ class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSo
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let CellIdentifier = "Cell"
         
-        var cell: UITableViewCell! = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as? UITableViewCell
+        var cell: UITableViewCell! = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as UITableViewCell?
         
         if cell == nil {
             cell = CenterTableViewCell(style: .Default, reuseIdentifier: CellIdentifier)

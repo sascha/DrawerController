@@ -1,3 +1,4 @@
+
 // Copyright (c) 2014 evolved.io (http://evolved.io)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,22 +34,22 @@ class ExampleRightSideDrawerViewController: ExampleSideDrawerViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        println("Right will appear")
+        print("Right will appear")
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        println("Right did appear")
+        print("Right did appear")
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        println("Right will disappear")
+        print("Right will disappear")
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        println("Right did disappear")
+        print("Right did disappear")
     }
     
     override func viewDidLoad() {

@@ -42,7 +42,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.view.addSubview(self.tableView)
-        self.tableView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        self.tableView.autoresizingMask = [ .FlexibleWidth, .FlexibleHeight ]
         
         self.tableView.backgroundColor = UIColor(red: 110 / 255, green: 113 / 255, blue: 115 / 255, alpha: 1.0)
         self.tableView.separatorStyle = .None
@@ -59,7 +59,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
         // See https://github.com/sascha/DrawerController/issues/12
         self.navigationController?.view.setNeedsLayout()
         
-        self.tableView.reloadSections(NSIndexSet(indexesInRange: NSRange(location: 0, length: self.tableView.numberOfSections() - 1)), withRowAnimation: .None)
+        self.tableView.reloadSections(NSIndexSet(indexesInRange: NSRange(location: 0, length: self.tableView.numberOfSections - 1)), withRowAnimation: .None)
     }
     
     override func contentSizeDidChange(size: String) {
@@ -96,7 +96,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let CellIdentifier = "Cell"
         
-        var cell: UITableViewCell! = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as? UITableViewCell
+        var cell: UITableViewCell! = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as UITableViewCell?
         
         if cell == nil {
             cell = SideDrawerTableViewCell(style: .Default, reuseIdentifier: CellIdentifier)
@@ -274,7 +274,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = SideDrawerSectionHeaderView(frame: CGRect(x: 0, y: 0, width: CGRectGetWidth(tableView.bounds), height: 56.0))
-        headerView.autoresizingMask = .FlexibleHeight | .FlexibleWidth
+        headerView.autoresizingMask = [ .FlexibleHeight, .FlexibleWidth ]
         headerView.title = tableView.dataSource?.tableView?(tableView, titleForHeaderInSection: section)
         return headerView
     }
