@@ -23,7 +23,7 @@ import Foundation
 
 public class DrawerBarButtonItem: UIBarButtonItem {
     
-    let menuButton: AnimatedMenuButton
+    var menuButton: AnimatedMenuButton
     
     // MARK: - Initializers
     
@@ -32,11 +32,13 @@ public class DrawerBarButtonItem: UIBarButtonItem {
         super.init()
     }
     
-    public init(target: AnyObject?, action: Selector) {
-        self.menuButton = AnimatedMenuButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        self.menuButton.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
+    convenience public init(target: AnyObject?, action: Selector) {
+        let menuButton = AnimatedMenuButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        menuButton.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
         
-        super.init(customView: self.menuButton)
+        self.init(customView: menuButton)
+        
+        self.menuButton = menuButton
     }
     
     public required convenience init(coder aDecoder: NSCoder) {

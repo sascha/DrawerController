@@ -125,8 +125,8 @@ public class AnimatedMenuButton : UIButton {
         self.middle.addAnimation(middleTransform, forKey: middleTransform.keyPath)
         self.bottom.addAnimation(bottomTransform, forKey: bottomTransform.keyPath)
         
-        self.top.setValue(topTransform.toValue, forKey: topTransform.keyPath)
-        self.middle.setValue(middleTransform.toValue, forKey: middleTransform.keyPath)
-        self.bottom.setValue(bottomTransform.toValue, forKey: bottomTransform.keyPath)
+        self.top.setValue(topTransform.toValue, forKey: topTransform.keyPath!)
+        self.middle.setValue(middleTransform.toValue, forKey: middleTransform.keyPath!)
+        self.bottom.setValue(bottomTransform.toValue, forKey: bottomTransform.keyPath!)
     }
 }
