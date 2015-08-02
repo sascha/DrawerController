@@ -27,6 +27,7 @@ public class AnimatedMenuButton : UIButton {
     let top: CAShapeLayer = CAShapeLayer()
     let middle: CAShapeLayer = CAShapeLayer()
     let bottom: CAShapeLayer = CAShapeLayer()
+    var strokeColor = UIColor.grayColor()
     
     // MARK: - Constants
     
@@ -44,17 +45,25 @@ public class AnimatedMenuButton : UIButton {
     required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+
+    override convenience init(frame: CGRect) {
+        
+        self.init(frame: frame, strokeColor: UIColor.grayColor())
+    }
     
-    override init(frame: CGRect) {
+    
+    init(frame: CGRect, strokeColor: UIColor) {
         super.init(frame:frame)
-                
+        
+        self.strokeColor = strokeColor
+        
         self.top.path = shortStroke;
         self.middle.path = shortStroke;
         self.bottom.path = shortStroke;
         
         for layer in [ self.top, self.middle, self.bottom ] {
             layer.fillColor = nil
-            layer.strokeColor = UIColor.grayColor().CGColor
+            layer.strokeColor = self.strokeColor.CGColor
             layer.lineWidth = 4
             layer.miterLimit = 2
             layer.lineCap = kCALineCapRound
