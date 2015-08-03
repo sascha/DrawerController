@@ -41,7 +41,7 @@ public class AnimatedMenuButton : UIButton {
     
     // MARK: - Initializers
     
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     

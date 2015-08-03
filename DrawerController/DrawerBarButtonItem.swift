@@ -42,8 +42,12 @@ public class DrawerBarButtonItem: UIBarButtonItem {
     }
     
     public required convenience init(coder aDecoder: NSCoder) {
-        let barButtonItem = UIBarButtonItem(coder: aDecoder)
-        self.init(target: barButtonItem.target, action: barButtonItem.action)
+        if let barButtonItem = UIBarButtonItem(coder: aDecoder) {
+            self.init(target: barButtonItem.target, action: barButtonItem.action)
+        }
+        else  {
+            self.init()
+        }
     }
     
     // MARK: - Animations
