@@ -26,7 +26,7 @@ class CenterTableViewCell: TableViewCell {
         self.accessoryCheckmarkColor = UIColor(red: 13 / 255, green: 88 / 255, blue: 161 / 255, alpha: 1.0)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.accessoryCheckmarkColor = UIColor(red: 13 / 255, green: 88 / 255, blue: 161 / 255, alpha: 1.0)
     }

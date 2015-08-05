@@ -29,7 +29,7 @@ private class DisclosureIndicator: UIView {
         self.backgroundColor = UIColor.clearColor()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.backgroundColor = UIColor.clearColor()
@@ -74,7 +74,7 @@ private class CustomCheckmark: UIControl {
         self.userInteractionEnabled = false
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.backgroundColor = UIColor.clearColor()
@@ -147,7 +147,7 @@ class TableViewCell: UITableViewCell {
         self.updateContentForNewContentSize()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.updateContentForNewContentSize()
