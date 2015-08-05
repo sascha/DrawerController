@@ -33,7 +33,7 @@ public class DrawerBarButtonItem: UIBarButtonItem {
     }
     
     public convenience init(target: AnyObject?, action: Selector) {
-        self.init(target:target, action: action, menuIconColor: UIColor.grayColor())
+        self.init(target: target, action: action, menuIconColor: UIColor.grayColor())
     }
     
     public init(target: AnyObject?, action: Selector, menuIconColor: UIColor) {
