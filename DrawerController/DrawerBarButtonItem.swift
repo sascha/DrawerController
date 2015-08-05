@@ -30,24 +30,21 @@ public class DrawerBarButtonItem: UIBarButtonItem {
     public override init() {
         self.menuButton = AnimatedMenuButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         super.init()
+        self.customView = self.menuButton
     }
     
     convenience public init(target: AnyObject?, action: Selector) {
         let menuButton = AnimatedMenuButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         menuButton.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
-        
         self.init(customView: menuButton)
         
         self.menuButton = menuButton
     }
     
-    public required convenience init(coder aDecoder: NSCoder) {
-        if let barButtonItem = UIBarButtonItem(coder: aDecoder) {
-            self.init(target: barButtonItem.target, action: barButtonItem.action)
-        }
-        else  {
-            self.init()
-        }
+    public required init?(coder aDecoder: NSCoder) {
+        self.menuButton = AnimatedMenuButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        super.init(coder: aDecoder)
+        self.customView = self.menuButton
     }
     
     // MARK: - Animations
