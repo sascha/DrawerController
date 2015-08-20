@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var drawerController: DrawerController!
+    var tabBarController: UITabBarController!
     
     func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         let leftSideDrawerViewController = ExampleLeftSideDrawerViewController()
@@ -41,7 +42,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let leftSideNavController = UINavigationController(rootViewController: leftSideDrawerViewController)
         leftSideNavController.restorationIdentifier = "ExampleLeftNavigationControllerRestorationKey"
         
-        self.drawerController = DrawerController(centerViewController: navigationController, leftDrawerViewController: leftSideNavController, rightDrawerViewController: rightSideNavController)
+        self.drawerController = DrawerController()
+        self.drawerController.centerViewController = navigationController
+        self.drawerController.leftDrawerViewController = leftSideNavController
+        self.drawerController.rightDrawerViewController = rightSideNavController
+        
         self.drawerController.showsShadows = false
         
         self.drawerController.restorationIdentifier = "Drawer"
@@ -54,11 +59,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             block?(drawerController, drawerSide, percentVisible)
         }
         
+        self.tabBarController = UITabBarController()
+        
+        let blankViewController = UIViewController()
+        self.tabBarController.viewControllers = [drawerController, blankViewController]
+        // let firstImage = UIImage(named: "pie bar icon")
+        // let secondImage = UIImage(named: "pizza bar icon")
+        self.drawerController.tabBarItem = UITabBarItem(title: "Pie", image: nil, tag: 1)
+        blankViewController.tabBarItem = UITabBarItem(title: "Pizza", image: nil, tag:2)
+        
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let tintColor = UIColor(red: 29 / 255, green: 173 / 255, blue: 234 / 255, alpha: 1.0)
         self.window?.tintColor = tintColor
         
-        self.window?.rootViewController = self.drawerController
+        self.window?.rootViewController = self.tabBarController // self.drawerController
         
         return true
     }
