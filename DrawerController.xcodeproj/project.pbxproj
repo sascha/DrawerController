@@ -8,31 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		FAEF013C1AFEE4FF00DFDF7F /* DrawerController.h in Headers */ = {isa = PBXBuildFile; fileRef = FAEF013B1AFEE4FF00DFDF7F /* DrawerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FAEF01421AFEE50000DFDF7F /* DrawerController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEF01361AFEE4FF00DFDF7F /* DrawerController.framework */; };
-		FAEF01491AFEE50000DFDF7F /* DrawerControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF01481AFEE50000DFDF7F /* DrawerControllerTests.swift */; };
 		FAEF01561AFEE65200DFDF7F /* AnimatedMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF01521AFEE65200DFDF7F /* AnimatedMenuButton.swift */; };
 		FAEF01571AFEE65200DFDF7F /* DrawerBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF01531AFEE65200DFDF7F /* DrawerBarButtonItem.swift */; };
 		FAEF01581AFEE65200DFDF7F /* DrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF01541AFEE65200DFDF7F /* DrawerController.swift */; };
 		FAEF01591AFEE65200DFDF7F /* DrawerVisualState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF01551AFEE65200DFDF7F /* DrawerVisualState.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		FAEF01431AFEE50000DFDF7F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FAEF012D1AFEE4FF00DFDF7F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FAEF01351AFEE4FF00DFDF7F;
-			remoteInfo = DrawerController;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		FAEF01361AFEE4FF00DFDF7F /* DrawerController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DrawerController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAEF013A1AFEE4FF00DFDF7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAEF013B1AFEE4FF00DFDF7F /* DrawerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawerController.h; sourceTree = "<group>"; };
-		FAEF01411AFEE50000DFDF7F /* DrawerControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrawerControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FAEF01471AFEE50000DFDF7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FAEF01481AFEE50000DFDF7F /* DrawerControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerControllerTests.swift; sourceTree = "<group>"; };
 		FAEF01521AFEE65200DFDF7F /* AnimatedMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedMenuButton.swift; sourceTree = "<group>"; };
 		FAEF01531AFEE65200DFDF7F /* DrawerBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerBarButtonItem.swift; sourceTree = "<group>"; };
 		FAEF01541AFEE65200DFDF7F /* DrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -47,14 +32,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FAEF013E1AFEE50000DFDF7F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FAEF01421AFEE50000DFDF7F /* DrawerController.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -62,7 +39,6 @@
 			isa = PBXGroup;
 			children = (
 				FAEF01381AFEE4FF00DFDF7F /* DrawerController */,
-				FAEF01451AFEE50000DFDF7F /* DrawerControllerTests */,
 				FAEF01371AFEE4FF00DFDF7F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,7 +47,6 @@
 			isa = PBXGroup;
 			children = (
 				FAEF01361AFEE4FF00DFDF7F /* DrawerController.framework */,
-				FAEF01411AFEE50000DFDF7F /* DrawerControllerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -93,23 +68,6 @@
 			isa = PBXGroup;
 			children = (
 				FAEF013A1AFEE4FF00DFDF7F /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		FAEF01451AFEE50000DFDF7F /* DrawerControllerTests */ = {
-			isa = PBXGroup;
-			children = (
-				FAEF01481AFEE50000DFDF7F /* DrawerControllerTests.swift */,
-				FAEF01461AFEE50000DFDF7F /* Supporting Files */,
-			);
-			path = DrawerControllerTests;
-			sourceTree = "<group>";
-		};
-		FAEF01461AFEE50000DFDF7F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				FAEF01471AFEE50000DFDF7F /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -146,24 +104,6 @@
 			productReference = FAEF01361AFEE4FF00DFDF7F /* DrawerController.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		FAEF01401AFEE50000DFDF7F /* DrawerControllerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FAEF014F1AFEE50000DFDF7F /* Build configuration list for PBXNativeTarget "DrawerControllerTests" */;
-			buildPhases = (
-				FAEF013D1AFEE50000DFDF7F /* Sources */,
-				FAEF013E1AFEE50000DFDF7F /* Frameworks */,
-				FAEF013F1AFEE50000DFDF7F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FAEF01441AFEE50000DFDF7F /* PBXTargetDependency */,
-			);
-			name = DrawerControllerTests;
-			productName = DrawerControllerTests;
-			productReference = FAEF01411AFEE50000DFDF7F /* DrawerControllerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -175,9 +115,6 @@
 				ORGANIZATIONNAME = evolved.io;
 				TargetAttributes = {
 					FAEF01351AFEE4FF00DFDF7F = {
-						CreatedOnToolsVersion = 6.3.1;
-					};
-					FAEF01401AFEE50000DFDF7F = {
 						CreatedOnToolsVersion = 6.3.1;
 					};
 				};
@@ -195,20 +132,12 @@
 			projectRoot = "";
 			targets = (
 				FAEF01351AFEE4FF00DFDF7F /* DrawerController */,
-				FAEF01401AFEE50000DFDF7F /* DrawerControllerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		FAEF01341AFEE4FF00DFDF7F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FAEF013F1AFEE50000DFDF7F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -229,23 +158,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FAEF013D1AFEE50000DFDF7F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FAEF01491AFEE50000DFDF7F /* DrawerControllerTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		FAEF01441AFEE50000DFDF7F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FAEF01351AFEE4FF00DFDF7F /* DrawerController */;
-			targetProxy = FAEF01431AFEE50000DFDF7F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		FAEF014A1AFEE50000DFDF7F /* Debug */ = {
@@ -375,38 +288,6 @@
 			};
 			name = Release;
 		};
-		FAEF01501AFEE50000DFDF7F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = DrawerControllerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.evolved.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		FAEF01511AFEE50000DFDF7F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = DrawerControllerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.evolved.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -424,15 +305,6 @@
 			buildConfigurations = (
 				FAEF014D1AFEE50000DFDF7F /* Debug */,
 				FAEF014E1AFEE50000DFDF7F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FAEF014F1AFEE50000DFDF7F /* Build configuration list for PBXNativeTarget "DrawerControllerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FAEF01501AFEE50000DFDF7F /* Debug */,
-				FAEF01511AFEE50000DFDF7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
