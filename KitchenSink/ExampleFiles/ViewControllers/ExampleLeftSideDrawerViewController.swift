@@ -26,29 +26,29 @@ class ExampleLeftSideDrawerViewController: ExampleSideDrawerViewController {
         self.restorationIdentifier = "ExampleLeftSideDrawerController"
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.restorationIdentifier = "ExampleLeftSideDrawerController"
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        println("Left will appear")
+        print("Left will appear")
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        println("Left did appear")
+        print("Left did appear")
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        println("Left will disappear")
+        print("Left will disappear")
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        println("Left did disappear")
+        print("Left did disappear")
     }
     
     override func viewDidLoad() {

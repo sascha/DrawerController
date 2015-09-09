@@ -42,7 +42,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.view.addSubview(self.tableView)
-        self.tableView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        self.tableView.autoresizingMask = [ .FlexibleWidth, .FlexibleHeight ]
         
         self.tableView.backgroundColor = UIColor(red: 110 / 255, green: 113 / 255, blue: 115 / 255, alpha: 1.0)
         self.tableView.separatorStyle = .None
@@ -59,7 +59,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
         // See https://github.com/sascha/DrawerController/issues/12
         self.navigationController?.view.setNeedsLayout()
         
-        self.tableView.reloadSections(NSIndexSet(indexesInRange: NSRange(location: 0, length: self.tableView.numberOfSections() - 1)), withRowAnimation: .None)
+        self.tableView.reloadSections(NSIndexSet(indexesInRange: NSRange(location: 0, length: self.tableView.numberOfSections - 1)), withRowAnimation: .None)
     }
     
     override func contentSizeDidChange(size: String) {
@@ -96,7 +96,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let CellIdentifier = "Cell"
         
-        var cell: UITableViewCell! = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as? UITableViewCell
+        var cell: UITableViewCell! = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as UITableViewCell?
         
         if cell == nil {
             cell = SideDrawerTableViewCell(style: .Default, reuseIdentifier: CellIdentifier)
@@ -128,7 +128,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
             case 0:
                 cell.textLabel?.text = "Pan Nav Bar"
                 
-                if self.evo_drawerController != nil && (self.evo_drawerController!.openDrawerGestureModeMask & .PanningNavigationBar).rawValue > 0 {
+                if self.evo_drawerController != nil && self.evo_drawerController!.openDrawerGestureModeMask.contains(.PanningNavigationBar) {
                     cell.accessoryType = .Checkmark
                 } else {
                     cell.accessoryType = .None
@@ -136,7 +136,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
             case 1:
                 cell.textLabel?.text = "Pan Center View"
                 
-                if self.evo_drawerController != nil && (self.evo_drawerController!.openDrawerGestureModeMask & .PanningCenterView).rawValue > 0 {
+                if self.evo_drawerController != nil && self.evo_drawerController!.openDrawerGestureModeMask.contains(.PanningCenterView) {
                     cell.accessoryType = .Checkmark
                 } else {
                     cell.accessoryType = .None
@@ -144,7 +144,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
             case 2:
                 cell.textLabel?.text = "Bezel Pan Center View"
                 
-                if self.evo_drawerController != nil && (self.evo_drawerController!.openDrawerGestureModeMask & .BezelPanningCenterView).rawValue > 0 {
+                if self.evo_drawerController != nil && self.evo_drawerController!.openDrawerGestureModeMask.contains(.BezelPanningCenterView) {
                     cell.accessoryType = .Checkmark
                 } else {
                     cell.accessoryType = .None
@@ -157,7 +157,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
             case 0:
                 cell.textLabel?.text = "Pan Nav Bar"
                 
-                if self.evo_drawerController != nil && (self.evo_drawerController!.closeDrawerGestureModeMask & .PanningNavigationBar).rawValue > 0 {
+                if self.evo_drawerController != nil && self.evo_drawerController!.closeDrawerGestureModeMask.contains(.PanningNavigationBar) {
                     cell.accessoryType = .Checkmark
                 } else {
                     cell.accessoryType = .None
@@ -165,7 +165,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
             case 1:
                 cell.textLabel?.text = "Pan Center View"
                 
-                if self.evo_drawerController != nil && (self.evo_drawerController!.closeDrawerGestureModeMask & .PanningCenterView).rawValue > 0 {
+                if self.evo_drawerController != nil && self.evo_drawerController!.closeDrawerGestureModeMask.contains(.PanningCenterView) {
                     cell.accessoryType = .Checkmark
                 } else {
                     cell.accessoryType = .None
@@ -173,7 +173,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
             case 2:
                 cell.textLabel?.text = "Bezel Pan Center View"
                 
-                if self.evo_drawerController != nil && (self.evo_drawerController!.closeDrawerGestureModeMask & .BezelPanningCenterView).rawValue > 0 {
+                if self.evo_drawerController != nil && self.evo_drawerController!.closeDrawerGestureModeMask.contains(.BezelPanningCenterView) {
                     cell.accessoryType = .Checkmark
                 } else {
                     cell.accessoryType = .None
@@ -181,7 +181,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
             case 3:
                 cell.textLabel?.text = "Tap Nav Bar"
                 
-                if self.evo_drawerController != nil && (self.evo_drawerController!.closeDrawerGestureModeMask & .TapNavigationBar).rawValue > 0 {
+                if self.evo_drawerController != nil && self.evo_drawerController!.closeDrawerGestureModeMask.contains(.TapNavigationBar) {
                     cell.accessoryType = .Checkmark
                 } else {
                     cell.accessoryType = .None
@@ -189,7 +189,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
             case 4:
                 cell.textLabel?.text = "Tap Center View"
                 
-                if self.evo_drawerController != nil && (self.evo_drawerController!.closeDrawerGestureModeMask & .TapCenterView).rawValue > 0 {
+                if self.evo_drawerController != nil && self.evo_drawerController!.closeDrawerGestureModeMask.contains(.TapCenterView) {
                     cell.accessoryType = .Checkmark
                 } else {
                     cell.accessoryType = .None
@@ -197,7 +197,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
             case 5:
                 cell.textLabel?.text = "Pan Drawer View"
                 
-                if self.evo_drawerController != nil && (self.evo_drawerController!.closeDrawerGestureModeMask & .PanningDrawerView).rawValue > 0 {
+                if self.evo_drawerController != nil && self.evo_drawerController!.closeDrawerGestureModeMask.contains(.PanningDrawerView) {
                     cell.accessoryType = .Checkmark
                 } else {
                     cell.accessoryType = .None
@@ -274,7 +274,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = SideDrawerSectionHeaderView(frame: CGRect(x: 0, y: 0, width: CGRectGetWidth(tableView.bounds), height: 56.0))
-        headerView.autoresizingMask = .FlexibleHeight | .FlexibleWidth
+        headerView.autoresizingMask = [ .FlexibleHeight, .FlexibleWidth ]
         headerView.title = tableView.dataSource?.tableView?(tableView, titleForHeaderInSection: section)
         return headerView
     }
@@ -313,11 +313,11 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
         case DrawerSection.OpenDrawerGestures.rawValue:
             switch indexPath.row {
             case 0:
-                self.evo_drawerController?.openDrawerGestureModeMask ^= .PanningNavigationBar
+                self.evo_drawerController?.openDrawerGestureModeMask.exclusiveOrInPlace(.PanningNavigationBar)
             case 1:
-                self.evo_drawerController?.openDrawerGestureModeMask ^= .PanningCenterView
+                self.evo_drawerController?.openDrawerGestureModeMask.exclusiveOrInPlace(.PanningCenterView)
             case 2:
-                self.evo_drawerController?.openDrawerGestureModeMask ^= .BezelPanningCenterView
+                self.evo_drawerController?.openDrawerGestureModeMask.exclusiveOrInPlace(.BezelPanningCenterView)
             default:
                 break
             }
@@ -326,17 +326,17 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
         case DrawerSection.CloseDrawerGestures.rawValue:
             switch indexPath.row {
             case 0:
-                self.evo_drawerController?.closeDrawerGestureModeMask ^= .PanningNavigationBar
+                self.evo_drawerController?.closeDrawerGestureModeMask.exclusiveOrInPlace(.PanningNavigationBar)
             case 1:
-                self.evo_drawerController?.closeDrawerGestureModeMask ^= .PanningCenterView
+                self.evo_drawerController?.closeDrawerGestureModeMask.exclusiveOrInPlace(.PanningCenterView)
             case 2:
-                self.evo_drawerController?.closeDrawerGestureModeMask ^= .BezelPanningCenterView
+                self.evo_drawerController?.closeDrawerGestureModeMask.exclusiveOrInPlace(.BezelPanningCenterView)
             case 3:
-                self.evo_drawerController?.closeDrawerGestureModeMask ^= .TapNavigationBar
+                self.evo_drawerController?.closeDrawerGestureModeMask.exclusiveOrInPlace(.TapNavigationBar)
             case 4:
-                self.evo_drawerController?.closeDrawerGestureModeMask ^= .TapCenterView
+                self.evo_drawerController?.closeDrawerGestureModeMask.exclusiveOrInPlace(.TapCenterView)
             case 5:
-                self.evo_drawerController?.closeDrawerGestureModeMask ^= .PanningDrawerView
+                self.evo_drawerController?.closeDrawerGestureModeMask.exclusiveOrInPlace(.PanningDrawerView)
             default:
                 break
             }

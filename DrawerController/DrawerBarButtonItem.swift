@@ -23,29 +23,32 @@ import Foundation
 
 public class DrawerBarButtonItem: UIBarButtonItem {
     
-    let menuButton: AnimatedMenuButton
+    var menuButton: AnimatedMenuButton
     
     // MARK: - Initializers
     
     public override init() {
         self.menuButton = AnimatedMenuButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         super.init()
+        self.customView = self.menuButton
     }
-    
+
     public convenience init(target: AnyObject?, action: Selector) {
         self.init(target: target, action: action, menuIconColor: UIColor.grayColor())
     }
-    
-    public init(target: AnyObject?, action: Selector, menuIconColor: UIColor) {
-        self.menuButton = AnimatedMenuButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30), strokeColor: menuIconColor)
-        self.menuButton.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
-        
-        super.init(customView: self.menuButton)
-    }
 
-    public required convenience init(coder aDecoder: NSCoder) {
-        let barButtonItem = UIBarButtonItem(coder: aDecoder)
-        self.init(target: barButtonItem.target, action: barButtonItem.action)
+    public convenience init(target: AnyObject?, action: Selector, menuIconColor: UIColor) {
+        let menuButton = AnimatedMenuButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30), strokeColor: menuIconColor)
+        menuButton.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
+        self.init(customView: menuButton)
+        
+        self.menuButton = menuButton
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        self.menuButton = AnimatedMenuButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        super.init(coder: aDecoder)
+        self.customView = self.menuButton
     }
     
     // MARK: - Animations

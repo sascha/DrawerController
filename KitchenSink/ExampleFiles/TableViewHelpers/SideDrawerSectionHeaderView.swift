@@ -33,7 +33,7 @@ class SideDrawerSectionHeaderView: UIView {
         self.commonSetup()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.commonSetup()
     }
@@ -44,7 +44,7 @@ class SideDrawerSectionHeaderView: UIView {
         self.label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1)
         self.label.backgroundColor = UIColor.clearColor()
         self.label.textColor = UIColor(red: 203 / 255, green: 206 / 255, blue: 209 / 255, alpha: 1.0)
-        self.label.autoresizingMask = .FlexibleWidth | .FlexibleTopMargin
+        self.label.autoresizingMask = [ .FlexibleWidth ,.FlexibleTopMargin ]
         self.addSubview(self.label)
         self.clipsToBounds = false
     }
