@@ -42,7 +42,7 @@ public class AnimatedMenuButton : UIButton {
     
     // MARK: - Initializers
     
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         self.strokeColor = UIColor.grayColor()
         super.init(coder: aDecoder)
     }
@@ -50,7 +50,6 @@ public class AnimatedMenuButton : UIButton {
     override convenience init(frame: CGRect) {
         self.init(frame: frame, strokeColor: UIColor.grayColor())
     }
-    
     
     init(frame: CGRect, strokeColor: UIColor) {
         self.strokeColor = strokeColor
@@ -68,7 +67,7 @@ public class AnimatedMenuButton : UIButton {
             layer.lineCap = kCALineCapRound
             layer.masksToBounds = true
             
-            let strokingPath = CGPathCreateCopyByStrokingPath(layer.path, nil, 4, kCGLineCapRound, kCGLineJoinMiter, 4)
+            let strokingPath = CGPathCreateCopyByStrokingPath(layer.path, nil, 4, .Round, .Miter, 4)
             
             layer.bounds = CGPathGetPathBoundingBox(strokingPath)
             
@@ -133,8 +132,8 @@ public class AnimatedMenuButton : UIButton {
         self.middle.addAnimation(middleTransform, forKey: middleTransform.keyPath)
         self.bottom.addAnimation(bottomTransform, forKey: bottomTransform.keyPath)
         
-        self.top.setValue(topTransform.toValue, forKey: topTransform.keyPath)
-        self.middle.setValue(middleTransform.toValue, forKey: middleTransform.keyPath)
-        self.bottom.setValue(bottomTransform.toValue, forKey: bottomTransform.keyPath)
+        self.top.setValue(topTransform.toValue, forKey: topTransform.keyPath!)
+        self.middle.setValue(middleTransform.toValue, forKey: middleTransform.keyPath!)
+        self.bottom.setValue(bottomTransform.toValue, forKey: bottomTransform.keyPath!)
     }
 }

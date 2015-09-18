@@ -26,7 +26,7 @@ class SideDrawerTableViewCell: TableViewCell {
         self.commonSetup()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.commonSetup()
     }
@@ -34,7 +34,7 @@ class SideDrawerTableViewCell: TableViewCell {
     func commonSetup() {
         self.accessoryCheckmarkColor = UIColor.whiteColor()
         let backgroundView = UIView(frame: self.bounds)
-        backgroundView.autoresizingMask = .FlexibleHeight | .FlexibleWidth
+        backgroundView.autoresizingMask = [ .FlexibleHeight, .FlexibleWidth ]
         let backgroundColor = UIColor(red: 122 / 255, green: 126 / 255, blue: 128 / 255, alpha: 1.0)
         backgroundView.backgroundColor = backgroundColor
         

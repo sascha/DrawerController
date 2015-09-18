@@ -29,7 +29,7 @@ private class DisclosureIndicator: UIView {
         self.backgroundColor = UIColor.clearColor()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.backgroundColor = UIColor.clearColor()
@@ -41,7 +41,7 @@ private class DisclosureIndicator: UIView {
         let chevronColor = self.color
         let frame = self.bounds
         
-        var chevronPath = UIBezierPath()
+        let chevronPath = UIBezierPath()
         chevronPath.moveToPoint(CGPoint(x: CGRectGetMinX(frame) + 0.22000 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.01667 * CGRectGetHeight(frame)))
         chevronPath.addLineToPoint(CGPoint(x: CGRectGetMinX(frame) + 0.98000 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.48333 * CGRectGetHeight(frame)))
         chevronPath.addLineToPoint(CGPoint(x: CGRectGetMinX(frame) + 0.22000 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.98333 * CGRectGetHeight(frame)))
@@ -74,7 +74,7 @@ private class CustomCheckmark: UIControl {
         self.userInteractionEnabled = false
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.backgroundColor = UIColor.clearColor()
@@ -86,7 +86,7 @@ private class CustomCheckmark: UIControl {
         
         let frame = self.bounds
         
-        var checkMarkPath = UIBezierPath()
+        let checkMarkPath = UIBezierPath()
         checkMarkPath.moveToPoint(CGPoint(x: CGRectGetMinX(frame) + 0.07087 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.48855 * CGRectGetHeight(frame)))
         checkMarkPath.addLineToPoint(CGPoint(x: CGRectGetMinX(frame) + 0.12500 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.45284 * CGRectGetHeight(frame)))
         checkMarkPath.addCurveToPoint(CGPoint(x: CGRectGetMinX(frame) + 0.21038 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.47898 * CGRectGetHeight(frame)), controlPoint1: CGPoint(x: CGRectGetMinX(frame) + 0.15489 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.43312 * CGRectGetHeight(frame)), controlPoint2: CGPoint(x: CGRectGetMinX(frame) + 0.19312 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.44482 * CGRectGetHeight(frame)))
@@ -147,7 +147,7 @@ class TableViewCell: UITableViewCell {
         self.updateContentForNewContentSize()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.updateContentForNewContentSize()
