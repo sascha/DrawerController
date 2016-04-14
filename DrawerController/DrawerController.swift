@@ -309,6 +309,9 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
     */
     public var shouldStretchDrawer = true
     public var drawerDampingFactor = DrawerDefaultDampingFactor
+    public var shadowRadius = DrawerDefaultShadowRadius
+    public var shadowOpacity = DrawerDefaultShadowOpacity
+    public var bezelRange = DrawerBezelRange
     
     /**
     The flag determining if a shadow should be drawn off of `centerViewController` when a drawer is open.
@@ -700,8 +703,8 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
     private func updateShadowForCenterView() {
         if self.showsShadows {
             self.centerContainerView.layer.masksToBounds = false
-            self.centerContainerView.layer.shadowRadius = DrawerDefaultShadowRadius
-            self.centerContainerView.layer.shadowOpacity = DrawerDefaultShadowOpacity
+            self.centerContainerView.layer.shadowRadius = shadowRadius
+            self.centerContainerView.layer.shadowOpacity = shadowOpacity
             
             /** In the event this gets called a lot, we won't update the shadowPath
             unless it needs to be updated (like during rotation) */
@@ -1530,7 +1533,7 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
         var leftBezelRect = CGRectNull
         var tempRect = CGRectNull
         
-        CGRectDivide(self.childControllerContainerView.bounds, &leftBezelRect, &tempRect, DrawerBezelRange, .MinXEdge)
+        CGRectDivide(self.childControllerContainerView.bounds, &leftBezelRect, &tempRect, bezelRange, .MinXEdge)
         
         return CGRectContainsPoint(leftBezelRect, point) && self.isPointContainedWithinCenterViewContentRect(point)
     }
@@ -1539,7 +1542,7 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
         var rightBezelRect = CGRectNull
         var tempRect = CGRectNull
         
-        CGRectDivide(self.childControllerContainerView.bounds, &rightBezelRect, &tempRect, DrawerBezelRange, .MaxXEdge)
+        CGRectDivide(self.childControllerContainerView.bounds, &rightBezelRect, &tempRect, bezelRange, .MaxXEdge)
         
         return CGRectContainsPoint(rightBezelRect, point) && self.isPointContainedWithinCenterViewContentRect(point)
     }
