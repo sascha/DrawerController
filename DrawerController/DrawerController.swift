@@ -195,6 +195,8 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
     /**
     The center view controller.
     
+    FIXME:  The comment below seems incorrect.  It appears you can create a DrawerController with the empty initializer and then simply assign to this variable.  This is all that the init() routine does so this seems reasonable to expect that this should work.
+    
     This can only be set via the init methods, as well as the `setNewCenterViewController:...` methods. The size of this view controller will automatically be set to the size of the drawer container view controller, and it's position is modified from within this class. Do not modify the frame externally.
     */
     public var centerViewController: UIViewController? {
