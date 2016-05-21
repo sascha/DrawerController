@@ -1143,7 +1143,7 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
                 }
                 
                 self.updateDrawerVisualStateForDrawerSide(visibleSide, percentVisible: percentVisible)
-                self.centerContainerView.center = CGPoint(x: CGRectGetMidX(newFrame), y: CGRectGetMidY(newFrame))
+                self.centerContainerView.frame = newFrame
             }
         case .Ended, .Cancelled:
             self.startingPanRect = CGRectNull
