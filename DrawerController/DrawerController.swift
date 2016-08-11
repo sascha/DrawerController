@@ -1153,7 +1153,7 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
                     self.gestureCompletionBlock!(self, panGesture)
                 }
             })
-            
+            panGesture.enabled = true
             self.view.userInteractionEnabled = true
         default:
             break
