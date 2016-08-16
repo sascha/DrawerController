@@ -34,21 +34,21 @@ public class AnimatedMenuButton : UIButton {
     let animationDuration: CFTimeInterval = 8.0
     
     let shortStroke: CGPath = {
-        let path = CGPathCreateMutable()
-        CGPathMoveToPoint(path, nil, 2, 2)
-        CGPathAddLineToPoint(path, nil, 30 - 2 * 2, 2)
+        let path = CGMutablePath()
+        path.moveTo(nil, x: 2, y: 2)
+        path.addLineTo(nil, x: 30 - 2 * 2, y: 2)
         return path
         }()
     
     // MARK: - Initializers
     
     required public init?(coder aDecoder: NSCoder) {
-        self.strokeColor = UIColor.grayColor()
+        self.strokeColor = UIColor.gray
         super.init(coder: aDecoder)
     }
 
     override convenience init(frame: CGRect) {
-        self.init(frame: frame, strokeColor: UIColor.grayColor())
+        self.init(frame: frame, strokeColor: UIColor.gray)
     }
     
     init(frame: CGRect, strokeColor: UIColor) {
@@ -61,15 +61,15 @@ public class AnimatedMenuButton : UIButton {
         
         for layer in [ self.top, self.middle, self.bottom ] {
             layer.fillColor = nil
-            layer.strokeColor = self.strokeColor.CGColor
+            layer.strokeColor = self.strokeColor.cgColor
             layer.lineWidth = 4
             layer.miterLimit = 2
             layer.lineCap = kCALineCapRound
             layer.masksToBounds = true
             
-            let strokingPath = CGPathCreateCopyByStrokingPath(layer.path, nil, 4, .Round, .Miter, 4)
+            let strokingPath = CGPath(copyByStroking: layer.path!, transform: nil, lineWidth: 4, lineCap: .round, lineJoin: .miter, miterLimit: 4)
             
-            layer.bounds = CGPathGetPathBoundingBox(strokingPath)
+            layer.bounds = (strokingPath?.boundingBoxOfPath)!
             
             layer.actions = [
                 "opacity": NSNull(),
@@ -89,16 +89,16 @@ public class AnimatedMenuButton : UIButton {
     
     // MARK: - Animations
     
-    public func animateWithPercentVisible(percentVisible:CGFloat, drawerSide: DrawerSide) {
+    public func animateWithPercentVisible(_ percentVisible:CGFloat, drawerSide: DrawerSide) {
         
-        if drawerSide == DrawerSide.Left {
+        if drawerSide == DrawerSide.left {
             self.top.anchorPoint = CGPoint(x: 1, y: 0.5)
             self.top.position = CGPoint(x: 30 - 1, y: 5)
             self.middle.position = CGPoint(x: 15, y: 15)
             
             self.bottom.anchorPoint = CGPoint(x: 1, y: 0.5)
             self.bottom.position = CGPoint(x: 30 - 1, y: 25)
-        } else if drawerSide == DrawerSide.Right {
+        } else if drawerSide == DrawerSide.right {
             self.top.anchorPoint = CGPoint(x: 0, y: 0.5)
             self.top.position = CGPoint(x: 1, y: 5)
             self.middle.position = CGPoint(x: 15, y: 15)
@@ -121,16 +121,16 @@ public class AnimatedMenuButton : UIButton {
         
         let translation = CATransform3DMakeTranslation(-4 * percentVisible, 0, 0)
         
-        let sideInverter: CGFloat = drawerSide == DrawerSide.Left ? -1 : 1
-        topTransform.toValue = NSValue(CATransform3D: CATransform3DRotate(translation, 1.0 * sideInverter * ((CGFloat)(45.0 * M_PI / 180.0) * percentVisible), 0, 0, 1))
-        bottomTransform.toValue = NSValue(CATransform3D: CATransform3DRotate(translation, (-1.0 * sideInverter * (CGFloat)(45.0 * M_PI / 180.0) * percentVisible), 0, 0, 1))
+        let sideInverter: CGFloat = drawerSide == DrawerSide.left ? -1 : 1
+        topTransform.toValue = NSValue(caTransform3D: CATransform3DRotate(translation, 1.0 * sideInverter * ((CGFloat)(45.0 * M_PI / 180.0) * percentVisible), 0, 0, 1))
+        bottomTransform.toValue = NSValue(caTransform3D: CATransform3DRotate(translation, (-1.0 * sideInverter * (CGFloat)(45.0 * M_PI / 180.0) * percentVisible), 0, 0, 1))
 
         topTransform.beginTime = CACurrentMediaTime()
         bottomTransform.beginTime = CACurrentMediaTime()
         
-        self.top.addAnimation(topTransform, forKey: topTransform.keyPath)
-        self.middle.addAnimation(middleTransform, forKey: middleTransform.keyPath)
-        self.bottom.addAnimation(bottomTransform, forKey: bottomTransform.keyPath)
+        self.top.add(topTransform, forKey: topTransform.keyPath)
+        self.middle.add(middleTransform, forKey: middleTransform.keyPath)
+        self.bottom.add(bottomTransform, forKey: bottomTransform.keyPath)
         
         self.top.setValue(topTransform.toValue, forKey: topTransform.keyPath!)
         self.middle.setValue(middleTransform.toValue, forKey: middleTransform.keyPath!)
