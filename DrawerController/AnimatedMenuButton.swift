@@ -35,8 +35,8 @@ public class AnimatedMenuButton : UIButton {
     
     let shortStroke: CGPath = {
         let path = CGMutablePath()
-        path.moveTo(nil, x: 2, y: 2)
-        path.addLineTo(nil, x: 30 - 2 * 2, y: 2)
+        path.move(to: CGPoint(x: 2, y: 2))
+        path.addLine(to: CGPoint(x: 30 - 2 * 2, y: 2))
         return path
         }()
     
@@ -67,7 +67,7 @@ public class AnimatedMenuButton : UIButton {
             layer.lineCap = kCALineCapRound
             layer.masksToBounds = true
             
-            let strokingPath = CGPath(copyByStroking: layer.path!, transform: nil, lineWidth: 4, lineCap: .round, lineJoin: .miter, miterLimit: 4)
+            let strokingPath = CGPath(__byStroking: layer.path!, transform: nil, lineWidth: 4, lineCap: .round, lineJoin: .miter, miterLimit: 4)
             
             layer.bounds = (strokingPath?.boundingBoxOfPath)!
             
