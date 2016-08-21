@@ -153,13 +153,17 @@ private class DrawerCenterContainerView: UIView {
         var hitView = super.hitTest(point, withEvent: event)
         
         if hitView != nil && self.openSide != .None {
-            let navBar = self.navigationBarContainedWithinSubviewsOfView(self)
             
-            if navBar != nil {
-                let navBarFrame = navBar!.convertRect(navBar!.bounds, toView: self)
-                if (self.centerInteractionMode == .NavigationBarOnly && CGRectContainsPoint(navBarFrame, point) == false) || (self.centerInteractionMode == .None) {
-                    hitView = nil
+            switch centerInteractionMode {
+            case .None: hitView = nil
+            case .NavigationBarOnly:
+                if let navBar = self.navigationBarContainedWithinSubviewsOfView(self) {
+                    let frame = navBar.convertRect(navBar.bounds, toView: self)
+                    if CGRectContainsPoint(frame, point) == false {
+                        hitView = nil
+                    }
                 }
+            case .Full: break
             }
         }
         
