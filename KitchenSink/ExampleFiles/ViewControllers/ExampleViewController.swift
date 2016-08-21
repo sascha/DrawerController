@@ -24,10 +24,10 @@ class ExampleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "contentSizeDidChangeNotification:", name: UIContentSizeCategoryDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(contentSizeDidChangeNotification(_:)), name: UIContentSizeCategoryDidChangeNotification, object: nil)
     }
     
-    private func contentSizeDidChangeNotification(notification: NSNotification) {
+    @objc private func contentSizeDidChangeNotification(notification: NSNotification) {
         if let userInfo: NSDictionary = notification.userInfo {
             self.contentSizeDidChange(userInfo[UIContentSizeCategoryNewValueKey] as! String)
         }

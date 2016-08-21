@@ -51,11 +51,11 @@ class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSo
         self.view.addSubview(self.tableView)
         self.tableView.autoresizingMask = [ .FlexibleWidth, .FlexibleHeight ]
         
-        let doubleTap = UITapGestureRecognizer(target: self, action: "doubleTap:")
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(doubleTap(_:)))
         doubleTap.numberOfTapsRequired = 2
         self.view.addGestureRecognizer(doubleTap)
         
-        let twoFingerDoubleTap = UITapGestureRecognizer(target: self, action: "twoFingerDoubleTap:")
+        let twoFingerDoubleTap = UITapGestureRecognizer(target: self, action: #selector(twoFingerDoubleTap(_:)))
         twoFingerDoubleTap.numberOfTapsRequired = 2
         twoFingerDoubleTap.numberOfTouchesRequired = 2
         self.view.addGestureRecognizer(twoFingerDoubleTap)
@@ -94,12 +94,12 @@ class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSo
     }
     
     func setupLeftMenuButton() {
-        let leftDrawerButton = DrawerBarButtonItem(target: self, action: "leftDrawerButtonPress:")
+        let leftDrawerButton = DrawerBarButtonItem(target: self, action: #selector(leftDrawerButtonPress(_:)))
         self.navigationItem.setLeftBarButtonItem(leftDrawerButton, animated: true)
     }
     
     func setupRightMenuButton() {
-        let rightDrawerButton = DrawerBarButtonItem(target: self, action: "rightDrawerButtonPress:")
+        let rightDrawerButton = DrawerBarButtonItem(target: self, action: #selector(rightDrawerButtonPress(_:)))
         self.navigationItem.setRightBarButtonItem(rightDrawerButton, animated: true)
     }
     
