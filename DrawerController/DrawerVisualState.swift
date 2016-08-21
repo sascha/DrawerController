@@ -39,10 +39,10 @@ public struct DrawerVisualState {
             var translateTransform = CATransform3DIdentity
             var sideDrawerViewController: UIViewController?
             
-            if drawerSide == DrawerSide.Left {
+            if drawerSide == DrawerSide.left {
                 sideDrawerViewController = drawerController.leftDrawerViewController
                 translateTransform = CATransform3DMakeTranslation((maxDistance - distance), 0, 0)
-            } else if drawerSide == DrawerSide.Right {
+            } else if drawerSide == DrawerSide.right {
                 sideDrawerViewController = drawerController.rightDrawerViewController
                 translateTransform = CATransform3DMakeTranslation(-(maxDistance-distance), 0.0, 0.0)
             }
@@ -77,7 +77,7 @@ public struct DrawerVisualState {
             var xOffset: CGFloat
             var angle: CGFloat = 0.0
             
-            if drawerSide == .Left {
+            if drawerSide == .left {
                 sideDrawerViewController = drawerController.leftDrawerViewController
                 anchorPoint = CGPoint(x: 1.0, y: 0.5)
                 maxDrawerWidth = max(drawerController.maximumLeftDrawerWidth, drawerController.visibleLeftDrawerWidth)
@@ -93,7 +93,7 @@ public struct DrawerVisualState {
             
             sideDrawerViewController?.view.layer.anchorPoint = anchorPoint
             sideDrawerViewController?.view.layer.shouldRasterize = true
-            sideDrawerViewController?.view.layer.rasterizationScale = UIScreen.mainScreen().scale
+            sideDrawerViewController?.view.layer.rasterizationScale = UIScreen.main.scale
             
             var swingingDoorTransform: CATransform3D = CATransform3DIdentity
            
@@ -110,7 +110,7 @@ public struct DrawerVisualState {
                 var overshootTransform = CATransform3DMakeScale(percentVisible, 1.0, 1.0)
                 var scalingModifier: CGFloat = 1.0
                 
-                if (drawerSide == .Right) {
+                if (drawerSide == .right) {
                     scalingModifier = -1.0
                 }
                 
@@ -131,7 +131,7 @@ public struct DrawerVisualState {
     
     - returns: The visual state block.
     */
-    public static func parallaxVisualStateBlock(parallaxFactor: CGFloat) -> DrawerControllerDrawerVisualStateBlock {
+    public static func parallaxVisualStateBlock(_ parallaxFactor: CGFloat) -> DrawerControllerDrawerVisualStateBlock {
         let visualStateBlock: DrawerControllerDrawerVisualStateBlock = { (drawerController, drawerSide, percentVisible) -> Void in
             
             assert({ () -> Bool in
@@ -141,7 +141,7 @@ public struct DrawerVisualState {
             var transform: CATransform3D = CATransform3DIdentity
             var sideDrawerViewController: UIViewController?
             
-            if (drawerSide == .Left) {
+            if (drawerSide == .left) {
                 sideDrawerViewController = drawerController.leftDrawerViewController
                 let distance: CGFloat = max(drawerController.maximumLeftDrawerWidth, drawerController.visibleLeftDrawerWidth)
                 
@@ -151,7 +151,7 @@ public struct DrawerVisualState {
                     transform = CATransform3DMakeScale(percentVisible, 1.0, 1.0)
                     transform = CATransform3DTranslate(transform, drawerController.maximumLeftDrawerWidth * (percentVisible - 1.0) / 2, 0.0, 0.0)
                 }
-            } else if (drawerSide == .Right) {
+            } else if (drawerSide == .right) {
                 sideDrawerViewController = drawerController.rightDrawerViewController
                 let distance: CGFloat = max(drawerController.maximumRightDrawerWidth, drawerController.visibleRightDrawerWidth)
                 
@@ -174,11 +174,11 @@ public struct DrawerVisualState {
             
             var hamburgerItem: DrawerBarButtonItem?
             if let navController = drawerController.centerViewController as? UINavigationController {
-                if (drawerSide == .Left) {
+                if (drawerSide == .left) {
                     if let item = navController.topViewController!.navigationItem.leftBarButtonItem as? DrawerBarButtonItem {
                         hamburgerItem = item
                     }
-                } else if (drawerSide == .Right) {
+                } else if (drawerSide == .right) {
                     if let item = navController.topViewController!.navigationItem.rightBarButtonItem as? DrawerBarButtonItem {
                         hamburgerItem = item
                     }
