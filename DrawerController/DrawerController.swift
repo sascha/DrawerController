@@ -325,6 +325,33 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
+    /**
+     A boolean that indicates whether messages to `- setNeedsStatusBarAppearanceUpdate` should be animated.
+     
+     By default, this is set to true.
+     */
+    public var animateStatusBarUpdates: Bool = true
+    
+    /**
+     If the drawer controller is set to animate status bar visibility updates using `animateStatusBarUpdates`, use this property to specify the animation duration.
+     
+     By default, this is set to 0.1 seconds.
+     */
+    public var statusBarUpdateDuration: Double = 0.1
+    
+    /**
+     Checks if the status bar appearance updates need to be animated. If so, uses `statusBarUpdateDuration` to determine the animation duration.
+    */
+    override public func setNeedsStatusBarAppearanceUpdate() {
+        if animateStatusBarUpdates {
+            UIView.animateWithDuration(statusBarUpdateDuration) { () -> Void in
+                super.setNeedsStatusBarAppearanceUpdate()
+            }
+        } else {
+            super.setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+    
     public var animationVelocity = DrawerDefaultAnimationVelocity
     private var animatingDrawer: Bool = false {
         didSet {
