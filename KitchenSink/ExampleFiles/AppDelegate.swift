@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var drawerController: DrawerController!
     
-    func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let leftSideDrawerViewController = ExampleLeftSideDrawerViewController()
         let centerViewController = ExampleCenterTableViewController()
         let rightSideDrawerViewController = ExampleRightSideDrawerViewController()
@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             block?(drawerController, drawerSide, percentVisible)
         }
         
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window = UIWindow(frame: UIScreen.main.bounds)
         let tintColor = UIColor(red: 29 / 255, green: 173 / 255, blue: 234 / 255, alpha: 1.0)
         self.window?.tintColor = tintColor
         
@@ -63,22 +63,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        self.window?.backgroundColor = UIColor.whiteColor()
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        self.window?.backgroundColor = UIColor.white
         self.window?.makeKeyAndVisible()
         
         return true
     }
     
-    func application(application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
+    func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
         return true
     }
     
-    func application(application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
+    func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
         return true
     }
     
-    func application(application: UIApplication, viewControllerWithRestorationIdentifierPath identifierComponents: [AnyObject], coder: NSCoder) -> UIViewController? {
+    func application(_ application: UIApplication, viewControllerWithRestorationIdentifierPath identifierComponents: [Any], coder: NSCoder) -> UIViewController? {
         if let key = identifierComponents.last as? String {
             if key == "Drawer" {
                 return self.window?.rootViewController
@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return (self.window?.rootViewController as! DrawerController).leftDrawerViewController
             } else if key == "ExampleLeftSideDrawerController" {
                 if let leftVC = (self.window?.rootViewController as? DrawerController)?.leftDrawerViewController {
-                    if leftVC.isKindOfClass(UINavigationController) {
+                    if leftVC is UINavigationController {
                         return (leftVC as! UINavigationController).topViewController
                     } else {
                         return leftVC
@@ -98,7 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             } else if key == "ExampleRightSideDrawerController" {
                 if let rightVC = (self.window?.rootViewController as? DrawerController)?.rightDrawerViewController {
-                    if rightVC.isKindOfClass(UINavigationController) {
+                    if rightVC is UINavigationController {
                         return (rightVC as! UINavigationController).topViewController
                     } else {
                         return rightVC

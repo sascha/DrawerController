@@ -22,16 +22,16 @@ import UIKit
 import DrawerController
 
 enum CenterViewControllerSection: Int {
-    case LeftViewState
-    case LeftDrawerAnimation
-    case RightViewState
-    case RightDrawerAnimation
+    case leftViewState
+    case leftDrawerAnimation
+    case rightViewState
+    case rightDrawerAnimation
 }
 
 class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSource, UITableViewDelegate {
     var tableView: UITableView!
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
         self.restorationIdentifier = "ExampleCenterControllerRestorationKey"
@@ -45,11 +45,11 @@ class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView = UITableView(frame: self.view.bounds, style: .Grouped)
+        self.tableView = UITableView(frame: self.view.bounds, style: .grouped)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.view.addSubview(self.tableView)
-        self.tableView.autoresizingMask = [ .FlexibleWidth, .FlexibleHeight ]
+        self.tableView.autoresizingMask = [ .flexibleWidth, .flexibleHeight ]
         
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(doubleTap(_:)))
         doubleTap.numberOfTapsRequired = 2
@@ -73,122 +73,122 @@ class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSo
         self.tableView.backgroundView = backView
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("Center will appear")
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         print("Center did appear")
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         print("Center will disappear")
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         print("Center did disappear")
     }
     
     func setupLeftMenuButton() {
         let leftDrawerButton = DrawerBarButtonItem(target: self, action: #selector(leftDrawerButtonPress(_:)))
-        self.navigationItem.setLeftBarButtonItem(leftDrawerButton, animated: true)
+        self.navigationItem.setLeftBarButton(leftDrawerButton, animated: true)
     }
     
     func setupRightMenuButton() {
         let rightDrawerButton = DrawerBarButtonItem(target: self, action: #selector(rightDrawerButtonPress(_:)))
-        self.navigationItem.setRightBarButtonItem(rightDrawerButton, animated: true)
+        self.navigationItem.setRightBarButton(rightDrawerButton, animated: true)
     }
     
-    override func contentSizeDidChange(size: String) {
+    override func contentSizeDidChange(_ size: String) {
         self.tableView.reloadData()
     }
     
     // MARK: - UITableViewDataSource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case CenterViewControllerSection.LeftDrawerAnimation.rawValue, CenterViewControllerSection.RightDrawerAnimation.rawValue:
+        case CenterViewControllerSection.leftDrawerAnimation.rawValue, CenterViewControllerSection.rightDrawerAnimation.rawValue:
             return 6
-        case CenterViewControllerSection.LeftViewState.rawValue, CenterViewControllerSection.RightViewState.rawValue:
+        case CenterViewControllerSection.leftViewState.rawValue, CenterViewControllerSection.rightViewState.rawValue:
             return 1
         default:
             return 0
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let CellIdentifier = "Cell"
         
-        var cell: UITableViewCell! = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as UITableViewCell?
+        var cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: CellIdentifier) as UITableViewCell?
         
         if cell == nil {
-            cell = CenterTableViewCell(style: .Default, reuseIdentifier: CellIdentifier)
-            cell.selectionStyle = .Gray
+            cell = CenterTableViewCell(style: .default, reuseIdentifier: CellIdentifier)
+            cell.selectionStyle = .gray
         }
         
         let selectedColor = UIColor(red: 1 / 255, green: 15 / 255, blue: 25 / 255, alpha: 1.0)
         let unselectedColor = UIColor(red: 79 / 255, green: 93 / 255, blue: 102 / 255, alpha: 1.0)
         
-        switch indexPath.section {
-        case CenterViewControllerSection.LeftDrawerAnimation.rawValue, CenterViewControllerSection.RightDrawerAnimation.rawValue:
+        switch (indexPath as NSIndexPath).section {
+        case CenterViewControllerSection.leftDrawerAnimation.rawValue, CenterViewControllerSection.rightDrawerAnimation.rawValue:
             var animationTypeForSection: DrawerAnimationType
             
-            if indexPath.section == CenterViewControllerSection.LeftDrawerAnimation.rawValue {
+            if (indexPath as NSIndexPath).section == CenterViewControllerSection.leftDrawerAnimation.rawValue {
                 animationTypeForSection = ExampleDrawerVisualStateManager.sharedManager.leftDrawerAnimationType
             } else {
                 animationTypeForSection = ExampleDrawerVisualStateManager.sharedManager.rightDrawerAnimationType
             }
             
-            if animationTypeForSection.rawValue == indexPath.row {
-                cell.accessoryType = .Checkmark
+            if animationTypeForSection.rawValue == (indexPath as NSIndexPath).row {
+                cell.accessoryType = .checkmark
                 cell.textLabel?.textColor = selectedColor
             } else {
-                cell.accessoryType = .None
+                cell.accessoryType = .none
                 cell.textLabel?.textColor = unselectedColor
             }
             
-            switch indexPath.row {
-            case DrawerAnimationType.None.rawValue:
+            switch (indexPath as NSIndexPath).row {
+            case DrawerAnimationType.none.rawValue:
                 cell.textLabel?.text = "None"
-            case DrawerAnimationType.Slide.rawValue:
+            case DrawerAnimationType.slide.rawValue:
                 cell.textLabel?.text = "Slide"
-            case DrawerAnimationType.SlideAndScale.rawValue:
+            case DrawerAnimationType.slideAndScale.rawValue:
                 cell.textLabel?.text = "Slide and Scale"
-            case DrawerAnimationType.SwingingDoor.rawValue:
+            case DrawerAnimationType.swingingDoor.rawValue:
                 cell.textLabel?.text = "Swinging Door"
-            case DrawerAnimationType.Parallax.rawValue:
+            case DrawerAnimationType.parallax.rawValue:
                 cell.textLabel?.text = "Parallax"
-            case DrawerAnimationType.AnimatedBarButton.rawValue:
+            case DrawerAnimationType.animatedBarButton.rawValue:
                 cell.textLabel?.text = "Animated Menu Button"
             default:
                 break
             }
-        case CenterViewControllerSection.LeftViewState.rawValue:
+        case CenterViewControllerSection.leftViewState.rawValue:
             cell.textLabel?.text = "Enabled"
             
             if self.evo_drawerController?.leftDrawerViewController != nil {
-                cell.accessoryType = .Checkmark
+                cell.accessoryType = .checkmark
                 cell.textLabel?.textColor = selectedColor
             } else {
-                cell.accessoryType = .None
+                cell.accessoryType = .none
                 cell.textLabel?.textColor = unselectedColor
             }
-        case CenterViewControllerSection.RightViewState.rawValue:
+        case CenterViewControllerSection.rightViewState.rawValue:
             cell.textLabel?.text = "Enabled"
             
             if self.evo_drawerController?.rightDrawerViewController != nil {
-                cell.accessoryType = .Checkmark
+                cell.accessoryType = .checkmark
                 cell.textLabel?.textColor = selectedColor
             } else {
-                cell.accessoryType = .None
+                cell.accessoryType = .none
                 cell.textLabel?.textColor = unselectedColor
             }
         default:
@@ -198,15 +198,15 @@ class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSo
         return cell
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case CenterViewControllerSection.LeftDrawerAnimation.rawValue:
+        case CenterViewControllerSection.leftDrawerAnimation.rawValue:
             return "Left Drawer Animation";
-        case CenterViewControllerSection.RightDrawerAnimation.rawValue:
+        case CenterViewControllerSection.rightDrawerAnimation.rawValue:
             return "Right Drawer Animation";
-        case CenterViewControllerSection.LeftViewState.rawValue:
+        case CenterViewControllerSection.leftViewState.rawValue:
             return "Left Drawer";
-        case CenterViewControllerSection.RightViewState.rawValue:
+        case CenterViewControllerSection.rightViewState.rawValue:
             return "Right Drawer";
         default:
             return nil
@@ -214,60 +214,60 @@ class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSo
     }
     
     // MARK: - UITableViewDelegate
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.section {
-        case CenterViewControllerSection.LeftDrawerAnimation.rawValue, CenterViewControllerSection.RightDrawerAnimation.rawValue:
-            if indexPath.section == CenterViewControllerSection.LeftDrawerAnimation.rawValue {
-                ExampleDrawerVisualStateManager.sharedManager.leftDrawerAnimationType = DrawerAnimationType(rawValue: indexPath.row)!
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch (indexPath as NSIndexPath).section {
+        case CenterViewControllerSection.leftDrawerAnimation.rawValue, CenterViewControllerSection.rightDrawerAnimation.rawValue:
+            if (indexPath as NSIndexPath).section == CenterViewControllerSection.leftDrawerAnimation.rawValue {
+                ExampleDrawerVisualStateManager.sharedManager.leftDrawerAnimationType = DrawerAnimationType(rawValue: (indexPath as NSIndexPath).row)!
             } else {
-                ExampleDrawerVisualStateManager.sharedManager.rightDrawerAnimationType = DrawerAnimationType(rawValue: indexPath.row)!
+                ExampleDrawerVisualStateManager.sharedManager.rightDrawerAnimationType = DrawerAnimationType(rawValue: (indexPath as NSIndexPath).row)!
             }
             
-            tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .None)
-            tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        case CenterViewControllerSection.LeftViewState.rawValue, CenterViewControllerSection.RightViewState.rawValue:
+            tableView.reloadSections(IndexSet(integer: (indexPath as NSIndexPath).section), with: .none)
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+            tableView.deselectRow(at: indexPath, animated: true)
+        case CenterViewControllerSection.leftViewState.rawValue, CenterViewControllerSection.rightViewState.rawValue:
             var sideDrawerViewController: UIViewController?
-            var drawerSide = DrawerSide.None
+            var drawerSide = DrawerSide.none
             
-            if indexPath.section == CenterViewControllerSection.LeftViewState.rawValue {
+            if (indexPath as NSIndexPath).section == CenterViewControllerSection.leftViewState.rawValue {
                 sideDrawerViewController = self.evo_drawerController?.leftDrawerViewController
-                drawerSide = .Left
-            } else if indexPath.section == CenterViewControllerSection.RightViewState.rawValue {
+                drawerSide = .left
+            } else if (indexPath as NSIndexPath).section == CenterViewControllerSection.rightViewState.rawValue {
                 sideDrawerViewController = self.evo_drawerController?.rightDrawerViewController
-                drawerSide = .Right
+                drawerSide = .right
             }
             
             if sideDrawerViewController != nil {
                 self.evo_drawerController?.closeDrawerAnimated(true, completion: { (finished) -> Void in
-                    if drawerSide == DrawerSide.Left {
+                    if drawerSide == DrawerSide.left {
                         self.evo_drawerController?.leftDrawerViewController = nil
                         self.navigationItem.setLeftBarButtonItems(nil, animated: true)
-                    } else if drawerSide == .Right {
+                    } else if drawerSide == .right {
                         self.evo_drawerController?.rightDrawerViewController = nil
                         self.navigationItem.setRightBarButtonItems(nil, animated: true)
                     }
                     
-                    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
-                    tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
-                    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                    tableView.reloadRows(at: [indexPath], with: .none)
+                    tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+                    tableView.deselectRow(at: indexPath, animated: true)
                 })
             } else {
-                if drawerSide == .Left {
+                if drawerSide == .left {
                     let vc = ExampleLeftSideDrawerViewController()
                     let navC = UINavigationController(rootViewController: vc)
                     self.evo_drawerController?.leftDrawerViewController = navC
                     self.setupLeftMenuButton()
-                } else if drawerSide == .Right {
+                } else if drawerSide == .right {
                     let vc = ExampleRightSideDrawerViewController()
                     let navC = UINavigationController(rootViewController: vc)
                     self.evo_drawerController?.rightDrawerViewController = navC
                     self.setupRightMenuButton()
                 }
                 
-                tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
-                tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
-                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                tableView.reloadRows(at: [indexPath], with: .none)
+                tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+                tableView.deselectRow(at: indexPath, animated: true)
             }
         default:
             break
@@ -276,19 +276,19 @@ class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSo
     
     // MARK: - Button Handlers
     
-    func leftDrawerButtonPress(sender: AnyObject?) {
-        self.evo_drawerController?.toggleDrawerSide(.Left, animated: true, completion: nil)
+    func leftDrawerButtonPress(_ sender: AnyObject?) {
+        self.evo_drawerController?.toggleDrawerSide(.left, animated: true, completion: nil)
     }
     
-    func rightDrawerButtonPress(sender: AnyObject?) {
-        self.evo_drawerController?.toggleDrawerSide(.Right, animated: true, completion: nil)
+    func rightDrawerButtonPress(_ sender: AnyObject?) {
+        self.evo_drawerController?.toggleDrawerSide(.right, animated: true, completion: nil)
     }
     
-    func doubleTap(gesture: UITapGestureRecognizer) {
-        self.evo_drawerController?.bouncePreviewForDrawerSide(.Left, completion: nil)
+    func doubleTap(_ gesture: UITapGestureRecognizer) {
+        self.evo_drawerController?.bouncePreviewForDrawerSide(.left, completion: nil)
     }
     
-    func twoFingerDoubleTap(gesture: UITapGestureRecognizer) {
-        self.evo_drawerController?.bouncePreviewForDrawerSide(.Right, completion: nil)
+    func twoFingerDoubleTap(_ gesture: UITapGestureRecognizer) {
+        self.evo_drawerController?.bouncePreviewForDrawerSide(.right, completion: nil)
     }
 }

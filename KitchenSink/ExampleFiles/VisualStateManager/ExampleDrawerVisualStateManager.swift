@@ -22,17 +22,17 @@ import UIKit
 import DrawerController
 
 enum DrawerAnimationType: Int {
-    case None
-    case Slide
-    case SlideAndScale
-    case SwingingDoor
-    case Parallax
-    case AnimatedBarButton
+    case none
+    case slide
+    case slideAndScale
+    case swingingDoor
+    case parallax
+    case animatedBarButton
 }
 
 class ExampleDrawerVisualStateManager: NSObject {
-    var leftDrawerAnimationType: DrawerAnimationType = .Parallax
-    var rightDrawerAnimationType: DrawerAnimationType = .Parallax
+    var leftDrawerAnimationType: DrawerAnimationType = .parallax
+    var rightDrawerAnimationType: DrawerAnimationType = .parallax
     
     class var sharedManager: ExampleDrawerVisualStateManager {
     struct Static {
@@ -42,10 +42,10 @@ class ExampleDrawerVisualStateManager: NSObject {
         return Static.instance
     }
     
-    func drawerVisualStateBlockForDrawerSide(drawerSide: DrawerSide) -> DrawerControllerDrawerVisualStateBlock? {
+    func drawerVisualStateBlockForDrawerSide(_ drawerSide: DrawerSide) -> DrawerControllerDrawerVisualStateBlock? {
         var animationType: DrawerAnimationType
         
-        if drawerSide == DrawerSide.Left {
+        if drawerSide == DrawerSide.left {
             animationType = self.leftDrawerAnimationType
         } else {
             animationType = self.rightDrawerAnimationType
@@ -54,26 +54,25 @@ class ExampleDrawerVisualStateManager: NSObject {
         var visualStateBlock: DrawerControllerDrawerVisualStateBlock?
         
         switch animationType {
-        case .Slide:
+        case .slide:
             visualStateBlock = DrawerVisualState.slideVisualStateBlock
-        case .SlideAndScale:
+        case .slideAndScale:
             visualStateBlock = DrawerVisualState.slideAndScaleVisualStateBlock
-        case .Parallax:
+        case .parallax:
             visualStateBlock = DrawerVisualState.parallaxVisualStateBlock(2.0)
-        case .SwingingDoor:
+        case .swingingDoor:
             visualStateBlock = DrawerVisualState.swingingDoorVisualStateBlock
-        case .AnimatedBarButton:
+        case .animatedBarButton:
             visualStateBlock = DrawerVisualState.animatedHamburgerButtonVisualStateBlock
         default:
             visualStateBlock = { drawerController, drawerSide, percentVisible in
                 var sideDrawerViewController: UIViewController?
                 var transform = CATransform3DIdentity
                 var maxDrawerWidth: CGFloat = 0.0
-                
-                if drawerSide == .Left {
+                if drawerSide == .left {
                     sideDrawerViewController = drawerController.leftDrawerViewController
                     maxDrawerWidth = drawerController.maximumLeftDrawerWidth
-                } else if drawerSide == .Right {
+                } else if drawerSide == .right {
                     sideDrawerViewController = drawerController.rightDrawerViewController
                     maxDrawerWidth = drawerController.maximumRightDrawerWidth
                 }
@@ -81,9 +80,9 @@ class ExampleDrawerVisualStateManager: NSObject {
                 if percentVisible > 1.0 {
                     transform = CATransform3DMakeScale(percentVisible, 1.0, 1.0)
                     
-                    if drawerSide == .Left {
+                    if drawerSide == .left {
                         transform = CATransform3DTranslate(transform, maxDrawerWidth * (percentVisible - 1.0) / 2, 0.0, 0.0)
-                    } else if drawerSide == .Right {
+                    } else if drawerSide == .right {
                         transform = CATransform3DTranslate(transform, -maxDrawerWidth * (percentVisible - 1.0) / 2, 0.0, 0.0)
                     }
                 }
