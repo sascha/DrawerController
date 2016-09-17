@@ -32,6 +32,6 @@ class CenterTableViewCell: TableViewCell {
     }
     
     override func updateContentForNewContentSize() {
-        self.textLabel?.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        self.textLabel?.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
     }
 }

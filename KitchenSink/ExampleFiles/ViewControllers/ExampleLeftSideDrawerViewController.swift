@@ -21,7 +21,7 @@
 import UIKit
 
 class ExampleLeftSideDrawerViewController: ExampleSideDrawerViewController {    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         self.restorationIdentifier = "ExampleLeftSideDrawerController"
     }
@@ -31,22 +31,22 @@ class ExampleLeftSideDrawerViewController: ExampleSideDrawerViewController {
         self.restorationIdentifier = "ExampleLeftSideDrawerController"
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("Left will appear")
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         print("Left did appear")
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         print("Left will disappear")
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         print("Left did disappear")
     }
@@ -56,42 +56,42 @@ class ExampleLeftSideDrawerViewController: ExampleSideDrawerViewController {
         self.title = "Left Drawer"
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == DrawerSection.DrawerWidth.rawValue {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == DrawerSection.drawerWidth.rawValue {
             return "Left Drawer Width"
         } else {
             return super.tableView(tableView, titleForHeaderInSection: section)
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
-        if indexPath.section == DrawerSection.DrawerWidth.rawValue {
-            let width = self.drawerWidths[indexPath.row]
+        if (indexPath as NSIndexPath).section == DrawerSection.drawerWidth.rawValue {
+            let width = self.drawerWidths[(indexPath as NSIndexPath).row]
             let drawerWidth = self.evo_drawerController?.maximumLeftDrawerWidth
             
             if drawerWidth == width {
-                cell.accessoryType = .Checkmark
+                cell.accessoryType = .checkmark
             } else {
-                cell.accessoryType = .None
+                cell.accessoryType = .none
             }
             
-            cell.textLabel?.text = "Width \(self.drawerWidths[indexPath.row])"
+            cell.textLabel?.text = "Width \(self.drawerWidths[(indexPath as NSIndexPath).row])"
         }
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == DrawerSection.DrawerWidth.rawValue {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath as NSIndexPath).section == DrawerSection.drawerWidth.rawValue {
             self.evo_drawerController?.setMaximumLeftDrawerWidth(self.drawerWidths[indexPath.row], animated: true, completion: { (finished) -> Void in
-                tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .None)
-                tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
-                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .none)
+                tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+                tableView.deselectRow(at: indexPath, animated: true)
             })
         } else {
-            super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
+            super.tableView(tableView, didSelectRowAt: indexPath)
         }
     }
 }
