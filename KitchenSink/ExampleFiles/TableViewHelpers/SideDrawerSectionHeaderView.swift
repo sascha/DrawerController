@@ -50,12 +50,13 @@ class SideDrawerSectionHeaderView: UIView {
     }
     
     override func drawRect(rect: CGRect) {
-        let context = UIGraphicsGetCurrentContext()
-        let lineColor = UIColor(red: 94 / 255, green: 97 / 255, blue: 99 / 255, alpha: 1.0)
-        CGContextSetStrokeColorWithColor(context, lineColor.CGColor)
-        CGContextSetLineWidth(context, 1.0)
-        CGContextMoveToPoint(context, CGRectGetMinX(self.bounds), CGRectGetMaxY(self.bounds) - 0.5)
-        CGContextAddLineToPoint(context, CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds) - 0.5)
-        CGContextStrokePath(context)
+        if let context = UIGraphicsGetCurrentContext() {
+            let lineColor = UIColor(red: 94 / 255, green: 97 / 255, blue: 99 / 255, alpha: 1.0)
+            CGContextSetStrokeColorWithColor(context, lineColor.CGColor)
+            CGContextSetLineWidth(context, 1.0)
+            CGContextMoveToPoint(context, CGRectGetMinX(self.bounds), CGRectGetMaxY(self.bounds) - 0.5)
+            CGContextAddLineToPoint(context, CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds) - 0.5)
+            CGContextStrokePath(context)
+        }
     }
 }

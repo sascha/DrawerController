@@ -709,16 +709,16 @@ public class DrawerController: UIViewController, UIGestureRecognizerDelegate {
             
             /** In the event this gets called a lot, we won't update the shadowPath
             unless it needs to be updated (like during rotation) */
-            if self.centerContainerView.layer.shadowPath == nil {
-                self.centerContainerView.layer.shadowPath = UIBezierPath(rect: self.centerContainerView.bounds).CGPath
-            } else {
-                let currentPath = CGPathGetPathBoundingBox(self.centerContainerView.layer.shadowPath)
-                
-                if CGRectEqualToRect(currentPath, self.centerContainerView.bounds) == false {
-                    self.centerContainerView.layer.shadowPath = UIBezierPath(rect: self.centerContainerView.bounds).CGPath
+            if let shadowPath = centerContainerView.layer.shadowPath {
+                let currentPath = CGPathGetPathBoundingBox(shadowPath)
+
+                if CGRectEqualToRect(currentPath, centerContainerView.bounds) == false {
+                    centerContainerView.layer.shadowPath = UIBezierPath(rect: centerContainerView.bounds).CGPath
                 }
+            } else {
+                self.centerContainerView.layer.shadowPath = UIBezierPath(rect: self.centerContainerView.bounds).CGPath
             }
-        } else if (self.centerContainerView.layer.shadowPath != nil) {
+        } else if self.centerContainerView.layer.shadowPath != nil {
             self.centerContainerView.layer.shadowRadius = 0.0
             self.centerContainerView.layer.shadowOpacity = 0.0
             self.centerContainerView.layer.shadowPath = nil

@@ -36,25 +36,25 @@ private class DisclosureIndicator: UIView {
     }
     
     override func drawRect(rect: CGRect) {
-        let context = UIGraphicsGetCurrentContext()
-        
-        let chevronColor = self.color
-        let frame = self.bounds
-        
-        let chevronPath = UIBezierPath()
-        chevronPath.moveToPoint(CGPoint(x: CGRectGetMinX(frame) + 0.22000 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.01667 * CGRectGetHeight(frame)))
-        chevronPath.addLineToPoint(CGPoint(x: CGRectGetMinX(frame) + 0.98000 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.48333 * CGRectGetHeight(frame)))
-        chevronPath.addLineToPoint(CGPoint(x: CGRectGetMinX(frame) + 0.22000 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.98333 * CGRectGetHeight(frame)))
-        chevronPath.addLineToPoint(CGPoint(x: CGRectGetMinX(frame) + 0.02000 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.81667 * CGRectGetHeight(frame)))
-        chevronPath.addLineToPoint(CGPoint(x: CGRectGetMinX(frame) + 0.54000 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.48333 * CGRectGetHeight(frame)))
-        chevronPath.addLineToPoint(CGPoint(x: CGRectGetMinX(frame) + 0.02000 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.15000 * CGRectGetHeight(frame)))
-        chevronPath.addLineToPoint(CGPoint(x: CGRectGetMinX(frame) + 0.22000 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.01667 * CGRectGetHeight(frame)))
-        chevronPath.closePath()
-        
-        CGContextSaveGState(context)
-        chevronColor.setFill()
-        chevronPath.fill()
-        CGContextRestoreGState(context)
+        if let context = UIGraphicsGetCurrentContext() {
+            let chevronColor = self.color
+            let frame = self.bounds
+
+            let chevronPath = UIBezierPath()
+            chevronPath.moveToPoint(CGPoint(x: CGRectGetMinX(frame) + 0.22000 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.01667 * CGRectGetHeight(frame)))
+            chevronPath.addLineToPoint(CGPoint(x: CGRectGetMinX(frame) + 0.98000 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.48333 * CGRectGetHeight(frame)))
+            chevronPath.addLineToPoint(CGPoint(x: CGRectGetMinX(frame) + 0.22000 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.98333 * CGRectGetHeight(frame)))
+            chevronPath.addLineToPoint(CGPoint(x: CGRectGetMinX(frame) + 0.02000 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.81667 * CGRectGetHeight(frame)))
+            chevronPath.addLineToPoint(CGPoint(x: CGRectGetMinX(frame) + 0.54000 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.48333 * CGRectGetHeight(frame)))
+            chevronPath.addLineToPoint(CGPoint(x: CGRectGetMinX(frame) + 0.02000 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.15000 * CGRectGetHeight(frame)))
+            chevronPath.addLineToPoint(CGPoint(x: CGRectGetMinX(frame) + 0.22000 * CGRectGetWidth(frame), y: CGRectGetMinY(frame) + 0.01667 * CGRectGetHeight(frame)))
+            chevronPath.closePath()
+
+            CGContextSaveGState(context)
+            chevronColor.setFill()
+            chevronPath.fill()
+            CGContextRestoreGState(context)
+        }
     }
 }
 

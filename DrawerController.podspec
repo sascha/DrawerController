@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'DrawerController'
-  s.version = '1.1.1'
+  s.version = '2.0.0'
   s.license = { :type => 'MIT', :file => 'LICENSE' }
   s.homepage = 'https://github.com/sascha/DrawerController'
   s.authors = { 'Sascha Schwabbauer' => 'sascha@evolved.io',
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
     ss.source_files = 'DrawerController/DrawerController.swift'
     ss.framework  = 'QuartzCore'
   end
-  
+
   s.subspec 'DrawerVisualStates' do |ss|
   	ss.source_files = 'DrawerController/DrawerBarButtonItem.swift', 'DrawerController/AnimatedMenuButton.swift', 'DrawerController/DrawerVisualState.swift'
   	ss.dependency 'DrawerController/Core'
