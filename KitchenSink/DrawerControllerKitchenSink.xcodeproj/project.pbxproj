@@ -19,11 +19,40 @@
 		2BE66C7A19C50C0B005EDC19 /* SideDrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE66C7919C50C0B005EDC19 /* SideDrawerTableViewCell.swift */; };
 		2BE66C7C19C50C2C005EDC19 /* SideDrawerSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE66C7B19C50C2C005EDC19 /* SideDrawerSectionHeaderView.swift */; };
 		2BE66C7E19C50D87005EDC19 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BE66C7D19C50D87005EDC19 /* LaunchScreen.xib */; };
+		634708221E17FB34001C31D2 /* ExampleSideDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE66C7319C50BA0005EDC19 /* ExampleSideDrawerViewController.swift */; };
+		634708231E17FB34001C31D2 /* SideDrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE66C7919C50C0B005EDC19 /* SideDrawerTableViewCell.swift */; };
+		634708251E17FB34001C31D2 /* ExampleRightSideDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE66C7719C50BE8005EDC19 /* ExampleRightSideDrawerViewController.swift */; };
+		634708261E17FB34001C31D2 /* ExampleLeftSideDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE66C7519C50BD6005EDC19 /* ExampleLeftSideDrawerViewController.swift */; };
+		634708271E17FB34001C31D2 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC043CA19C4FFC300CA68B6 /* TableViewCell.swift */; };
+		634708281E17FB34001C31D2 /* SideDrawerSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE66C7B19C50C2C005EDC19 /* SideDrawerSectionHeaderView.swift */; };
+		634708291E17FB34001C31D2 /* ExampleDrawerVisualStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCB04C719C4F4DE002CBDB6 /* ExampleDrawerVisualStateManager.swift */; };
+		6347082A1E17FB34001C31D2 /* CenterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC043CC19C505FA00CA68B6 /* CenterTableViewCell.swift */; };
+		6347082B1E17FB34001C31D2 /* ExampleCenterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCB04D319C4FB39002CBDB6 /* ExampleCenterTableViewController.swift */; };
+		6347082C1E17FB34001C31D2 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCB04CF19C4F814002CBDB6 /* ExampleViewController.swift */; };
+		6347082E1E17FB34001C31D2 /* DrawerController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5484A21AFF078400B23205 /* DrawerController.framework */; };
+		634708301E17FB34001C31D2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BE66C7D19C50D87005EDC19 /* LaunchScreen.xib */; };
+		634708321E17FB34001C31D2 /* DrawerController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA5484A21AFF078400B23205 /* DrawerController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6347083A1E17FBC1001C31D2 /* AppDelegate-IB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634708391E17FBC1001C31D2 /* AppDelegate-IB.swift */; };
+		6347083C1E17FBF5001C31D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6347083B1E17FBF5001C31D2 /* Main.storyboard */; };
 		FA5484A71AFF07C000B23205 /* DrawerController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5484A21AFF078400B23205 /* DrawerController.framework */; };
 		FA5484A81AFF07C000B23205 /* DrawerController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA5484A21AFF078400B23205 /* DrawerController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		6347081E1E17FB34001C31D2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA54849C1AFF078400B23205 /* DrawerController.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = FAEF01351AFEE4FF00DFDF7F;
+			remoteInfo = DrawerController;
+		};
+		634708201E17FB34001C31D2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA54849C1AFF078400B23205 /* DrawerController.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = FAEF01351AFEE4FF00DFDF7F;
+			remoteInfo = DrawerController;
+		};
 		FA5484A11AFF078400B23205 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FA54849C1AFF078400B23205 /* DrawerController.xcodeproj */;
@@ -48,6 +77,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		634708311E17FB34001C31D2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				634708321E17FB34001C31D2 /* DrawerController.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FA5484AB1AFF07C000B23205 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -76,6 +116,10 @@
 		2BE66C7919C50C0B005EDC19 /* SideDrawerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideDrawerTableViewCell.swift; sourceTree = "<group>"; };
 		2BE66C7B19C50C2C005EDC19 /* SideDrawerSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideDrawerSectionHeaderView.swift; sourceTree = "<group>"; };
 		2BE66C7D19C50D87005EDC19 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		634708361E17FB34001C31D2 /* DrawerControllerKitchenSink-IB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DrawerControllerKitchenSink-IB.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		634708381E17FB69001C31D2 /* Info-IB.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-IB.plist"; sourceTree = "<group>"; };
+		634708391E17FBC1001C31D2 /* AppDelegate-IB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate-IB.swift"; sourceTree = "<group>"; };
+		6347083B1E17FBF5001C31D2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FA54849C1AFF078400B23205 /* DrawerController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DrawerController.xcodeproj; path = ../DrawerController.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +129,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA5484A71AFF07C000B23205 /* DrawerController.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6347082D1E17FB34001C31D2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6347082E1E17FB34001C31D2 /* DrawerController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				2BCB049A19C4F334002CBDB6 /* DrawerControllerKitchenSink.app */,
+				634708361E17FB34001C31D2 /* DrawerControllerKitchenSink-IB.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				2BCB04C519C4F466002CBDB6 /* AppDelegate.swift */,
+				634708391E17FBC1001C31D2 /* AppDelegate-IB.swift */,
 				2BCB04C019C4F3C7002CBDB6 /* VisualStateManager */,
 				2BCB04C219C4F3CF002CBDB6 /* ViewControllers */,
 				2BCB04C319C4F3D2002CBDB6 /* TableViewHelpers */,
@@ -123,8 +177,10 @@
 		2BCB049D19C4F334002CBDB6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				634708381E17FB69001C31D2 /* Info-IB.plist */,
 				2BCB049E19C4F334002CBDB6 /* Info.plist */,
 				2BE66C7D19C50D87005EDC19 /* LaunchScreen.xib */,
+				6347083B1E17FBF5001C31D2 /* Main.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -191,6 +247,26 @@
 			productReference = 2BCB049A19C4F334002CBDB6 /* DrawerControllerKitchenSink.app */;
 			productType = "com.apple.product-type.application";
 		};
+		6347081C1E17FB34001C31D2 /* DrawerControllerKitchenSink-IB */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 634708331E17FB34001C31D2 /* Build configuration list for PBXNativeTarget "DrawerControllerKitchenSink-IB" */;
+			buildPhases = (
+				634708211E17FB34001C31D2 /* Sources */,
+				6347082D1E17FB34001C31D2 /* Frameworks */,
+				6347082F1E17FB34001C31D2 /* Resources */,
+				634708311E17FB34001C31D2 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6347081D1E17FB34001C31D2 /* PBXTargetDependency */,
+				6347081F1E17FB34001C31D2 /* PBXTargetDependency */,
+			);
+			name = "DrawerControllerKitchenSink-IB";
+			productName = DrawerControllerKitchenSink;
+			productReference = 634708361E17FB34001C31D2 /* DrawerControllerKitchenSink-IB.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -227,6 +303,7 @@
 			projectRoot = "";
 			targets = (
 				2BCB049919C4F334002CBDB6 /* DrawerControllerKitchenSink */,
+				6347081C1E17FB34001C31D2 /* DrawerControllerKitchenSink-IB */,
 			);
 		};
 /* End PBXProject section */
@@ -247,6 +324,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BE66C7E19C50D87005EDC19 /* LaunchScreen.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6347082F1E17FB34001C31D2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				634708301E17FB34001C31D2 /* LaunchScreen.xib in Resources */,
+				6347083C1E17FBF5001C31D2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,9 +357,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		634708211E17FB34001C31D2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				634708221E17FB34001C31D2 /* ExampleSideDrawerViewController.swift in Sources */,
+				634708231E17FB34001C31D2 /* SideDrawerTableViewCell.swift in Sources */,
+				634708251E17FB34001C31D2 /* ExampleRightSideDrawerViewController.swift in Sources */,
+				634708261E17FB34001C31D2 /* ExampleLeftSideDrawerViewController.swift in Sources */,
+				634708271E17FB34001C31D2 /* TableViewCell.swift in Sources */,
+				634708281E17FB34001C31D2 /* SideDrawerSectionHeaderView.swift in Sources */,
+				6347083A1E17FBC1001C31D2 /* AppDelegate-IB.swift in Sources */,
+				634708291E17FB34001C31D2 /* ExampleDrawerVisualStateManager.swift in Sources */,
+				6347082A1E17FB34001C31D2 /* CenterTableViewCell.swift in Sources */,
+				6347082B1E17FB34001C31D2 /* ExampleCenterTableViewController.swift in Sources */,
+				6347082C1E17FB34001C31D2 /* ExampleViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		6347081D1E17FB34001C31D2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DrawerController;
+			targetProxy = 6347081E1E17FB34001C31D2 /* PBXContainerItemProxy */;
+		};
+		6347081F1E17FB34001C31D2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DrawerController;
+			targetProxy = 634708201E17FB34001C31D2 /* PBXContainerItemProxy */;
+		};
 		FA5484A61AFF07A600B23205 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = DrawerController;
@@ -401,6 +515,33 @@
 			};
 			name = Release;
 		};
+		634708341E17FB34001C31D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/ExampleFiles/Info-IB.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.evolved.DrawerControllerKitchenSink-IB";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		634708351E17FB34001C31D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/ExampleFiles/Info-IB.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.evolved.DrawerControllerKitchenSink-IB";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -418,6 +559,15 @@
 			buildConfigurations = (
 				2BCB04BA19C4F334002CBDB6 /* Debug */,
 				2BCB04BB19C4F334002CBDB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		634708331E17FB34001C31D2 /* Build configuration list for PBXNativeTarget "DrawerControllerKitchenSink-IB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				634708341E17FB34001C31D2 /* Debug */,
+				634708351E17FB34001C31D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

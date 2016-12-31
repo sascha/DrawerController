@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		634707FF1E17F213001C31D2 /* DrawerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634707FE1E17F213001C31D2 /* DrawerSegue.swift */; };
 		FAEF013C1AFEE4FF00DFDF7F /* DrawerController.h in Headers */ = {isa = PBXBuildFile; fileRef = FAEF013B1AFEE4FF00DFDF7F /* DrawerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FAEF01561AFEE65200DFDF7F /* AnimatedMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF01521AFEE65200DFDF7F /* AnimatedMenuButton.swift */; };
 		FAEF01571AFEE65200DFDF7F /* DrawerBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF01531AFEE65200DFDF7F /* DrawerBarButtonItem.swift */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		634707FE1E17F213001C31D2 /* DrawerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerSegue.swift; sourceTree = "<group>"; };
 		FAEF01361AFEE4FF00DFDF7F /* DrawerController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DrawerController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAEF013A1AFEE4FF00DFDF7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAEF013B1AFEE4FF00DFDF7F /* DrawerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawerController.h; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 				FAEF01521AFEE65200DFDF7F /* AnimatedMenuButton.swift */,
 				FAEF01531AFEE65200DFDF7F /* DrawerBarButtonItem.swift */,
 				FAEF01541AFEE65200DFDF7F /* DrawerController.swift */,
+				634707FE1E17F213001C31D2 /* DrawerSegue.swift */,
 				FAEF01551AFEE65200DFDF7F /* DrawerVisualState.swift */,
 				FAEF013B1AFEE4FF00DFDF7F /* DrawerController.h */,
 				FAEF01391AFEE4FF00DFDF7F /* Supporting Files */,
@@ -156,6 +159,7 @@
 				FAEF01561AFEE65200DFDF7F /* AnimatedMenuButton.swift in Sources */,
 				FAEF01571AFEE65200DFDF7F /* DrawerBarButtonItem.swift in Sources */,
 				FAEF01581AFEE65200DFDF7F /* DrawerController.swift in Sources */,
+				634707FF1E17F213001C31D2 /* DrawerSegue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

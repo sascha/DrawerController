@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Mir-uC-5vf">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Drawer Controller-->
+        <scene sceneID="qla-Tn-6CW">
+            <objects>
+                <viewController id="Mir-uC-5vf" customClass="DrawerController" customModule="DrawerController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="A8d-Su-Q64"/>
+                        <viewControllerLayoutGuide type="bottom" id="0AE-Su-o3V"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cYZ-kz-zwD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="2Kd-AM-Kvu" kind="custom" identifier="left" customClass="DrawerSegue" customModule="DrawerController" id="jey-6J-Rdb"/>
+                        <segue destination="BFk-mc-O63" kind="custom" identifier="center" customClass="DrawerSegue" customModule="DrawerController" id="Sol-NQ-EmB"/>
+                        <segue destination="OUS-sG-EiN" kind="custom" identifier="right" customClass="DrawerSegue" customModule="DrawerController" id="ech-7l-k46"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bRV-a0-UUo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="830" y="-1149"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ACE-Qu-Vf0">
+            <objects>
+                <navigationController id="BFk-mc-O63" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vTW-pO-yX1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Uia-zh-ImL" kind="relationship" relationship="rootViewController" id="5Mo-25-HoD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GTg-R0-TPj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="831" y="-333"/>
+        </scene>
+        <!--Example Left Side Drawer View Controller-->
+        <scene sceneID="btE-js-4U0">
+            <objects>
+                <viewController id="2Kd-AM-Kvu" customClass="ExampleLeftSideDrawerViewController" customModule="DrawerControllerKitchenSink_IB" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="94y-P6-eFv"/>
+                        <viewControllerLayoutGuide type="bottom" id="b4w-Bv-s1i"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fZY-Er-HcV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uio-BD-vZZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="41" y="-333"/>
+        </scene>
+        <!--Example Right Side Drawer View Controller-->
+        <scene sceneID="qcT-OT-Akj">
+            <objects>
+                <viewController id="OUS-sG-EiN" customClass="ExampleRightSideDrawerViewController" customModule="DrawerControllerKitchenSink_IB" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ba9-Ux-Yse"/>
+                        <viewControllerLayoutGuide type="bottom" id="S36-nQ-pnx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qHl-Ju-xXE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cJ0-8u-IAp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1684" y="-333"/>
+        </scene>
+        <!--Example Center Table View Controller-->
+        <scene sceneID="oLX-TJ-xQP">
+            <objects>
+                <viewController id="Uia-zh-ImL" customClass="ExampleCenterTableViewController" customModule="DrawerControllerKitchenSink_IB" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zip-Tv-3FD"/>
+                        <viewControllerLayoutGuide type="bottom" id="YKx-5H-nkZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hok-Mg-9vS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lV3-xc-Xb0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wiQ-vA-zYZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="830" y="464"/>
+        </scene>
+    </scenes>
+</document>
