@@ -12,16 +12,16 @@ fileprivate let center  = "center"
 fileprivate let left    = "left"
 fileprivate let right   = "right"
 
-class DrawerSegue: UIStoryboardSegue {
-    override func perform() {
+public class DrawerSegue: UIStoryboardSegue {
+    override public func perform() {
         assert(self.source is DrawerController, "DrawerSegue only to be used to define left/center/right controllers for a DrawerController!")
     }
 }
 
-extension UIViewController {
+public extension UIViewController {
     
     // check if a viewController can perform segue
-    func canPerformSegue(identifier: String) -> Bool {
+    public func canPerformSegue(identifier: String) -> Bool {
         let templates: NSArray = self.value(forKey: "storyboardSegueTemplates") as! NSArray
         let predicate: NSPredicate = NSPredicate(format: "identifier=%@", identifier)
         let filteredtemplates = templates.filtered(using: predicate)
