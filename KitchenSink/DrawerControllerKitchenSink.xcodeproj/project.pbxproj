@@ -146,9 +146,9 @@
 		2BCB049119C4F334002CBDB6 = {
 			isa = PBXGroup;
 			children = (
+				FA54849C1AFF078400B23205 /* DrawerController.xcodeproj */,
 				2BCB049C19C4F334002CBDB6 /* ExampleFiles */,
 				2BCB049B19C4F334002CBDB6 /* Products */,
-				FA54849C1AFF078400B23205 /* DrawerController.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,12 +164,12 @@
 		2BCB049C19C4F334002CBDB6 /* ExampleFiles */ = {
 			isa = PBXGroup;
 			children = (
-				2BCB04C519C4F466002CBDB6 /* AppDelegate.swift */,
 				634708391E17FBC1001C31D2 /* AppDelegate-IB.swift */,
-				2BCB04C019C4F3C7002CBDB6 /* VisualStateManager */,
-				2BCB04C219C4F3CF002CBDB6 /* ViewControllers */,
-				2BCB04C319C4F3D2002CBDB6 /* TableViewHelpers */,
+				2BCB04C519C4F466002CBDB6 /* AppDelegate.swift */,
 				2BCB049D19C4F334002CBDB6 /* Supporting Files */,
+				2BCB04C319C4F3D2002CBDB6 /* TableViewHelpers */,
+				2BCB04C219C4F3CF002CBDB6 /* ViewControllers */,
+				2BCB04C019C4F3C7002CBDB6 /* VisualStateManager */,
 			);
 			path = ExampleFiles;
 			sourceTree = "<group>";
@@ -196,11 +196,11 @@
 		2BCB04C219C4F3CF002CBDB6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2BCB04CF19C4F814002CBDB6 /* ExampleViewController.swift */,
 				2BCB04D319C4FB39002CBDB6 /* ExampleCenterTableViewController.swift */,
-				2BE66C7319C50BA0005EDC19 /* ExampleSideDrawerViewController.swift */,
 				2BE66C7519C50BD6005EDC19 /* ExampleLeftSideDrawerViewController.swift */,
 				2BE66C7719C50BE8005EDC19 /* ExampleRightSideDrawerViewController.swift */,
+				2BE66C7319C50BA0005EDC19 /* ExampleSideDrawerViewController.swift */,
+				2BCB04CF19C4F814002CBDB6 /* ExampleViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -208,10 +208,10 @@
 		2BCB04C319C4F3D2002CBDB6 /* TableViewHelpers */ = {
 			isa = PBXGroup;
 			children = (
-				2BC043CA19C4FFC300CA68B6 /* TableViewCell.swift */,
-				2BE66C7919C50C0B005EDC19 /* SideDrawerTableViewCell.swift */,
 				2BC043CC19C505FA00CA68B6 /* CenterTableViewCell.swift */,
 				2BE66C7B19C50C2C005EDC19 /* SideDrawerSectionHeaderView.swift */,
+				2BE66C7919C50C0B005EDC19 /* SideDrawerTableViewCell.swift */,
+				2BC043CA19C4FFC300CA68B6 /* TableViewCell.swift */,
 			);
 			path = TableViewHelpers;
 			sourceTree = "<group>";

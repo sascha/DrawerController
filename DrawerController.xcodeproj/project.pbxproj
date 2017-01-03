@@ -58,10 +58,10 @@
 			children = (
 				FAEF01521AFEE65200DFDF7F /* AnimatedMenuButton.swift */,
 				FAEF01531AFEE65200DFDF7F /* DrawerBarButtonItem.swift */,
+				FAEF013B1AFEE4FF00DFDF7F /* DrawerController.h */,
 				FAEF01541AFEE65200DFDF7F /* DrawerController.swift */,
 				634707FE1E17F213001C31D2 /* DrawerSegue.swift */,
 				FAEF01551AFEE65200DFDF7F /* DrawerVisualState.swift */,
-				FAEF013B1AFEE4FF00DFDF7F /* DrawerController.h */,
 				FAEF01391AFEE4FF00DFDF7F /* Supporting Files */,
 			);
 			path = DrawerController;

@@ -1,4 +1,4 @@
-// Copyright (c) 2014 evolved.io (http://evolved.io)
+// Copyright (c) 2017 evolved.io (http://evolved.io)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,16 +30,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
        
         let tintColor = UIColor(red: 29 / 255, green: 173 / 255, blue: 234 / 255, alpha: 1.0)
-        self.window?.tintColor = tintColor
-        self.drawerController = self.window?.rootViewController! as! DrawerController
-        self.drawerController.showsShadows = false
+        window?.tintColor = tintColor
+        drawerController = window?.rootViewController! as! DrawerController
+        drawerController.showsShadows = false
         
-        self.drawerController.restorationIdentifier = "Drawer"
-        self.drawerController.maximumRightDrawerWidth = 200.0
-        self.drawerController.openDrawerGestureModeMask = .all
-        self.drawerController.closeDrawerGestureModeMask = .all
+        drawerController.restorationIdentifier = "Drawer"
+        drawerController.maximumRightDrawerWidth = 200.0
+        drawerController.openDrawerGestureModeMask = .all
+        drawerController.closeDrawerGestureModeMask = .all
         
-        self.drawerController.drawerVisualStateBlock = { (drawerController, drawerSide, percentVisible) in
+        drawerController.drawerVisualStateBlock = { (drawerController, drawerSide, percentVisible) in
             let block = ExampleDrawerVisualStateManager.sharedManager.drawerVisualStateBlock(for: drawerSide)
             block?(drawerController, drawerSide, percentVisible)
         }
@@ -48,8 +48,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        self.window?.backgroundColor = UIColor.white
-        self.window?.makeKeyAndVisible()
+        window?.backgroundColor = UIColor.white
+        window?.makeKeyAndVisible()
         
         return true
     }
@@ -65,15 +65,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, viewControllerWithRestorationIdentifierPath identifierComponents: [Any], coder: NSCoder) -> UIViewController? {
         if let key = identifierComponents.last as? String {
             if key == "Drawer" {
-                return self.window?.rootViewController
+                return window?.rootViewController
             } else if key == "ExampleCenterNavigationControllerRestorationKey" {
-                return (self.window?.rootViewController as! DrawerController).centerViewController
+                return (window?.rootViewController as! DrawerController).centerViewController
             } else if key == "ExampleRightNavigationControllerRestorationKey" {
-                return (self.window?.rootViewController as! DrawerController).rightDrawerViewController
+                return (window?.rootViewController as! DrawerController).rightDrawerViewController
             } else if key == "ExampleLeftNavigationControllerRestorationKey" {
-                return (self.window?.rootViewController as! DrawerController).leftDrawerViewController
+                return (window?.rootViewController as! DrawerController).leftDrawerViewController
             } else if key == "ExampleLeftSideDrawerController" {
-                if let leftVC = (self.window?.rootViewController as? DrawerController)?.leftDrawerViewController {
+                if let leftVC = (window?.rootViewController as? DrawerController)?.leftDrawerViewController {
                     if leftVC.isKind(of: UINavigationController.self) {
                         return (leftVC as! UINavigationController).topViewController
                     } else {
@@ -81,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
             } else if key == "ExampleRightSideDrawerController" {
-                if let rightVC = (self.window?.rootViewController as? DrawerController)?.rightDrawerViewController {
+                if let rightVC = (window?.rootViewController as? DrawerController)?.rightDrawerViewController {
                     if rightVC.isKind(of: UINavigationController.self) {
                         return (rightVC as! UINavigationController).topViewController
                     } else {

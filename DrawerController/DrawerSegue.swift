@@ -1,72 +1,89 @@
+// Copyright (c) 2017 evolved.io (http://evolved.io)
 //
-//  DrawerControllerSegue.swift
-//  DrawerController
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 //
-//  Created by Wang,Shun on 31/12/2016.
-//  Copyright © 2016 evolved.io. All rights reserved.
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+//
+// Created by Wang,Shun on 31/12/2016.
 //
 
-import Foundation
-
-fileprivate let center  = "center"
-fileprivate let left    = "left"
-fileprivate let right   = "right"
+import UIKit
 
 public class DrawerSegue: UIStoryboardSegue {
     override public func perform() {
-        assert(self.source is DrawerController, "DrawerSegue only to be used to define left/center/right controllers for a DrawerController!")
+        assert(source is DrawerController, "DrawerSegue can only be used to define left/center/right controllers for a DrawerController")
     }
 }
 
-public extension UIViewController {
+fileprivate extension UIViewController {
     
-    // check if a viewController can perform segue
-    public func canPerformSegue(identifier: String) -> Bool {
-        let templates: NSArray = self.value(forKey: "storyboardSegueTemplates") as! NSArray
+    // check if a view controller can perform segue
+    func canPerformSegue(withIdentifier identifier: String) -> Bool {
+        let templates: NSArray = value(forKey: "storyboardSegueTemplates") as! NSArray
         let predicate: NSPredicate = NSPredicate(format: "identifier=%@", identifier)
         let filteredtemplates = templates.filtered(using: predicate)
-        return (filteredtemplates.count > 0)
+        return filteredtemplates.count > 0
     }
 }
 
 extension DrawerController {
+
+    private enum Keys: String {
+        case center = "center"
+        case left = "left"
+        case right = "right"
+    }
+
     open override func awakeFromNib() {
+        guard storyboard != nil else {
+            return
+        }
         
-        guard self.storyboard != nil else { return }
-        
-        // Required segue "center".  Uncaught exception if undefined in storyboard.
-        self.performSegue(withIdentifier: center, sender: self)
+        // Required segue "center". Uncaught exception if undefined in storyboard.
+        performSegue(withIdentifier: Keys.center.rawValue, sender: self)
         
         // Optional segue "left".
-        if self.canPerformSegue(identifier: left) {
-            self.performSegue(withIdentifier: left, sender: self)
+        if canPerformSegue(withIdentifier: Keys.left.rawValue) {
+            performSegue(withIdentifier: Keys.left.rawValue, sender: self)
         }
         
         // Optional segue "right".
-        if self.canPerformSegue(identifier: right) {
-            self.performSegue(withIdentifier: right, sender: self)
+        if canPerformSegue(withIdentifier: Keys.right.rawValue) {
+            performSegue(withIdentifier: Keys.right.rawValue, sender: self)
         }
     }
     
     open override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        assert(segue is DrawerSegue, "Only DrawerSegue could be used in DrawerController")
-        
-        switch segue.identifier {
+        if segue is DrawerSegue {
+            switch segue.identifier {
+            case let x where x == Keys.center.rawValue:
+                centerViewController = segue.destination
+            case let x where x == Keys.left.rawValue:
+                leftDrawerViewController = segue.destination
+            case let x where x == Keys.right.rawValue:
+                rightDrawerViewController = segue.destination
+            default:
+                break
+            }
             
-        case let x where x == center:
-            self.centerViewController = segue.destination
-            
-        case let x where x == left:
-            self.leftDrawerViewController = segue.destination
-            
-        case let x where x == right:
-            self.rightDrawerViewController = segue.destination
-            
-        default: break
-            
+            return
         }
-        
+
+        super.prepare(for: segue, sender: sender)
     }
     
 }
