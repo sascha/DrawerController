@@ -62,9 +62,16 @@ public extension UIViewController {
 private func bounceKeyFrameAnimation(forDistance distance: CGFloat, on view: UIView) -> CAKeyframeAnimation {
     let factors: [CGFloat] = [0, 32, 60, 83, 100, 114, 124, 128, 128, 124, 114, 100, 83, 60, 32, 0, 24, 42, 54, 62, 64, 62, 54, 42, 24, 0, 18, 28, 32, 28, 18, 0]
     
-    let values = factors.map({ x in
-        NSNumber(value: Float(x / 128 * distance + view.bounds.midX) as Float)
-    })
+    let values = factors.map { x -> NSNumber in
+        // This could be refactored as `NSNumber(value: Float(x / 128 * distance + view.bounds.midX))`
+        // but unfortunately that would require 400ms+ more compile time
+        var value = x
+        value /= 128
+        value *= distance
+        value += view.bounds.midX
+
+        return NSNumber(value: Float(value))
+    }
     
     let animation = CAKeyframeAnimation(keyPath: "position.x")
     animation.repeatCount = 1
