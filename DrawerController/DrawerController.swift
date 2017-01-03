@@ -1382,6 +1382,22 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
         return false
     }
     
+    override open var shouldAutorotate: Bool {
+        if let controller = centerViewController {
+            return controller.shouldAutorotate
+        }
+
+        return super.shouldAutorotate
+    }
+
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if let controller = centerViewController {
+            return controller.supportedInterfaceOrientations
+        }
+
+        return super.supportedInterfaceOrientations
+    }
+
     // MARK: - Rotation
     
     open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -1543,18 +1559,5 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
 
         return rightBezelRect.contains(point) && self.isPointContained(withinCenterViewContentRect: point)
     }
-    
-    override open var shouldAutorotate: Bool {
-        if let controller = centerViewController {
-            return controller.shouldAutorotate
-        }
-        return super.shouldAutorotate
-    }
-    
-    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if let controller = centerViewController {
-            return controller.supportedInterfaceOrientations
-        }
-        return super.supportedInterfaceOrientations
-    }
 }
+
