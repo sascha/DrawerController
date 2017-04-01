@@ -122,8 +122,8 @@ open class AnimatedMenuButton : UIButton {
         let translation = CATransform3DMakeTranslation(-4 * percentVisible, 0, 0)
         
         let sideInverter: CGFloat = drawerSide == DrawerSide.left ? -1 : 1
-        topTransform.toValue = NSValue(caTransform3D: CATransform3DRotate(translation, 1.0 * sideInverter * ((CGFloat)(45.0 * M_PI / 180.0) * percentVisible), 0, 0, 1))
-        bottomTransform.toValue = NSValue(caTransform3D: CATransform3DRotate(translation, (-1.0 * sideInverter * (CGFloat)(45.0 * M_PI / 180.0) * percentVisible), 0, 0, 1))
+        topTransform.toValue = NSValue(caTransform3D: CATransform3DRotate(translation, 1.0 * sideInverter * ((CGFloat)(45.0 * Double.pi / 180.0) * percentVisible), 0, 0, 1))
+        bottomTransform.toValue = NSValue(caTransform3D: CATransform3DRotate(translation, (-1.0 * sideInverter * (CGFloat)(45.0 * Double.pi / 180.0) * percentVisible), 0, 0, 1))
 
         topTransform.beginTime = CACurrentMediaTime()
         bottomTransform.beginTime = CACurrentMediaTime()
