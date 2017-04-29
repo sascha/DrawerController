@@ -515,15 +515,15 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
     open override func decodeRestorableState(with coder: NSCoder) {
         super.decodeRestorableState(with: coder)
         
-        if let leftDrawerViewController: AnyObject = coder.decodeObject(forKey: DrawerLeftDrawerKey) as AnyObject? {
+        if (self.leftDrawerViewController == nil) && (let leftDrawerViewController: AnyObject = coder.decodeObject(forKey: DrawerLeftDrawerKey) as AnyObject?) {
             self.leftDrawerViewController = leftDrawerViewController as? UIViewController
         }
         
-        if let rightDrawerViewController: AnyObject = coder.decodeObject(forKey: DrawerRightDrawerKey) as AnyObject? {
+        if (self.rightDrawerViewController == nil) && (let rightDrawerViewController: AnyObject = coder.decodeObject(forKey: DrawerRightDrawerKey) as AnyObject?) {
             self.rightDrawerViewController = rightDrawerViewController as? UIViewController
         }
         
-        if let centerViewController: AnyObject = coder.decodeObject(forKey: DrawerCenterKey) as AnyObject? {
+        if (self.centerViewController == nil) && (let centerViewController: AnyObject = coder.decodeObject(forKey: DrawerCenterKey) as AnyObject?) {
             self.centerViewController = centerViewController as? UIViewController
         }
         
