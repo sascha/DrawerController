@@ -28,17 +28,22 @@ open class DrawerBarButtonItem: UIBarButtonItem {
     // MARK: - Initializers
     
     public override init() {
-        self.menuButton = AnimatedMenuButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        self.menuButton = AnimatedMenuButton(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
         super.init()
         self.customView = self.menuButton
     }
-
+    
     public convenience init(target: AnyObject?, action: Selector) {
         self.init(target: target, action: action, menuIconColor: UIColor.gray)
     }
-
+    
     public convenience init(target: AnyObject?, action: Selector, menuIconColor: UIColor) {
-        let menuButton = AnimatedMenuButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30), strokeColor: menuIconColor)
+        self.init(target: target, action: action, menuIconColor: menuIconColor, animatable: true)
+    }
+    
+    public convenience init(target: AnyObject?, action: Selector, menuIconColor: UIColor, animatable:Bool) {
+        let menuButton = AnimatedMenuButton(frame: CGRect(x: 0, y: 0, width: 26, height: 26), strokeColor: menuIconColor)
+        menuButton.animatable = animatable
         menuButton.addTarget(target, action: action, for: UIControlEvents.touchUpInside)
         self.init(customView: menuButton)
         
@@ -46,7 +51,7 @@ open class DrawerBarButtonItem: UIBarButtonItem {
     }
     
     public required init?(coder aDecoder: NSCoder) {
-        self.menuButton = AnimatedMenuButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        self.menuButton = AnimatedMenuButton(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
         super.init(coder: aDecoder)
         self.customView = self.menuButton
     }
