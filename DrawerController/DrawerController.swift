@@ -333,6 +333,7 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     open var animationVelocity = DrawerDefaultAnimationVelocity
+    open var minimumAnimationDuration = DrawerMinimumAnimationDuration
     fileprivate var animatingDrawer: Bool = false {
         didSet {
             self.view.isUserInteractionEnabled = !self.animatingDrawer
@@ -515,16 +516,22 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
     open override func decodeRestorableState(with coder: NSCoder) {
         super.decodeRestorableState(with: coder)
         
-        if let leftDrawerViewController: AnyObject = coder.decodeObject(forKey: DrawerLeftDrawerKey) as AnyObject? {
-            self.leftDrawerViewController = leftDrawerViewController as? UIViewController
+        if self.leftDrawerViewController == nil {
+            if let leftDrawerViewController = coder.decodeObject(forKey: DrawerLeftDrawerKey) as? UIViewController {
+                self.leftDrawerViewController = leftDrawerViewController
+            }
         }
         
-        if let rightDrawerViewController: AnyObject = coder.decodeObject(forKey: DrawerRightDrawerKey) as AnyObject? {
-            self.rightDrawerViewController = rightDrawerViewController as? UIViewController
+        if self.rightDrawerViewController == nil {
+            if let rightDrawerViewController = coder.decodeObject(forKey: DrawerRightDrawerKey) as? UIViewController {
+                self.rightDrawerViewController = rightDrawerViewController
+            }
         }
         
-        if let centerViewController: AnyObject = coder.decodeObject(forKey: DrawerCenterKey) as AnyObject? {
-            self.centerViewController = centerViewController as? UIViewController
+        if self.centerViewController == nil {
+            if let centerViewController = coder.decodeObject(forKey: DrawerCenterKey) as? UIViewController {
+                self.centerViewController = centerViewController
+            }
         }
         
         if let openSide = DrawerSide(rawValue: coder.decodeInteger(forKey: DrawerOpenSideKey)) {
@@ -734,7 +741,7 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     fileprivate func animationDuration(forAnimationDistance distance: CGFloat) -> TimeInterval {
-        return TimeInterval(max(distance / self.animationVelocity, DrawerMinimumAnimationDuration))
+        return TimeInterval(max(distance / self.animationVelocity, minimumAnimationDuration))
     }
     
     // MARK: - Size Methods
@@ -1251,7 +1258,7 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
                 }
                 
                 let distance = abs(oldFrame.minX - newFrame.origin.x)
-                let duration: TimeInterval = animated ? TimeInterval(max(distance / abs(velocity), DrawerMinimumAnimationDuration)) : 0.0
+                let duration: TimeInterval = animated ? TimeInterval(max(distance / abs(velocity), minimumAnimationDuration)) : 0.0
                 
                 UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: self.drawerDampingFactor, initialSpringVelocity: velocity / distance, options: options, animations: { () -> Void in
                     self.setNeedsStatusBarAppearanceUpdate()
@@ -1292,7 +1299,7 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
             let newFrame = self.childControllerContainerView.bounds
             
             let distance = abs(self.centerContainerView.frame.minX)
-            let duration: TimeInterval = animated ? TimeInterval(max(distance / abs(velocity), DrawerMinimumAnimationDuration)) : 0.0
+            let duration: TimeInterval = animated ? TimeInterval(max(distance / abs(velocity), minimumAnimationDuration)) : 0.0
             
             let leftDrawerVisible = self.centerContainerView.frame.minX > 0
             let rightDrawerVisible = self.centerContainerView.frame.minX < 0
