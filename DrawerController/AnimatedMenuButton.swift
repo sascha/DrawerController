@@ -24,15 +24,10 @@ import UIKit
 
 open class AnimatedMenuButton : UIButton {
     
-    lazy var top: CAShapeLayer = {
-        return CAShapeLayer()
-    }()
-    lazy var middle: CAShapeLayer = {
-        return CAShapeLayer()
-    }()
-    lazy var bottom: CAShapeLayer = {
-        return CAShapeLayer()
-    }()
+    lazy var top: CAShapeLayer = CAShapeLayer()
+    lazy var middle: CAShapeLayer = CAShapeLayer()
+    lazy var bottom: CAShapeLayer = CAShapeLayer()
+
     let strokeColor: UIColor
     
     // MARK: - Constants
@@ -101,6 +96,7 @@ open class AnimatedMenuButton : UIButton {
         if self.animatable {
             return
         }
+
         self.strokeColor.setStroke()
         
         let context = UIGraphicsGetCurrentContext()
@@ -128,6 +124,7 @@ open class AnimatedMenuButton : UIButton {
         if !self.animatable {
             return
         }
+
         if drawerSide == DrawerSide.left {
             self.top.anchorPoint = CGPoint(x: 1, y: 0.5)
             self.top.position = CGPoint(x: 23, y: 7)
