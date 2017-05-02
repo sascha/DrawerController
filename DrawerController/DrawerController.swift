@@ -535,7 +535,9 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
         }
         
         if let openSide = DrawerSide(rawValue: coder.decodeInteger(forKey: DrawerOpenSideKey)) {
-            self.openSide = openSide
+            if openSide != .none {
+                self.openDrawerSide(openSide, animated: false, completion: nil)
+            }
         }
     }
     
