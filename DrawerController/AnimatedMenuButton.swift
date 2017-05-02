@@ -124,7 +124,7 @@ open class AnimatedMenuButton : UIButton {
     
     // MARK: - Animations
     
-    open func animate(withPercentVisible percentVisible: CGFloat, drawerSide: DrawerSide) {
+    open func animate(withFractionVisible fractionVisible: CGFloat, drawerSide: DrawerSide) {
         if !self.animatable {
             return
         }
@@ -154,16 +154,16 @@ open class AnimatedMenuButton : UIButton {
         
         let bottomTransform = topTransform.copy() as! CABasicAnimation
         
-        middleTransform.toValue = 1 - percentVisible
+        middleTransform.toValue = 1 - fractionVisible
         
-        let translation = CATransform3DMakeTranslation(-4 * percentVisible, 0, 0)
+        let translation = CATransform3DMakeTranslation(-4 * fractionVisible, 0, 0)
         
         let tanOfTransformAngle = 6.0/19.0
         let transformAngle = atan(tanOfTransformAngle)
         
         let sideInverter: CGFloat = drawerSide == DrawerSide.left ? -1 : 1
-        topTransform.toValue = NSValue(caTransform3D: CATransform3DRotate(translation, 1.0 * sideInverter * (CGFloat(transformAngle) * percentVisible), 0, 0, 1))
-        bottomTransform.toValue = NSValue(caTransform3D: CATransform3DRotate(translation, (-1.0 * sideInverter * CGFloat(transformAngle) * percentVisible), 0, 0, 1))
+        topTransform.toValue = NSValue(caTransform3D: CATransform3DRotate(translation, 1.0 * sideInverter * (CGFloat(transformAngle) * fractionVisible), 0, 0, 1))
+        bottomTransform.toValue = NSValue(caTransform3D: CATransform3DRotate(translation, (-1.0 * sideInverter * CGFloat(transformAngle) * fractionVisible), 0, 0, 1))
         
         topTransform.beginTime = CACurrentMediaTime()
         bottomTransform.beginTime = CACurrentMediaTime()
