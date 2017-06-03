@@ -28,7 +28,7 @@ open class AnimatedMenuButton : UIButton {
     lazy var middle: CAShapeLayer = CAShapeLayer()
     lazy var bottom: CAShapeLayer = CAShapeLayer()
 
-    let strokeColor: UIColor
+    var strokeColor: UIColor
     
     // MARK: - Constants
     
@@ -54,7 +54,12 @@ open class AnimatedMenuButton : UIButton {
         self.init(frame: frame, strokeColor: UIColor.gray)
     }
     
-    init(frame: CGRect, strokeColor: UIColor) {
+    convenience init(frame: CGRect, strokeColor: UIColor) {
+        self.init(frame: frame, strokeColor: strokeColor, animatable: true)
+    }
+    
+    init(frame: CGRect, strokeColor: UIColor, animatable:Bool) {
+        self.animatable = animatable
         self.strokeColor = strokeColor
         super.init(frame: frame)
         if !self.animatable {
@@ -63,7 +68,6 @@ open class AnimatedMenuButton : UIButton {
         self.top.path = shortStroke;
         self.middle.path = shortStroke;
         self.bottom.path = shortStroke;
-        
         for layer in [ self.top, self.middle, self.bottom ] {
             layer.fillColor = nil
             layer.strokeColor = self.strokeColor.cgColor
@@ -96,7 +100,7 @@ open class AnimatedMenuButton : UIButton {
         if self.animatable {
             return
         }
-
+        
         self.strokeColor.setStroke()
         
         let context = UIGraphicsGetCurrentContext()
