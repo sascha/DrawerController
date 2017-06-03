@@ -41,7 +41,7 @@ open class AnimatedMenuButton : UIButton {
         return path
     }()
     
-    var animatable = true
+    var animatable = false
     
     // MARK: - Initializers
     
