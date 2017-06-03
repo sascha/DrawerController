@@ -38,7 +38,7 @@ open class DrawerBarButtonItem: UIBarButtonItem {
     }
     
     public convenience init(target: AnyObject?, action: Selector, menuIconColor: UIColor) {
-        self.init(target: target, action: action, menuIconColor: menuIconColor, animatable: true)
+        self.init(target: target, action: action, menuIconColor: menuIconColor, animatable: false)
     }
     
     public convenience init(target: AnyObject?, action: Selector, menuIconColor: UIColor, animatable: Bool) {

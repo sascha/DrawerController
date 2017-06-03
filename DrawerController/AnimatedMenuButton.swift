@@ -55,7 +55,7 @@ open class AnimatedMenuButton : UIButton {
     }
     
     convenience init(frame: CGRect, strokeColor: UIColor) {
-        self.init(frame: frame, strokeColor: strokeColor, animatable: true)
+        self.init(frame: frame, strokeColor: strokeColor, animatable: false)
     }
     
     init(frame: CGRect, strokeColor: UIColor, animatable:Bool) {
