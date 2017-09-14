@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let leftSideDrawerViewController = ExampleLeftSideDrawerViewController()
         let centerViewController = ExampleCenterTableViewController()
+        centerViewController.title = "Test"
         let rightSideDrawerViewController = ExampleRightSideDrawerViewController()
         
         let navigationController = UINavigationController(rootViewController: centerViewController)

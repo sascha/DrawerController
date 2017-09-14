@@ -101,24 +101,27 @@ open class AnimatedMenuButton : UIButton {
             return
         }
         
+        let left = (rect.size.width - 20)/2
+        let topPadding = (rect.size.height - 26)/2
+        
         self.strokeColor.setStroke()
         
         let context = UIGraphicsGetCurrentContext()
         context?.setShouldAntialias(false)
         
         let top = UIBezierPath()
-        top.move(to: CGPoint(x:3,y:6.5))
-        top.addLine(to: CGPoint(x:23,y:6.5))
+        top.move(to: CGPoint(x:left,y:7.5+topPadding))
+        top.addLine(to: CGPoint(x:20+left,y:7.5+topPadding))
         top.stroke()
         
         let middle = UIBezierPath()
-        middle.move(to: CGPoint(x:3,y:12.5))
-        middle.addLine(to: CGPoint(x:23,y:12.5))
+        middle.move(to: CGPoint(x:left,y:13.5+topPadding))
+        middle.addLine(to: CGPoint(x:20+left,y:13.5+topPadding))
         middle.stroke()
         
         let bottom = UIBezierPath()
-        bottom.move(to: CGPoint(x:3,y:18.5))
-        bottom.addLine(to: CGPoint(x:23,y:18.5))
+        bottom.move(to: CGPoint(x:left,y:19.5+topPadding))
+        bottom.addLine(to: CGPoint(x:20+left,y:19.5+topPadding))
         bottom.stroke()
     }
     
