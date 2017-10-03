@@ -276,19 +276,19 @@ class ExampleCenterTableViewController: ExampleViewController, UITableViewDataSo
     
     // MARK: - Button Handlers
     
-    func leftDrawerButtonPress(_ sender: AnyObject?) {
+    @objc func leftDrawerButtonPress(_ sender: AnyObject?) {
         self.evo_drawerController?.toggleDrawerSide(.left, animated: true, completion: nil)
     }
     
-    func rightDrawerButtonPress(_ sender: AnyObject?) {
+    @objc func rightDrawerButtonPress(_ sender: AnyObject?) {
         self.evo_drawerController?.toggleDrawerSide(.right, animated: true, completion: nil)
     }
     
-    func doubleTap(_ gesture: UITapGestureRecognizer) {
+    @objc func doubleTap(_ gesture: UITapGestureRecognizer) {
         self.evo_drawerController?.bouncePreview(for: .left, completion: nil)
     }
     
-    func twoFingerDoubleTap(_ gesture: UITapGestureRecognizer) {
+    @objc func twoFingerDoubleTap(_ gesture: UITapGestureRecognizer) {
         self.evo_drawerController?.bouncePreview(for: .right, completion: nil)
     }
 }
