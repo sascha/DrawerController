@@ -58,8 +58,9 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
         
         // See https://github.com/sascha/DrawerController/issues/12
         self.navigationController?.view.setNeedsLayout()
-        
-        self.tableView.reloadSections(IndexSet(integersIn: NSRange(location: 0, length: self.tableView.numberOfSections - 1).toRange() ?? 0..<0), with: .none)
+
+        let integersRange = NSRange(location: 0, length: self.tableView.numberOfSections - 1)
+        self.tableView.reloadSections(IndexSet(integersIn: Range(integersRange) ?? 0..<0), with: .none)
     }
     
     override func contentSizeDidChange(_ size: String) {
