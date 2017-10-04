@@ -48,7 +48,7 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
         self.tableView.separatorStyle = .none
         
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 161 / 255, green: 164 / 255, blue: 166 / 255, alpha: 1.0)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 55 / 255, green: 70 / 255, blue: 77 / 255, alpha: 1.0)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor(red: 55 / 255, green: 70 / 255, blue: 77 / 255, alpha: 1.0)]
         
         self.view.backgroundColor = UIColor.clear
     }
@@ -58,8 +58,9 @@ class ExampleSideDrawerViewController: ExampleViewController, UITableViewDataSou
         
         // See https://github.com/sascha/DrawerController/issues/12
         self.navigationController?.view.setNeedsLayout()
-        
-        self.tableView.reloadSections(IndexSet(integersIn: NSRange(location: 0, length: self.tableView.numberOfSections - 1).toRange() ?? 0..<0), with: .none)
+
+        let integersRange = NSRange(location: 0, length: self.tableView.numberOfSections - 1)
+        self.tableView.reloadSections(IndexSet(integersIn: Range(integersRange) ?? 0..<0), with: .none)
     }
     
     override func contentSizeDidChange(_ size: String) {
