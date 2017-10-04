@@ -58,9 +58,9 @@ open class DrawerBarButtonItem: UIBarButtonItem {
     
     // MARK: - Animations
     
-    open func animate(withPercentVisible percentVisible: CGFloat, drawerSide: DrawerSide) {
+    open func animate(withFractionVisible fractionVisible: CGFloat, drawerSide: DrawerSide) {
         if let btn = self.customView as? AnimatedMenuButton {
-            btn.animate(withPercentVisible: percentVisible, drawerSide: drawerSide)
+            btn.animate(withFractionVisible: fractionVisible, drawerSide: drawerSide)
         }
     }
 }

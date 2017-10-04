@@ -49,9 +49,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.drawerController.openDrawerGestureModeMask = .all
         self.drawerController.closeDrawerGestureModeMask = .all
         
-        self.drawerController.drawerVisualStateBlock = { (drawerController, drawerSide, percentVisible) in
+        self.drawerController.drawerVisualStateBlock = { (drawerController, drawerSide, fractionVisible) in
             let block = ExampleDrawerVisualStateManager.sharedManager.drawerVisualStateBlock(for: drawerSide)
-            block?(drawerController, drawerSide, percentVisible)
+            block?(drawerController, drawerSide, fractionVisible)
         }
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
