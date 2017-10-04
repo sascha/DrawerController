@@ -21,19 +21,19 @@
 import UIKit
 
 class ExampleViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(contentSizeDidChangeNotification(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
-    @objc fileprivate func contentSizeDidChangeNotification(_ notification: Notification) {
-        if let userInfo: NSDictionary = (notification as NSNotification).userInfo as NSDictionary? {
-            self.contentSizeDidChange(userInfo[UIContentSizeCategoryNewValueKey] as! String)
-        }
+    NotificationCenter.default.addObserver(self, selector: #selector(contentSizeDidChangeNotification(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
+  }
+  
+  @objc fileprivate func contentSizeDidChangeNotification(_ notification: Notification) {
+    if let userInfo: NSDictionary = (notification as NSNotification).userInfo as NSDictionary? {
+      self.contentSizeDidChange(userInfo[UIContentSizeCategoryNewValueKey] as! String)
     }
-    
-    func contentSizeDidChange(_ size: String) {
-        // Implement in subclass
-    }
+  }
+  
+  func contentSizeDidChange(_ size: String) {
+    // Implement in subclass
+  }
 }

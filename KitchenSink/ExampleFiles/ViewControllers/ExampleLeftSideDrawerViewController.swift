@@ -21,77 +21,77 @@
 import UIKit
 
 class ExampleLeftSideDrawerViewController: ExampleSideDrawerViewController {    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        self.restorationIdentifier = "ExampleLeftSideDrawerController"
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    self.restorationIdentifier = "ExampleLeftSideDrawerController"
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    self.restorationIdentifier = "ExampleLeftSideDrawerController"
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    print("Left will appear")
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    print("Left did appear")
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    print("Left will disappear")
+  }
+  
+  override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    print("Left did disappear")
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.title = "Left Drawer"
+  }
+  
+  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    if section == DrawerSection.drawerWidth.rawValue {
+      return "Left Drawer Width"
+    } else {
+      return super.tableView(tableView, titleForHeaderInSection: section)
     }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.restorationIdentifier = "ExampleLeftSideDrawerController"
+  }
+  
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = super.tableView(tableView, cellForRowAt: indexPath)
+    
+    if (indexPath as NSIndexPath).section == DrawerSection.drawerWidth.rawValue {
+      let width = self.drawerWidths[(indexPath as NSIndexPath).row]
+      let drawerWidth = self.evo_drawerController?.maximumLeftDrawerWidth
+      
+      if drawerWidth == width {
+        cell.accessoryType = .checkmark
+      } else {
+        cell.accessoryType = .none
+      }
+      
+      cell.textLabel?.text = "Width \(self.drawerWidths[(indexPath as NSIndexPath).row])"
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("Left will appear")
+    return cell
+  }
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if (indexPath as NSIndexPath).section == DrawerSection.drawerWidth.rawValue {
+      self.evo_drawerController?.setMaximumLeftDrawerWidth(self.drawerWidths[(indexPath as NSIndexPath).row], animated: true, completion: { (finished) -> Void in
+        tableView.reloadSections(IndexSet(integer: (indexPath as NSIndexPath).section), with: .none)
+        tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        tableView.deselectRow(at: indexPath, animated: true)
+      })
+    } else {
+      super.tableView(tableView, didSelectRowAt: indexPath)
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print("Left did appear")
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print("Left will disappear")
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        print("Left did disappear")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = "Left Drawer"
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == DrawerSection.drawerWidth.rawValue {
-            return "Left Drawer Width"
-        } else {
-            return super.tableView(tableView, titleForHeaderInSection: section)
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        
-        if (indexPath as NSIndexPath).section == DrawerSection.drawerWidth.rawValue {
-            let width = self.drawerWidths[(indexPath as NSIndexPath).row]
-            let drawerWidth = self.evo_drawerController?.maximumLeftDrawerWidth
-            
-            if drawerWidth == width {
-                cell.accessoryType = .checkmark
-            } else {
-                cell.accessoryType = .none
-            }
-            
-            cell.textLabel?.text = "Width \(self.drawerWidths[(indexPath as NSIndexPath).row])"
-        }
-        
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (indexPath as NSIndexPath).section == DrawerSection.drawerWidth.rawValue {
-            self.evo_drawerController?.setMaximumLeftDrawerWidth(self.drawerWidths[(indexPath as NSIndexPath).row], animated: true, completion: { (finished) -> Void in
-                tableView.reloadSections(IndexSet(integer: (indexPath as NSIndexPath).section), with: .none)
-                tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-                tableView.deselectRow(at: indexPath, animated: true)
-            })
-        } else {
-            super.tableView(tableView, didSelectRowAt: indexPath)
-        }
-    }
+  }
 }
