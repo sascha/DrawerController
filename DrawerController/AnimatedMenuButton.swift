@@ -28,7 +28,7 @@ open class AnimatedMenuButton : UIButton {
     lazy var middle: CAShapeLayer = CAShapeLayer()
     lazy var bottom: CAShapeLayer = CAShapeLayer()
 
-    let strokeColor: UIColor
+    var strokeColor: UIColor
     
     // MARK: - Constants
     
@@ -41,7 +41,7 @@ open class AnimatedMenuButton : UIButton {
         return path
     }()
     
-    var animatable = true
+    var animatable = false
     
     // MARK: - Initializers
     
@@ -54,7 +54,12 @@ open class AnimatedMenuButton : UIButton {
         self.init(frame: frame, strokeColor: UIColor.gray)
     }
     
-    init(frame: CGRect, strokeColor: UIColor) {
+    convenience init(frame: CGRect, strokeColor: UIColor) {
+        self.init(frame: frame, strokeColor: strokeColor, animatable: false)
+    }
+    
+    init(frame: CGRect, strokeColor: UIColor, animatable:Bool) {
+        self.animatable = animatable
         self.strokeColor = strokeColor
         super.init(frame: frame)
         if !self.animatable {
@@ -63,7 +68,6 @@ open class AnimatedMenuButton : UIButton {
         self.top.path = shortStroke;
         self.middle.path = shortStroke;
         self.bottom.path = shortStroke;
-        
         for layer in [ self.top, self.middle, self.bottom ] {
             layer.fillColor = nil
             layer.strokeColor = self.strokeColor.cgColor
@@ -96,31 +100,34 @@ open class AnimatedMenuButton : UIButton {
         if self.animatable {
             return
         }
-
+        
+        let left = (rect.size.width - 20)/2
+        let topPadding = (rect.size.height - 26)/2
+        
         self.strokeColor.setStroke()
         
         let context = UIGraphicsGetCurrentContext()
         context?.setShouldAntialias(false)
         
         let top = UIBezierPath()
-        top.move(to: CGPoint(x:3,y:6.5))
-        top.addLine(to: CGPoint(x:23,y:6.5))
+        top.move(to: CGPoint(x:left,y:7.5+topPadding))
+        top.addLine(to: CGPoint(x:20+left,y:7.5+topPadding))
         top.stroke()
         
         let middle = UIBezierPath()
-        middle.move(to: CGPoint(x:3,y:12.5))
-        middle.addLine(to: CGPoint(x:23,y:12.5))
+        middle.move(to: CGPoint(x:left,y:13.5+topPadding))
+        middle.addLine(to: CGPoint(x:20+left,y:13.5+topPadding))
         middle.stroke()
         
         let bottom = UIBezierPath()
-        bottom.move(to: CGPoint(x:3,y:18.5))
-        bottom.addLine(to: CGPoint(x:23,y:18.5))
+        bottom.move(to: CGPoint(x:left,y:19.5+topPadding))
+        bottom.addLine(to: CGPoint(x:20+left,y:19.5+topPadding))
         bottom.stroke()
     }
     
     // MARK: - Animations
     
-    open func animate(withPercentVisible percentVisible: CGFloat, drawerSide: DrawerSide) {
+    open func animate(withFractionVisible fractionVisible: CGFloat, drawerSide: DrawerSide) {
         if !self.animatable {
             return
         }
@@ -151,16 +158,16 @@ open class AnimatedMenuButton : UIButton {
         
         let bottomTransform = topTransform.copy() as! CABasicAnimation
         
-        middleTransform.toValue = 1 - percentVisible
+        middleTransform.toValue = 1 - fractionVisible
         
-        let translation = CATransform3DMakeTranslation(-4 * percentVisible, 0, 0)
+        let translation = CATransform3DMakeTranslation(-4 * fractionVisible, 0, 0)
         
         let tanOfTransformAngle = 6.0/19.0
         let transformAngle = atan(tanOfTransformAngle)
         
         let sideInverter: CGFloat = drawerSide == DrawerSide.left ? -1 : 1
-        topTransform.toValue = NSValue(caTransform3D: CATransform3DRotate(translation, 1.0 * sideInverter * (CGFloat(transformAngle) * percentVisible), 0, 0, 1))
-        bottomTransform.toValue = NSValue(caTransform3D: CATransform3DRotate(translation, (-1.0 * sideInverter * CGFloat(transformAngle) * percentVisible), 0, 0, 1))
+        topTransform.toValue = NSValue(caTransform3D: CATransform3DRotate(translation, 1.0 * sideInverter * (CGFloat(transformAngle) * fractionVisible), 0, 0, 1))
+        bottomTransform.toValue = NSValue(caTransform3D: CATransform3DRotate(translation, (-1.0 * sideInverter * CGFloat(transformAngle) * fractionVisible), 0, 0, 1))
         
         topTransform.beginTime = CACurrentMediaTime()
         bottomTransform.beginTime = CACurrentMediaTime()

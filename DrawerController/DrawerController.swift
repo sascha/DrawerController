@@ -313,7 +313,7 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
     /**
     A boolean that determines whether or not the panning gesture will "hard-stop" at the maximum width for a given drawer side.
     
-    By default, this value is set to YES. Enabling `shouldStretchDrawer` will give the pan a gradual asymptotic stopping point much like `UIScrollView` behaves. Note that if this value is set to YES, the `drawerVisualStateBlock` can be passed a `percentVisible` greater than 1.0, so be sure to handle that case appropriately.
+    By default, this value is set to YES. Enabling `shouldStretchDrawer` will give the pan a gradual asymptotic stopping point much like `UIScrollView` behaves. Note that if this value is set to YES, the `drawerVisualStateBlock` can be passed a `fractionVisible` greater than 1.0, so be sure to handle that case appropriately.
     */
     open var shouldStretchDrawer = true
     open var drawerDampingFactor = DrawerDefaultDampingFactor
@@ -394,7 +394,7 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
     /**
     Sets a callback to be called when a drawer visual state needs to be updated.
     
-    This block is responsible for updating the drawer's view state, and the drawer controller will handle animating to that state from the current state. This block will be called when the drawer is opened or closed, as well when the user is panning the drawer. This block is not responsible for doing animations directly, but instead just updating the state of the properies (such as alpha, anchor point, transform, etc). Note that if `shouldStretchDrawer` is set to YES, it is possible for `percentVisible` to be greater than 1.0. If `shouldStretchDrawer` is set to NO, `percentVisible` will never be greater than 1.0.
+    This block is responsible for updating the drawer's view state, and the drawer controller will handle animating to that state from the current state. This block will be called when the drawer is opened or closed, as well when the user is panning the drawer. This block is not responsible for doing animations directly, but instead just updating the state of the properies (such as alpha, anchor point, transform, etc). Note that if `shouldStretchDrawer` is set to YES, it is possible for `fractionVisible` to be greater than 1.0. If `shouldStretchDrawer` is set to NO, `fractionVisible` will never be greater than 1.0.
     
     Note that when the drawer is finished opening or closing, the side drawer controller view will be reset with the following properies:
     
@@ -402,7 +402,7 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
     - transform: CATransform3DIdentity
     - anchorPoint: (0.5,0.5)
     
-    - parameter drawerVisualStateBlock: A block object to be called that allows the implementer to update visual state properties on the drawer. `percentVisible` represents the amount of the drawer space that is current visible, with drawer space being defined as the edge of the screen to the maxmimum drawer width. Note that you do have access to the drawerController, which will allow you to update things like the anchor point of the side drawer layer.
+    - parameter drawerVisualStateBlock: A block object to be called that allows the implementer to update visual state properties on the drawer. `fractionVisible` represents the amount of the drawer space that is current visible, with drawer space being defined as the edge of the screen to the maxmimum drawer width. Note that you do have access to the drawerController, which will allow you to update things like the anchor point of the side drawer layer.
     */
     open var drawerVisualStateBlock: DrawerControllerDrawerVisualStateBlock?
     
@@ -587,25 +587,25 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    fileprivate func updateDrawerVisualState(for drawerSide: DrawerSide, percentVisible: CGFloat) {
+    fileprivate func updateDrawerVisualState(for drawerSide: DrawerSide, fractionVisible: CGFloat) {
         if let drawerVisualState = self.drawerVisualStateBlock {
-            drawerVisualState(self, drawerSide, percentVisible)
+            drawerVisualState(self, drawerSide, fractionVisible)
         } else if self.shouldStretchDrawer {
-            self.applyOvershootScaleTransform(for: drawerSide, percentVisible: percentVisible)
+            self.applyOvershootScaleTransform(for: drawerSide, fractionVisible: fractionVisible)
         }
     }
     
-    fileprivate func applyOvershootScaleTransform(for drawerSide: DrawerSide, percentVisible: CGFloat) {
-        if percentVisible >= 1.0 {
+    fileprivate func applyOvershootScaleTransform(for drawerSide: DrawerSide, fractionVisible: CGFloat) {
+        if fractionVisible >= 1.0 {
             var transform = CATransform3DIdentity
             
             if let sideDrawerViewController = self.sideDrawerViewController(for: drawerSide) {
                 if drawerSide == .left {
-                    transform = CATransform3DMakeScale(percentVisible, 1.0, 1.0)
-                    transform = CATransform3DTranslate(transform, self._maximumLeftDrawerWidth * (percentVisible - 1.0) / 2, 0, 0)
+                    transform = CATransform3DMakeScale(fractionVisible, 1.0, 1.0)
+                    transform = CATransform3DTranslate(transform, self._maximumLeftDrawerWidth * (fractionVisible - 1.0) / 2, 0, 0)
                 } else if drawerSide == .right {
-                    transform = CATransform3DMakeScale(percentVisible, 1.0, 1.0)
-                    transform = CATransform3DTranslate(transform, -self._maximumRightDrawerWidth * (percentVisible - 1.0) / 2, 0, 0)
+                    transform = CATransform3DMakeScale(fractionVisible, 1.0, 1.0)
+                    transform = CATransform3DTranslate(transform, -self._maximumRightDrawerWidth * (fractionVisible - 1.0) / 2, 0, 0)
                 }
                 
                 sideDrawerViewController.view.layer.transform = transform
@@ -712,7 +712,7 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
             sideDrawerViewControllerToPresent.view.isHidden = false
             self.resetDrawerVisualState(for: drawer)
             sideDrawerViewControllerToPresent.view.frame = sideDrawerViewControllerToPresent.evo_visibleDrawerFrame
-            self.updateDrawerVisualState(for: drawer, percentVisible: 0.0)
+            self.updateDrawerVisualState(for: drawer, fractionVisible: 0.0)
             sideDrawerViewControllerToPresent.beginAppearanceTransition(true, animated: animated)
         }
     }
@@ -943,7 +943,7 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
         self.setCenter(newCenterViewController, animated: animated)
         
         if animated {
-            self.updateDrawerVisualState(for: self.openSide, percentVisible: 1.0)
+            self.updateDrawerVisualState(for: self.openSide, fractionVisible: 1.0)
             
             if forwardAppearanceMethodsToCenterViewController {
                 self.centerViewController!.beginAppearanceTransition(true, animated: animated)
@@ -1007,7 +1007,7 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
                     let oldCenterRect = self.centerContainerView.frame
                     self.setCenter(newCenterViewController, animated: animated)
                     self.centerContainerView.frame = oldCenterRect
-                    self.updateDrawerVisualState(for: self.openSide, percentVisible: 1.0)
+                    self.updateDrawerVisualState(for: self.openSide, fractionVisible: 1.0)
                     
                     if forwardAppearanceMethodsToCenterViewController {
                         oldCenterViewController?.endAppearanceTransition()
@@ -1018,7 +1018,7 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
                     
                     UIView.animate(withDuration: self.animationDuration(forAnimationDistance: self.childControllerContainerView.bounds.width), delay: DrawerDefaultFullAnimationDelay, usingSpringWithDamping: self.drawerDampingFactor, initialSpringVelocity: self.childControllerContainerView.bounds.width / self.animationVelocity, options: [], animations: { () -> Void in
                         self.centerContainerView.frame = self.childControllerContainerView.bounds
-                        self.updateDrawerVisualState(for: self.openSide, percentVisible: 0.0)
+                        self.updateDrawerVisualState(for: self.openSide, fractionVisible: 0.0)
                         }, completion: { (finished) -> Void in
                             if forwardAppearanceMethodsToCenterViewController {
                                 self.centerViewController?.endAppearanceTransition()
@@ -1087,7 +1087,7 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
         } else {
             self.prepareToPresentDrawer(for: drawerSide, animated: true)
             
-            self.updateDrawerVisualState(for: drawerSide, percentVisible: 1.0)
+            self.updateDrawerVisualState(for: drawerSide, fractionVisible: 1.0)
             
             CATransaction.begin()
             CATransaction.setCompletionBlock {
@@ -1135,14 +1135,14 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
             let xOffset = newFrame.origin.x
             
             var visibleSide: DrawerSide = .none
-            var percentVisible: CGFloat = 0.0
+            var fractionVisible: CGFloat = 0.0
             
             if xOffset > 0 {
                 visibleSide = .left
-                percentVisible = xOffset / self.maximumLeftDrawerWidth
+                fractionVisible = xOffset / self.maximumLeftDrawerWidth
             } else if xOffset < 0 {
                 visibleSide = .right
-                percentVisible = abs(xOffset) / self.maximumRightDrawerWidth
+                fractionVisible = abs(xOffset) / self.maximumRightDrawerWidth
             }
             
             if let visibleSideDrawerViewController = self.sideDrawerViewController(for: visibleSide) {
@@ -1161,7 +1161,7 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
                     self.openSide = .none
                 }
                 
-                self.updateDrawerVisualState(for: visibleSide, percentVisible: percentVisible)
+                self.updateDrawerVisualState(for: visibleSide, fractionVisible: fractionVisible)
                 self.centerContainerView.frame.origin.x = newFrame.origin.x
             }
         case .ended, .cancelled:
@@ -1265,7 +1265,7 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
                 UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: self.drawerDampingFactor, initialSpringVelocity: velocity / distance, options: options, animations: { () -> Void in
                     self.setNeedsStatusBarAppearanceUpdate()
                     self.centerContainerView.frame = newFrame
-                    self.updateDrawerVisualState(for: drawerSide, percentVisible: 1.0)
+                    self.updateDrawerVisualState(for: drawerSide, fractionVisible: 1.0)
                     }, completion: { (finished) -> Void in
                         if drawerSide != self.openSide {
                             sideDrawerViewController!.endAppearanceTransition()
@@ -1307,27 +1307,27 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
             let rightDrawerVisible = self.centerContainerView.frame.minX < 0
             
             var visibleSide: DrawerSide = .none
-            var percentVisible: CGFloat = 0.0
+            var fractionVisible: CGFloat = 0.0
             
             if leftDrawerVisible {
                 let visibleDrawerPoint = self.centerContainerView.frame.minX
-                percentVisible = max(0.0, visibleDrawerPoint / self._maximumLeftDrawerWidth)
+                fractionVisible = max(0.0, visibleDrawerPoint / self._maximumLeftDrawerWidth)
                 visibleSide = .left
             } else if rightDrawerVisible {
                 let visibleDrawerPoints = self.centerContainerView.frame.width - self.centerContainerView.frame.maxX
-                percentVisible = max(0.0, visibleDrawerPoints / self._maximumRightDrawerWidth)
+                fractionVisible = max(0.0, visibleDrawerPoints / self._maximumRightDrawerWidth)
                 visibleSide = .right
             }
             
             let sideDrawerViewController = self.sideDrawerViewController(for: visibleSide)
             
-            self.updateDrawerVisualState(for: visibleSide, percentVisible: percentVisible)
+            self.updateDrawerVisualState(for: visibleSide, fractionVisible: fractionVisible)
             sideDrawerViewController?.beginAppearanceTransition(false, animated: animated)
             
             UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: self.drawerDampingFactor, initialSpringVelocity: velocity / distance, options: options, animations: { () -> Void in
                 self.setNeedsStatusBarAppearanceUpdate()
                 self.centerContainerView.frame = newFrame
-                self.updateDrawerVisualState(for: visibleSide, percentVisible: 0.0)
+                self.updateDrawerVisualState(for: visibleSide, fractionVisible: 0.0)
                 }, completion: { (finished) -> Void in
                     sideDrawerViewController?.endAppearanceTransition()
                     self.openSide = .none

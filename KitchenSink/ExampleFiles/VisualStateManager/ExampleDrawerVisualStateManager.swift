@@ -65,7 +65,7 @@ class ExampleDrawerVisualStateManager: NSObject {
         case .animatedBarButton:
             visualStateBlock = DrawerVisualState.animatedHamburgerButtonVisualStateBlock
         default:
-            visualStateBlock = { drawerController, drawerSide, percentVisible in
+            visualStateBlock = { drawerController, drawerSide, fractionVisible in
                 var sideDrawerViewController: UIViewController?
                 var transform = CATransform3DIdentity
                 var maxDrawerWidth: CGFloat = 0.0
@@ -78,13 +78,13 @@ class ExampleDrawerVisualStateManager: NSObject {
                     maxDrawerWidth = drawerController.maximumRightDrawerWidth
                 }
                 
-                if percentVisible > 1.0 {
-                    transform = CATransform3DMakeScale(percentVisible, 1.0, 1.0)
+                if fractionVisible > 1.0 {
+                    transform = CATransform3DMakeScale(fractionVisible, 1.0, 1.0)
                     
                     if drawerSide == .left {
-                        transform = CATransform3DTranslate(transform, maxDrawerWidth * (percentVisible - 1.0) / 2, 0.0, 0.0)
+                        transform = CATransform3DTranslate(transform, maxDrawerWidth * (fractionVisible - 1.0) / 2, 0.0, 0.0)
                     } else if drawerSide == .right {
-                        transform = CATransform3DTranslate(transform, -maxDrawerWidth * (percentVisible - 1.0) / 2, 0.0, 0.0)
+                        transform = CATransform3DTranslate(transform, -maxDrawerWidth * (fractionVisible - 1.0) / 2, 0.0, 0.0)
                     }
                 }
                 

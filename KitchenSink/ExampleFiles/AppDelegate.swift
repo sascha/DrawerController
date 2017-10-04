@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let leftSideDrawerViewController = ExampleLeftSideDrawerViewController()
         let centerViewController = ExampleCenterTableViewController()
+        centerViewController.title = "Test"
         let rightSideDrawerViewController = ExampleRightSideDrawerViewController()
         
         let navigationController = UINavigationController(rootViewController: centerViewController)
@@ -49,9 +50,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.drawerController.openDrawerGestureModeMask = .all
         self.drawerController.closeDrawerGestureModeMask = .all
         
-        self.drawerController.drawerVisualStateBlock = { (drawerController, drawerSide, percentVisible) in
+        self.drawerController.drawerVisualStateBlock = { (drawerController, drawerSide, fractionVisible) in
             let block = ExampleDrawerVisualStateManager.sharedManager.drawerVisualStateBlock(for: drawerSide)
-            block?(drawerController, drawerSide, percentVisible)
+            block?(drawerController, drawerSide, fractionVisible)
         }
         
         self.window = UIWindow(frame: UIScreen.main.bounds)

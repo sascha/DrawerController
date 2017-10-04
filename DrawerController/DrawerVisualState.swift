@@ -29,13 +29,13 @@ public struct DrawerVisualState {
     - returns: The visual state block.
     */
     public static var slideAndScaleVisualStateBlock: DrawerControllerDrawerVisualStateBlock {
-        let visualStateBlock: DrawerControllerDrawerVisualStateBlock = { (drawerController, drawerSide, percentVisible) -> Void in
+        let visualStateBlock: DrawerControllerDrawerVisualStateBlock = { (drawerController, drawerSide, fractionVisible) -> Void in
             let minScale: CGFloat = 0.9
-            let scale: CGFloat = minScale + (percentVisible * (1.0-minScale))
+            let scale: CGFloat = minScale + (fractionVisible * (1.0-minScale))
             let scaleTransform = CATransform3DMakeScale(scale, scale, scale)
             
             let maxDistance: CGFloat = 50
-            let distance: CGFloat = maxDistance * percentVisible
+            let distance: CGFloat = maxDistance * fractionVisible
             var translateTransform = CATransform3DIdentity
             var sideDrawerViewController: UIViewController?
             
@@ -48,7 +48,7 @@ public struct DrawerVisualState {
             }
             
             sideDrawerViewController?.view.layer.transform = CATransform3DConcat(scaleTransform, translateTransform)
-            sideDrawerViewController?.view.alpha = percentVisible
+            sideDrawerViewController?.view.alpha = fractionVisible
         }
 
         return visualStateBlock
@@ -69,7 +69,7 @@ public struct DrawerVisualState {
     - returns: The visual state block.
     */
     public static var swingingDoorVisualStateBlock: DrawerControllerDrawerVisualStateBlock {
-        let visualStateBlock: DrawerControllerDrawerVisualStateBlock = { (drawerController, drawerSide, percentVisible) -> Void in
+        let visualStateBlock: DrawerControllerDrawerVisualStateBlock = { (drawerController, drawerSide, fractionVisible) -> Void in
             
             var sideDrawerViewController: UIViewController?
             var anchorPoint: CGPoint
@@ -81,14 +81,14 @@ public struct DrawerVisualState {
                 sideDrawerViewController = drawerController.leftDrawerViewController
                 anchorPoint = CGPoint(x: 1.0, y: 0.5)
                 maxDrawerWidth = max(drawerController.maximumLeftDrawerWidth, drawerController.visibleLeftDrawerWidth)
-                xOffset = -(maxDrawerWidth / 2) + maxDrawerWidth * percentVisible
-                angle = -CGFloat(Double.pi / 2) + percentVisible * CGFloat(Double.pi / 2)
+                xOffset = -(maxDrawerWidth / 2) + maxDrawerWidth * fractionVisible
+                angle = -CGFloat(Double.pi / 2) + fractionVisible * CGFloat(Double.pi / 2)
             } else {
                 sideDrawerViewController = drawerController.rightDrawerViewController
                 anchorPoint = CGPoint(x: 0.0, y: 0.5)
                 maxDrawerWidth = max(drawerController.maximumRightDrawerWidth, drawerController.visibleRightDrawerWidth)
-                xOffset = (maxDrawerWidth / 2) - maxDrawerWidth * percentVisible
-                angle = CGFloat(Double.pi / 2) - percentVisible * CGFloat(Double.pi / 2)
+                xOffset = (maxDrawerWidth / 2) - maxDrawerWidth * fractionVisible
+                angle = CGFloat(Double.pi / 2) - fractionVisible * CGFloat(Double.pi / 2)
             }
             
             sideDrawerViewController?.view.layer.anchorPoint = anchorPoint
@@ -97,7 +97,7 @@ public struct DrawerVisualState {
             
             var swingingDoorTransform: CATransform3D = CATransform3DIdentity
            
-            if percentVisible <= 1.0 {
+            if fractionVisible <= 1.0 {
                 var identity: CATransform3D = CATransform3DIdentity
                 identity.m34 = -1.0 / 1000.0
                 let rotateTransform: CATransform3D = CATransform3DRotate(identity, angle,
@@ -107,7 +107,7 @@ public struct DrawerVisualState {
                 
                 swingingDoorTransform = concatTransform
             } else {
-                var overshootTransform = CATransform3DMakeScale(percentVisible, 1.0, 1.0)
+                var overshootTransform = CATransform3DMakeScale(fractionVisible, 1.0, 1.0)
                 var scalingModifier: CGFloat = 1.0
                 
                 if (drawerSide == .right) {
@@ -132,7 +132,7 @@ public struct DrawerVisualState {
     - returns: The visual state block.
     */
     public static func parallaxVisualStateBlock(parallaxFactor: CGFloat) -> DrawerControllerDrawerVisualStateBlock {
-        let visualStateBlock: DrawerControllerDrawerVisualStateBlock = { (drawerController, drawerSide, percentVisible) -> Void in
+        let visualStateBlock: DrawerControllerDrawerVisualStateBlock = { (drawerController, drawerSide, fractionVisible) -> Void in
             
             assert({ () -> Bool in
                 return parallaxFactor >= 1.0
@@ -145,21 +145,21 @@ public struct DrawerVisualState {
                 sideDrawerViewController = drawerController.leftDrawerViewController
                 let distance: CGFloat = max(drawerController.maximumLeftDrawerWidth, drawerController.visibleLeftDrawerWidth)
                 
-                if (percentVisible <= 1.0) {
-                    transform = CATransform3DMakeTranslation((-distance) / parallaxFactor + (distance * percentVisible / parallaxFactor), 0.0, 0.0)
+                if (fractionVisible <= 1.0) {
+                    transform = CATransform3DMakeTranslation((-distance) / parallaxFactor + (distance * fractionVisible / parallaxFactor), 0.0, 0.0)
                 } else {
-                    transform = CATransform3DMakeScale(percentVisible, 1.0, 1.0)
-                    transform = CATransform3DTranslate(transform, drawerController.maximumLeftDrawerWidth * (percentVisible - 1.0) / 2, 0.0, 0.0)
+                    transform = CATransform3DMakeScale(fractionVisible, 1.0, 1.0)
+                    transform = CATransform3DTranslate(transform, drawerController.maximumLeftDrawerWidth * (fractionVisible - 1.0) / 2, 0.0, 0.0)
                 }
             } else if (drawerSide == .right) {
                 sideDrawerViewController = drawerController.rightDrawerViewController
                 let distance: CGFloat = max(drawerController.maximumRightDrawerWidth, drawerController.visibleRightDrawerWidth)
                 
-                if (percentVisible <= 1.0) {
-                    transform = CATransform3DMakeTranslation((distance) / parallaxFactor - (distance * percentVisible / parallaxFactor), 0.0, 0.0)
+                if (fractionVisible <= 1.0) {
+                    transform = CATransform3DMakeTranslation((distance) / parallaxFactor - (distance * fractionVisible / parallaxFactor), 0.0, 0.0)
                 } else {
-                    transform = CATransform3DMakeScale(percentVisible, 1.0, 1.0)
-                    transform = CATransform3DTranslate(transform, -drawerController.maximumRightDrawerWidth * (percentVisible - 1.0) / 2, 0.0, 0.0)
+                    transform = CATransform3DMakeScale(fractionVisible, 1.0, 1.0)
+                    transform = CATransform3DTranslate(transform, -drawerController.maximumRightDrawerWidth * (fractionVisible - 1.0) / 2, 0.0, 0.0)
                 }
             }
             
@@ -170,7 +170,7 @@ public struct DrawerVisualState {
     }
     
     public static var animatedHamburgerButtonVisualStateBlock: DrawerControllerDrawerVisualStateBlock {
-        let visualStateBlock: DrawerControllerDrawerVisualStateBlock = { (drawerController, drawerSide, percentVisible) -> Void in
+        let visualStateBlock: DrawerControllerDrawerVisualStateBlock = { (drawerController, drawerSide, fractionVisible) -> Void in
             
             var hamburgerItem: DrawerBarButtonItem?
             if let navController = drawerController.centerViewController as? UINavigationController {
@@ -185,7 +185,7 @@ public struct DrawerVisualState {
                 }
             }
 
-            hamburgerItem?.animate(withPercentVisible: percentVisible, drawerSide: drawerSide)
+            hamburgerItem?.animate(withFractionVisible: fractionVisible, drawerSide: drawerSide)
         }
             
         return visualStateBlock

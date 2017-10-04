@@ -38,11 +38,11 @@ open class DrawerBarButtonItem: UIBarButtonItem {
     }
     
     public convenience init(target: AnyObject?, action: Selector, menuIconColor: UIColor) {
-        self.init(target: target, action: action, menuIconColor: menuIconColor, animatable: true)
+        self.init(target: target, action: action, menuIconColor: menuIconColor, animatable: false)
     }
     
     public convenience init(target: AnyObject?, action: Selector, menuIconColor: UIColor, animatable: Bool) {
-        let menuButton = AnimatedMenuButton(frame: CGRect(x: 0, y: 0, width: 26, height: 26), strokeColor: menuIconColor)
+        let menuButton = AnimatedMenuButton(frame: CGRect(x: 0, y: 0, width: 26, height: 26), strokeColor: menuIconColor, animatable:animatable)
         menuButton.animatable = animatable
         menuButton.addTarget(target, action: action, for: UIControlEvents.touchUpInside)
         self.init(customView: menuButton)
@@ -58,9 +58,16 @@ open class DrawerBarButtonItem: UIBarButtonItem {
     
     // MARK: - Animations
     
-    open func animate(withPercentVisible percentVisible: CGFloat, drawerSide: DrawerSide) {
+    open func animate(withFractionVisible fractionVisible: CGFloat, drawerSide: DrawerSide) {
         if let btn = self.customView as? AnimatedMenuButton {
-            btn.animate(withPercentVisible: percentVisible, drawerSide: drawerSide)
+            btn.animate(withFractionVisible: fractionVisible, drawerSide: drawerSide)
         }
+    }
+    
+    // MARK: - Customisations
+    
+    open func setStrokeColor(_ strokeColor:UIColor) {
+        self.menuButton.strokeColor = strokeColor
+        self.menuButton.setNeedsDisplay()
     }
 }
