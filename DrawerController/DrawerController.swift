@@ -711,7 +711,10 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
     if let sideDrawerViewControllerToPresent = self.sideDrawerViewController(for: drawer) {
       sideDrawerViewControllerToPresent.view.isHidden = false
       self.resetDrawerVisualState(for: drawer)
+        
+      sideDrawerViewControllerToPresent.view.setNeedsUpdateConstraints()
       sideDrawerViewControllerToPresent.view.frame = sideDrawerViewControllerToPresent.evo_visibleDrawerFrame
+        
       self.updateDrawerVisualState(for: drawer, fractionVisible: 0.0)
       sideDrawerViewControllerToPresent.beginAppearanceTransition(true, animated: animated)
     }
@@ -871,9 +874,9 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
         viewController!.view.isHidden = true
       }
 
-      viewController!.didMove(toParentViewController: self)
-      viewController!.view.autoresizingMask = autoResizingMask
       viewController!.view.frame = viewController!.evo_visibleDrawerFrame
+      viewController!.view.autoresizingMask = autoResizingMask
+      viewController!.didMove(toParentViewController: self)
     }
   }
 
