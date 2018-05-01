@@ -20,6 +20,11 @@
 
 import UIKit
 
+public protocol DrawerControllerDelegate {
+    func willCloseDrawer(side: DrawerSide)
+    func didCloseDrawer(side: DrawerSide)
+}
+
 public extension UIViewController {
   var evo_drawerController: DrawerController? {
     var parentViewController = self.parent
@@ -194,6 +199,7 @@ private class DrawerCenterContainerView: UIView {
 }
 
 open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
+  public var delegate: DrawerControllerDelegate?
   fileprivate var _centerViewController: UIViewController?
   fileprivate var _leftDrawerViewController: UIViewController?
   fileprivate var _rightDrawerViewController: UIViewController?
@@ -1328,7 +1334,18 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
         self.setNeedsStatusBarAppearanceUpdate()
         self.centerContainerView.frame = newFrame
         self.updateDrawerVisualState(for: visibleSide, fractionVisible: 0.0)
+        
+        // Drawer will close
+        if let delegate = self.delegate {
+            delegate.willCloseDrawer(side: self.openSide)
+        }
+        
       }, completion: { (finished) -> Void in
+        // Drawer did close
+        if let delegate = self.delegate {
+            delegate.didCloseDrawer(side: self.openSide)
+        }
+        
         sideDrawerViewController?.endAppearanceTransition()
         self.openSide = .none
         self.resetDrawerVisualState(for: visibleSide)
