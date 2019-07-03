@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'AMDrawerController'
-  s.version = '4.2.3'
+  s.version = '4.2.4'
   s.license = { :type => 'MIT', :file => 'LICENSE' }
   s.homepage = 'https://github.com/Anumothu/DrawerController'
   s.authors = { 'Sascha Schwabbauer' => 'sascha@evolved.io',
