@@ -1,13 +1,13 @@
 Pod::Spec.new do |s|
-  s.name = 'DrawerController'
-  s.version = '4.2.2'
+  s.name = 'AMDrawerController'
+  s.version = '4.2.3'
   s.license = { :type => 'MIT', :file => 'LICENSE' }
-  s.homepage = 'https://github.com/sascha/DrawerController'
+  s.homepage = 'https://github.com/Anumothu/DrawerController'
   s.authors = { 'Sascha Schwabbauer' => 'sascha@evolved.io',
   				'Malte Baumann' => 'malte@codingdivision.com','Alen' => 'alenbala11@gmail.com' }
   s.summary = 'A lightweight, easy-to-use side drawer navigation controller (Swift port of MMDrawerController).'
   s.social_media_url = 'http://twitter.com/_saschas'
-  s.source = { :git => 'https://github.com/sascha/DrawerController.git', :tag => s.version.to_s }
+  s.source = { :git => 'https://github.com/Anumothu/DrawerController.git', :tag => s.version.to_s }
 
   s.requires_arc = true
   s.ios.deployment_target = '9.0'
