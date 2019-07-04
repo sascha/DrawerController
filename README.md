@@ -1,6 +1,6 @@
 
 # AMDrawer Controller
-[![Version Status](http://img.shields.io/cocoapods/v/DrawerController.png)](http://cocoadocs.org/docsets/DrawerController/4.0.0/) [![license MIT](http://img.shields.io/badge/license-MIT-orange.png)](http://opensource.org/licenses/MIT) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Version Status](http://img.shields.io/cocoapods/v/DrawerController.png)](http://cocoadocs.org/docsets/DrawerController/4.0.0/) [![license MIT](http://img.shields.io/badge/license-MIT-orange.png)](http://opensource.org/licenses/MIT)
 
 `AMDrawerController` is a swift version of the popular `MMDrawerController` by [Mutual Mobile](https://github.com/mutualmobile/MMDrawerController).
 
