@@ -21,7 +21,9 @@
 import UIKit
 
 class SideDrawerTableViewCell: TableViewCell {
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     self.commonSetup()
   }
@@ -45,6 +47,6 @@ class SideDrawerTableViewCell: TableViewCell {
   }
   
   override func updateContentForNewContentSize() {
-    self.textLabel?.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+    self.textLabel?.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
   }
 }

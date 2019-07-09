@@ -69,7 +69,7 @@ open class AnimatedMenuButton : UIButton {
       layer.strokeColor = self.strokeColor.cgColor
       layer.lineWidth = 1
       layer.miterLimit = 2
-      layer.lineCap = kCALineCapSquare
+      layer.lineCap = CAShapeLayerLineCap.square
       layer.masksToBounds = true
       
       if let path = layer.path, let strokingPath = CGPath(__byStroking: path, transform: nil, lineWidth: 1, lineCap: .square, lineJoin: .miter, miterLimit: 4) {
@@ -147,7 +147,7 @@ open class AnimatedMenuButton : UIButton {
     let topTransform = CABasicAnimation(keyPath: "transform")
     topTransform.timingFunction = CAMediaTimingFunction(controlPoints: 0.5, -0.8, 0.5, 1.85)
     topTransform.duration = animationDuration
-    topTransform.fillMode = kCAFillModeBackwards
+    topTransform.fillMode = CAMediaTimingFillMode.backwards
     
     let bottomTransform = topTransform.copy() as! CABasicAnimation
     

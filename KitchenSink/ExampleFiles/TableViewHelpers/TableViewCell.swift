@@ -125,7 +125,7 @@ private class CustomCheckmark: UIControl {
 class TableViewCell: UITableViewCell {
   var accessoryCheckmarkColor: UIColor = UIColor.white
   var disclosureIndicatorColor: UIColor = UIColor.white
-  override var accessoryType: UITableViewCellAccessoryType {
+    override var accessoryType: UITableViewCell.AccessoryType {
     didSet {
       if self.accessoryType == .checkmark {
         let customCheckmark = CustomCheckmark(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
@@ -141,7 +141,7 @@ class TableViewCell: UITableViewCell {
     }
   }
   
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     
     self.updateContentForNewContentSize()

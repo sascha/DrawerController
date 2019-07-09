@@ -41,7 +41,7 @@ class SideDrawerSectionHeaderView: UIView {
   func commonSetup() {
     self.backgroundColor = UIColor(red: 110 / 255, green: 113 / 255, blue: 115 / 255, alpha: 1.0)
     self.label = UILabel(frame: CGRect(x: 15, y: self.bounds.maxY - 28, width: self.bounds.width - 30, height: 22))
-    self.label.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)
+    self.label.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.caption1)
     self.label.backgroundColor = UIColor.clear
     self.label.textColor = UIColor(red: 203 / 255, green: 206 / 255, blue: 209 / 255, alpha: 1.0)
     self.label.autoresizingMask = [ .flexibleWidth ,.flexibleTopMargin ]
